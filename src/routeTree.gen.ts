@@ -22,6 +22,7 @@ import { Route as PrivateClientRouteImport } from './routes/private-client'
 import { Route as StockistsRouteImport } from './routes/stockists'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TheHouseRouteImport } from './routes/the-house'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -89,6 +90,11 @@ const TheHouseRoute = TheHouseRouteImport.update({
   path: '/the-house',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => JournalRoute,
+} as any)
 const JournalSlugRoute = JournalSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -110,13 +116,13 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/the-house': typeof TheHouseRoute
   '/journal/$slug': typeof JournalSlugRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/craftsmanship': typeof CraftsmanshipRoute
   '/heritage': typeof HeritageRoute
-  '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
   '/press': typeof PressRoute
@@ -126,6 +132,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/the-house': typeof TheHouseRoute
   '/journal/$slug': typeof JournalSlugRoute
+  '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +150,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/the-house': typeof TheHouseRoute
   '/journal/$slug': typeof JournalSlugRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,13 +169,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/the-house'
     | '/journal/$slug'
+    | '/journal/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
     | '/craftsmanship'
     | '/heritage'
-    | '/journal'
     | '/kani'
     | '/kashmir'
     | '/press'
@@ -177,6 +185,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/the-house'
     | '/journal/$slug'
+    | '/journal'
   id:
     | '__root__'
     | '/'
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/the-house'
     | '/journal/$slug'
+    | '/journal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -304,6 +314,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TheHouseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/': {
+      id: '/journal/'
+      path: '/'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof JournalRoute
+    }
     '/journal/$slug': {
       id: '/journal/$slug'
       path: '/$slug'
@@ -316,10 +333,12 @@ declare module '@tanstack/react-router' {
 
 interface JournalRouteChildren {
   JournalSlugRoute: typeof JournalSlugRoute
+  JournalIndexRoute: typeof JournalIndexRoute
 }
 
 const JournalRouteChildren: JournalRouteChildren = {
   JournalSlugRoute: JournalSlugRoute,
+  JournalIndexRoute: JournalIndexRoute,
 }
 
 const JournalRouteWithChildren =
