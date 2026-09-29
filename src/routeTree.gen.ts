@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CraftsmanshipRouteImport } from './routes/craftsmanship'
+import { Route as KaniRouteImport } from './routes/kani'
+import { Route as TheHouseRouteImport } from './routes/the-house'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CraftsmanshipRoute = CraftsmanshipRouteImport.update({
+  id: '/craftsmanship',
+  path: '/craftsmanship',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KaniRoute = KaniRouteImport.update({
+  id: '/kani',
+  path: '/kani',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheHouseRoute = TheHouseRouteImport.update({
+  id: '/the-house',
+  path: '/the-house',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/kani': typeof KaniRoute
+  '/the-house': typeof TheHouseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/kani': typeof KaniRoute
+  '/the-house': typeof TheHouseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/kani': typeof KaniRoute
+  '/the-house': typeof TheHouseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/craftsmanship' | '/kani' | '/the-house'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/craftsmanship' | '/kani' | '/the-house'
+  id: '__root__' | '/' | '/craftsmanship' | '/kani' | '/the-house'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CraftsmanshipRoute: typeof CraftsmanshipRoute
+  KaniRoute: typeof KaniRoute
+  TheHouseRoute: typeof TheHouseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/craftsmanship': {
+      id: '/craftsmanship'
+      path: '/craftsmanship'
+      fullPath: '/craftsmanship'
+      preLoaderRoute: typeof CraftsmanshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kani': {
+      id: '/kani'
+      path: '/kani'
+      fullPath: '/kani'
+      preLoaderRoute: typeof KaniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-house': {
+      id: '/the-house'
+      path: '/the-house'
+      fullPath: '/the-house'
+      preLoaderRoute: typeof TheHouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CraftsmanshipRoute: CraftsmanshipRoute,
+  KaniRoute: KaniRoute,
+  TheHouseRoute: TheHouseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
