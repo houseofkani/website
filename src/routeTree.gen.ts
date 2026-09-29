@@ -10,33 +10,215 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CraftsmanshipRouteImport } from './routes/craftsmanship'
+import { Route as HeritageRouteImport } from './routes/heritage'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as KaniRouteImport } from './routes/kani'
+import { Route as KashmirRouteImport } from './routes/kashmir'
+import { Route as PressRouteImport } from './routes/press'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PrivateClientRouteImport } from './routes/private-client'
+import { Route as StockistsRouteImport } from './routes/stockists'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TheHouseRouteImport } from './routes/the-house'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CraftsmanshipRoute = CraftsmanshipRouteImport.update({
+  id: '/craftsmanship',
+  path: '/craftsmanship',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HeritageRoute = HeritageRouteImport.update({
+  id: '/heritage',
+  path: '/heritage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KaniRoute = KaniRouteImport.update({
+  id: '/kani',
+  path: '/kani',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KashmirRoute = KashmirRouteImport.update({
+  id: '/kashmir',
+  path: '/kashmir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateClientRoute = PrivateClientRouteImport.update({
+  id: '/private-client',
+  path: '/private-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StockistsRoute = StockistsRouteImport.update({
+  id: '/stockists',
+  path: '/stockists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheHouseRoute = TheHouseRouteImport.update({
+  id: '/the-house',
+  path: '/the-house',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => JournalRoute,
+} as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/heritage': typeof HeritageRoute
+  '/journal': typeof JournalRouteWithChildren
+  '/kani': typeof KaniRoute
+  '/kashmir': typeof KashmirRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
+  '/private-client': typeof PrivateClientRoute
+  '/stockists': typeof StockistsRoute
+  '/terms': typeof TermsRoute
+  '/the-house': typeof TheHouseRoute
+  '/journal/$slug': typeof JournalSlugRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/heritage': typeof HeritageRoute
+  '/kani': typeof KaniRoute
+  '/kashmir': typeof KashmirRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
+  '/private-client': typeof PrivateClientRoute
+  '/stockists': typeof StockistsRoute
+  '/terms': typeof TermsRoute
+  '/the-house': typeof TheHouseRoute
+  '/journal/$slug': typeof JournalSlugRoute
+  '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/craftsmanship': typeof CraftsmanshipRoute
+  '/heritage': typeof HeritageRoute
+  '/journal': typeof JournalRouteWithChildren
+  '/kani': typeof KaniRoute
+  '/kashmir': typeof KashmirRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
+  '/private-client': typeof PrivateClientRoute
+  '/stockists': typeof StockistsRoute
+  '/terms': typeof TermsRoute
+  '/the-house': typeof TheHouseRoute
+  '/journal/$slug': typeof JournalSlugRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/craftsmanship'
+    | '/heritage'
+    | '/journal'
+    | '/kani'
+    | '/kashmir'
+    | '/press'
+    | '/privacy'
+    | '/private-client'
+    | '/stockists'
+    | '/terms'
+    | '/the-house'
+    | '/journal/$slug'
+    | '/journal/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/craftsmanship'
+    | '/heritage'
+    | '/kani'
+    | '/kashmir'
+    | '/press'
+    | '/privacy'
+    | '/private-client'
+    | '/stockists'
+    | '/terms'
+    | '/the-house'
+    | '/journal/$slug'
+    | '/journal'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/craftsmanship'
+    | '/heritage'
+    | '/journal'
+    | '/kani'
+    | '/kashmir'
+    | '/press'
+    | '/privacy'
+    | '/private-client'
+    | '/stockists'
+    | '/terms'
+    | '/the-house'
+    | '/journal/$slug'
+    | '/journal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  CraftsmanshipRoute: typeof CraftsmanshipRoute
+  HeritageRoute: typeof HeritageRoute
+  JournalRoute: typeof JournalRouteWithChildren
+  KaniRoute: typeof KaniRoute
+  KashmirRoute: typeof KashmirRoute
+  PressRoute: typeof PressRoute
+  PrivacyRoute: typeof PrivacyRoute
+  PrivateClientRoute: typeof PrivateClientRoute
+  StockistsRoute: typeof StockistsRoute
+  TermsRoute: typeof TermsRoute
+  TheHouseRoute: typeof TheHouseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +230,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/craftsmanship': {
+      id: '/craftsmanship'
+      path: '/craftsmanship'
+      fullPath: '/craftsmanship'
+      preLoaderRoute: typeof CraftsmanshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/heritage': {
+      id: '/heritage'
+      path: '/heritage'
+      fullPath: '/heritage'
+      preLoaderRoute: typeof HeritageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kani': {
+      id: '/kani'
+      path: '/kani'
+      fullPath: '/kani'
+      preLoaderRoute: typeof KaniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kashmir': {
+      id: '/kashmir'
+      path: '/kashmir'
+      fullPath: '/kashmir'
+      preLoaderRoute: typeof KashmirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/private-client': {
+      id: '/private-client'
+      path: '/private-client'
+      fullPath: '/private-client'
+      preLoaderRoute: typeof PrivateClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stockists': {
+      id: '/stockists'
+      path: '/stockists'
+      fullPath: '/stockists'
+      preLoaderRoute: typeof StockistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-house': {
+      id: '/the-house'
+      path: '/the-house'
+      fullPath: '/the-house'
+      preLoaderRoute: typeof TheHouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal/': {
+      id: '/journal/'
+      path: '/'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof JournalRoute
+    }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
+    }
   }
 }
 
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+  JournalIndexRoute: typeof JournalIndexRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+  JournalIndexRoute: JournalIndexRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  CraftsmanshipRoute: CraftsmanshipRoute,
+  HeritageRoute: HeritageRoute,
+  JournalRoute: JournalRouteWithChildren,
+  KaniRoute: KaniRoute,
+  KashmirRoute: KashmirRoute,
+  PressRoute: PressRoute,
+  PrivacyRoute: PrivacyRoute,
+  PrivateClientRoute: PrivateClientRoute,
+  StockistsRoute: StockistsRoute,
+  TermsRoute: TermsRoute,
+  TheHouseRoute: TheHouseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
