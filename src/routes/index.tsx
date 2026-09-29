@@ -40,7 +40,7 @@ function Index() {
             <Monogram className="mb-6 w-12 opacity-95 sm:w-14" />
              <p className="eyebrow text-gold">From Kashmir, Woven for the World</p>
             <h1 className="display-hero mt-5 uppercase">House of Kani</h1>
-            <p className="font-display mt-5 text-[1.15rem] font-light text-ivory/85 italic sm:text-[1.35rem]">The Art of Pashmina. The Soul of Kashmir.</p>
+             <p className="font-display mt-5 text-[1.15rem] font-light text-ivory/85 italic sm:text-[1.35rem]">Authentic Kani Pashmina. Its People, Process and Provenance.</p>
             <Link to="/the-house" className="nav-label mt-9 border-b border-ivory/50 pb-1 text-ivory transition-colors duration-500 hover:border-gold hover:text-gold">Enter the House</Link>
           </Reveal>
         </div>
