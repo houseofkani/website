@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import hero from "@/assets/hero-home.jpg";
+import hero from "@/assets/house-of-kani-victorian-hero.jpg.asset.json";
+import sozni from "@/assets/sozni-pashmina-ivory.jpg.asset.json";
+import solid from "@/assets/solid-pashmina-mustard.png.asset.json";
 import lake from "@/assets/kashmir-lake.jpg";
 import loom from "@/assets/kani-loom.jpg";
 import hall from "@/assets/craftsmanship-hall.jpg";
@@ -19,9 +21,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "House of Kani — From Kashmir, Woven for the World" },
-      { name: "description", content: "Discover authentic Kani weaving, Pashmina and the Kashmiri artisans behind House of Kani. Our first collection is coming soon to Etsy." },
+      { name: "description", content: "Discover authentic Kashmiri Pashmina — Kani, Sozni, solids and the artisans behind House of Kani. Our first collection is coming soon to Etsy." },
       { property: "og:title", content: "House of Kani — From Kashmir, Woven for the World" },
-      { property: "og:description", content: "The people, process and living heritage behind authentic Kashmiri Kani Pashmina." },
+      { property: "og:description", content: "Kani, Sozni, solids and the living heritage behind authentic Kashmiri Pashmina." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -33,14 +35,14 @@ function Index() {
   return (
     <>
       <section className="relative isolate flex min-h-svh items-end overflow-hidden text-ivory">
-        <img src={hero} alt="Woman wearing a richly patterned Kani Pashmina in a heritage interior" width={1920} height={1280} className="absolute inset-0 -z-20 h-full w-full object-cover object-[56%_center] sm:object-center" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/65 via-transparent to-forest/90" />
+        <img src={hero.url} alt="Woman wearing an ornate Pashmina in a Victorian-inspired royal interior" width={768} height={1365} className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/75 via-forest/10 to-forest/95" />
         <div className="mx-auto flex w-full max-w-[1560px] flex-col items-center px-5 pt-32 pb-14 text-center sm:px-8 sm:pb-20 lg:px-12 lg:pb-24">
           <Reveal className="flex max-w-3xl flex-col items-center">
             <Monogram className="mb-6 w-12 opacity-95 sm:w-14" />
              <p className="eyebrow text-gold">From Kashmir, Woven for the World</p>
             <h1 className="display-hero mt-5 uppercase">House of Kani</h1>
-             <p className="font-display mt-5 text-[1.15rem] font-light text-ivory/85 italic sm:text-[1.35rem]">Authentic Kani Pashmina. Its People, Process and Provenance.</p>
+              <p className="image-copy font-display mt-5 text-[1.15rem] font-light text-ivory italic sm:text-[1.35rem]">Kani · Sozni · Solids · And the Living Art of Pashmina</p>
             <Link to="/the-house" className="nav-label mt-9 border-b border-ivory/50 pb-1 text-ivory transition-colors duration-500 hover:border-gold hover:text-gold">Enter the House</Link>
           </Reveal>
         </div>
@@ -52,18 +54,22 @@ function Index() {
           <Reveal delay={120} className="max-w-xl">
             <Eyebrow>A Heritage That Endures</Eyebrow>
             <h2 className="display-1 mt-4">More Than a Shawl.<br />A Living Tradition.</h2>
-            <p className="body-editorial mt-7 text-charcoal/80">We are a Kashmir-rooted house sharing the truth of Kani weaving: what authentic Pashmina is, how a shawl is woven, and why the hands behind it matter. We connect this living knowledge with a new generation around the world.</p>
+            <p className="body-editorial mt-7 text-charcoal/80">We are a Kashmir-rooted house sharing the truth of Pashmina: from woven Kani and hand-embroidered Sozni to the quiet purity of solids. We explain how each is made, and why the hands behind it matter.</p>
             <Ornament size="sm" className="mt-5 w-20" />
-            <TextLink to="/the-house" className="mt-8">Our Story</TextLink>
+            <TextLink to="/pashmina" className="mt-8">Explore Pashmina</TextLink>
           </Reveal>
         </div>
       </section>
 
-      <ImmersiveSection image={loom} imageAlt="A Kashmiri artisan weaving a vivid Kani textile on a wooden loom" eyebrow="What We Do" title={<>We Make the Craft<br />Visible.</>} body={<p>We document Kani with clarity, honour its makers, and present authentic Pashmina through real cloth, real process and informed storytelling — before offering our first collection on Etsy.</p>} action={<TextLink to="/kani" tone="light">Understand Kani</TextLink>} position="60% center" />
+      <ImmersiveSection image={loom} imageAlt="A Kashmiri artisan weaving a vivid Kani textile on a wooden loom" eyebrow="What We Do" title={<>We Make the Craft<br />Visible.</>} body={<p>We document the principal Pashmina traditions with clarity, honour their makers, and present real cloth through informed storytelling — before offering our first collection on Etsy.</p>} action={<TextLink to="/pashmina" tone="light">Understand Pashmina</TextLink>} position="60% center" />
 
       <SplitSection image={hall} imageAlt="A woman displaying an heirloom Kani shawl in a heritage hall" eyebrow="An Heirloom for Generations" title={<>Bound by Craft.<br />Inspired by Eternity.</>} body={<p>From the royal courts of the past to the contemporary world, Kani remains a symbol of refinement, heritage and quiet luxury. Time is not hidden in the cloth; it is its greatest beauty.</p>} action={<TextLink to="/craftsmanship">Discover Craftsmanship</TextLink>} imageRatio="portrait" />
 
       <SplitSection image={fibre} imageAlt="A finely woven floral Pashmina with matching wooden thread bobbins" eyebrow="Why We Matter" title={<>Knowledge Protects<br />What Is Genuine.</>} body={<><p>Pashmina is widely named and often misunderstood. By showing the fibre, weave, motifs, time and human skill behind the cloth, House of Kani helps people recognise work of integrity.</p><p>When craft is understood, its makers and traditions are valued more fairly.</p></>} reverse tone="cream" imageRatio="landscape" />
+
+      <SplitSection image={sozni.url} imageAlt="Ivory Pashmina finished with fine blue Sozni embroidery" eyebrow="Sozni" title={<>Drawn Slowly<br />with a Needle.</>} body={<p>Where Kani builds pattern into the weave, Sozni brings ornament to the finished cloth through extraordinarily fine hand embroidery. Each has its own language, rhythm and measure of mastery.</p>} action={<TextLink to="/pashmina">See the Pashmina Traditions</TextLink>} imageRatio="portrait" />
+
+      <SplitSection image={solid.url} imageAlt="Mustard solid Pashmina with a fine paisley border" eyebrow="Solids" title={<>Colour, Drape<br />and Quiet Confidence.</>} body={<p>In a solid Pashmina, there is nowhere for the fibre to hide. Softness, warmth, colour and finish become the whole expression — restrained, versatile and deeply tactile.</p>} reverse tone="cream" imageRatio="portrait" />
 
       <ImmersiveSection image={pattern} imageAlt="Macro detail of a complex woven Kani pattern" eyebrow="The Kani Tradition" title={<>Woven by Hand.<br />Drawn from Memory.</>} body={<p>Each colour travels on its own small wooden kani. The pattern emerges not upon the cloth, but within it — inseparable from the weave.</p>} action={<TextLink to="/kani" tone="light">The Kani Tradition</TextLink>} />
 

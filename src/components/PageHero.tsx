@@ -39,15 +39,15 @@ export function PageHero({
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/75 via-forest/25 to-forest/85"
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/80 via-forest/20 to-forest/90"
       />
       <div className="mx-auto w-full max-w-[1560px] px-5 pt-32 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-28">
-        <Reveal className="max-w-3xl text-ivory">
+        <Reveal className="image-copy max-w-3xl text-ivory">
           <Ornament size="sm" className="mb-5 w-20 brightness-[1.6]" />
           {eyebrow ? <p className="eyebrow text-gold">{eyebrow}</p> : null}
           <h1 className="display-1 mt-4 text-balance">{title}</h1>
           {subtitle ? (
-            <p className="font-display mt-6 max-w-xl text-[1.125rem] leading-relaxed font-light text-ivory/80 italic sm:text-[1.3rem]">
+            <p className="font-display mt-6 max-w-xl text-[1.125rem] leading-relaxed font-light text-ivory italic sm:text-[1.3rem]">
               {subtitle}
             </p>
           ) : null}

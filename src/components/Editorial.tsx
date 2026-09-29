@@ -181,13 +181,13 @@ export function ImmersiveSection({
       <div className="mx-auto w-full max-w-[1560px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <Reveal
           className={cn(
-            "text-ivory",
+            "image-copy text-ivory",
             align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-xl",
           )}
         >
           {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
           <h2 className="display-2 mt-4 text-balance">{title}</h2>
-          {body ? <div className="body-editorial mt-6 space-y-5 text-ivory/80">{body}</div> : null}
+          {body ? <div className="body-editorial mt-6 space-y-5 text-ivory/90">{body}</div> : null}
           {action ? <div className="mt-9">{action}</div> : null}
         </Reveal>
       </div>
