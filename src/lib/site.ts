@@ -42,14 +42,12 @@ export const FOOTER_COLUMNS = [
       { label: "Kashmir", to: "/kashmir" },
       { label: "Journal", to: "/journal" },
       { label: "Press", to: "/press" },
-      { label: "Stockists", to: "/stockists" },
     ],
   },
   {
     title: "Contact",
     links: [
       { label: "Contact", to: "/contact" },
-      { label: "Private Client", to: "/private-client" },
     ],
   },
   {

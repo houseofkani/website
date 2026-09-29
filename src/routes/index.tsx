@@ -8,7 +8,6 @@ import fibre from "@/assets/pashmina-fibre.jpg";
 import pattern from "@/assets/kani-pattern.jpg";
 import archive from "@/assets/heritage-archive.jpg";
 import dusk from "@/assets/kashmir-dusk.jpg";
-import privateClient from "@/assets/private-client.jpg";
 import closing from "@/assets/closing-drape.jpg";
 import { articles } from "@/lib/journal";
 import { FramedImage, ImmersiveSection, SplitSection, TextLink, Eyebrow } from "@/components/Editorial";
@@ -104,7 +103,7 @@ function Index() {
         </Reveal>
       </section>
 
-      <ImmersiveSection image={privateClient} imageAlt="Folded Kani Pashmina beside candlelight" eyebrow="Private Client" title="For Those Who Seek the Exceptional." body={<p>Private viewings, considered gifts, bespoke commissions and collection enquiries — guided with discretion by the House.</p>} action={<TextLink to="/private-client" tone="light">Private Enquiries</TextLink>} minHeight="min-h-[70svh]" />
+      <ImmersiveSection image={loom} imageAlt="A Kani artisan working at a traditional wooden loom" eyebrow="Learn Before You Choose" title="See the Work Behind the Cloth." body={<p>Our journal opens the loom, the language of motifs and the meaning of Pashmina, so every future purchase begins with understanding.</p>} action={<TextLink to="/journal" tone="light">Read the Journal</TextLink>} minHeight="min-h-[70svh]" />
 
       <section className="relative isolate flex min-h-[82svh] items-center justify-center overflow-hidden px-5 py-24 text-center text-ivory sm:px-8">
         <img src={closing} alt="A Kani Pashmina arranged in sculptural folds" loading="lazy" width={1920} height={1200} className="absolute inset-0 -z-20 h-full w-full object-cover" />
