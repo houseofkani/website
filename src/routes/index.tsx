@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import hero from "@/assets/house-of-kani-victorian-hero.jpg.asset.json";
-import sozni from "@/assets/sozni-pashmina-ivory.jpg.asset.json";
-import solid from "@/assets/solid-pashmina-mustard.png.asset.json";
+import hero from "@/assets/victorian-kani-hero.jpg";
+import sozni from "@/assets/original-sozni-editorial.jpg";
+import solid from "@/assets/original-solid-pashmina.jpg";
 import lake from "@/assets/kashmir-lake.jpg";
 import loom from "@/assets/kani-loom.jpg";
 import hall from "@/assets/craftsmanship-hall.jpg";
@@ -35,7 +35,7 @@ function Index() {
   return (
     <>
       <section className="relative isolate flex min-h-svh items-end overflow-hidden text-ivory">
-        <img src={hero.url} alt="Woman wearing an ornate Pashmina in a Victorian-inspired royal interior" width={768} height={1365} className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <img src={hero} alt="Kashmiri woman wearing a purple Kani Pashmina in a Victorian-inspired royal interior" width={1200} height={1600} className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/75 via-forest/10 to-forest/95" />
         <div className="mx-auto flex w-full max-w-[1560px] flex-col items-center px-5 pt-32 pb-14 text-center sm:px-8 sm:pb-20 lg:px-12 lg:pb-24">
           <Reveal className="flex max-w-3xl flex-col items-center">
@@ -67,9 +67,9 @@ function Index() {
 
       <SplitSection image={fibre} imageAlt="A finely woven floral Pashmina with matching wooden thread bobbins" eyebrow="Why We Matter" title={<>Knowledge Protects<br />What Is Genuine.</>} body={<><p>Pashmina is widely named and often misunderstood. By showing the fibre, weave, motifs, time and human skill behind the cloth, House of Kani helps people recognise work of integrity.</p><p>When craft is understood, its makers and traditions are valued more fairly.</p></>} reverse tone="cream" imageRatio="landscape" />
 
-      <SplitSection image={sozni.url} imageAlt="Ivory Pashmina finished with fine blue Sozni embroidery" eyebrow="Sozni" title={<>Drawn Slowly<br />with a Needle.</>} body={<p>Where Kani builds pattern into the weave, Sozni brings ornament to the finished cloth through extraordinarily fine hand embroidery. Each has its own language, rhythm and measure of mastery.</p>} action={<TextLink to="/pashmina">See the Pashmina Traditions</TextLink>} imageRatio="portrait" />
+      <SplitSection image={sozni} imageAlt="Kashmiri woman wearing an ivory Pashmina with fine Sozni embroidery in a heritage library" eyebrow="Sozni" title={<>Drawn Slowly<br />with a Needle.</>} body={<p>Where Kani builds pattern into the weave, Sozni brings ornament to the finished cloth through extraordinarily fine hand embroidery. Each has its own language, rhythm and measure of mastery.</p>} action={<TextLink to="/pashmina">See the Pashmina Traditions</TextLink>} imageRatio="portrait" />
 
-      <SplitSection image={solid.url} imageAlt="Mustard solid Pashmina with a fine paisley border" eyebrow="Solids" title={<>Colour, Drape<br />and Quiet Confidence.</>} body={<p>In a solid Pashmina, there is nowhere for the fibre to hide. Softness, warmth, colour and finish become the whole expression — restrained, versatile and deeply tactile.</p>} reverse tone="cream" imageRatio="portrait" />
+      <SplitSection image={solid} imageAlt="Deep burgundy solid Pashmina draped over an antique walnut chair" eyebrow="Solids" title={<>Colour, Drape<br />and Quiet Confidence.</>} body={<p>In a solid Pashmina, there is nowhere for the fibre to hide. Softness, warmth, colour and finish become the whole expression — restrained, versatile and deeply tactile.</p>} reverse tone="cream" imageRatio="portrait" />
 
       <ImmersiveSection image={pattern} imageAlt="Macro detail of a complex woven Kani pattern" eyebrow="The Kani Tradition" title={<>Woven by Hand.<br />Drawn from Memory.</>} body={<p>Each colour travels on its own small wooden kani. The pattern emerges not upon the cloth, but within it — inseparable from the weave.</p>} action={<TextLink to="/kani" tone="light">The Kani Tradition</TextLink>} />
 

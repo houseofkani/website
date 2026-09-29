@@ -13,6 +13,6 @@
 
 ## Pashmina range refinement
 - [x] Broaden the brand from Kani-only to Kani, Sozni, solids and other Pashmina traditions
-- [ ] Replace direct use of supplied reference photographs with original generated imagery
+- [x] Replace direct use of supplied reference photographs with original generated imagery
 - [x] Improve text contrast and navigation clarity across image and solid backgrounds
 - [ ] Verify the revised experience on desktop and mobile
