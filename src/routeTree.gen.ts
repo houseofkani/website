@@ -16,6 +16,7 @@ import { Route as HeritageRouteImport } from './routes/heritage'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as KaniRouteImport } from './routes/kani'
 import { Route as KashmirRouteImport } from './routes/kashmir'
+import { Route as PashminaRouteImport } from './routes/pashmina'
 import { Route as PressRouteImport } from './routes/press'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrivateClientRouteImport } from './routes/private-client'
@@ -58,6 +59,11 @@ const KaniRoute = KaniRouteImport.update({
 const KashmirRoute = KashmirRouteImport.update({
   id: '/kashmir',
   path: '/kashmir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PashminaRoute = PashminaRouteImport.update({
+  id: '/pashmina',
+  path: '/pashmina',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PressRoute = PressRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/pashmina': typeof PashminaRoute
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/private-client': typeof PrivateClientRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/heritage': typeof HeritageRoute
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/pashmina': typeof PashminaRoute
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/private-client': typeof PrivateClientRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/pashmina': typeof PashminaRoute
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/private-client': typeof PrivateClientRoute
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/pashmina'
     | '/press'
     | '/privacy'
     | '/private-client'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/heritage'
     | '/kani'
     | '/kashmir'
+    | '/pashmina'
     | '/press'
     | '/privacy'
     | '/private-client'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/pashmina'
     | '/press'
     | '/privacy'
     | '/private-client'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   JournalRoute: typeof JournalRouteWithChildren
   KaniRoute: typeof KaniRoute
   KashmirRoute: typeof KashmirRoute
+  PashminaRoute: typeof PashminaRoute
   PressRoute: typeof PressRoute
   PrivacyRoute: typeof PrivacyRoute
   PrivateClientRoute: typeof PrivateClientRoute
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       path: '/kashmir'
       fullPath: '/kashmir'
       preLoaderRoute: typeof KashmirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pashmina': {
+      id: '/pashmina'
+      path: '/pashmina'
+      fullPath: '/pashmina'
+      preLoaderRoute: typeof PashminaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/press': {
@@ -352,6 +372,7 @@ const rootRouteChildren: RootRouteChildren = {
   JournalRoute: JournalRouteWithChildren,
   KaniRoute: KaniRoute,
   KashmirRoute: KashmirRoute,
+  PashminaRoute: PashminaRoute,
   PressRoute: PressRoute,
   PrivacyRoute: PrivacyRoute,
   PrivateClientRoute: PrivateClientRoute,
