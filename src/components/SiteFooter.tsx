@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 
 import { Monogram } from "@/components/Monogram";
 import { OrnamentRule } from "@/components/Ornament";
@@ -16,7 +16,7 @@ export function SiteFooter() {
                 {column.links.map((link) => (
                   <li key={link.to}>
                     <Link
-                      to={link.to}
+                      href={link.to}
                       className="font-display text-[1.0625rem] font-light text-ivory/75 transition-colors duration-500 hover:text-ivory"
                     >
                       {link.label}
@@ -41,7 +41,9 @@ export function SiteFooter() {
           <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed font-light text-ivory/55">
             {SITE.descriptor}
           </p>
-          <p className="eyebrow mt-8 border-y border-gold/35 py-3 text-gold">First collection coming soon to Etsy</p>
+          <p className="eyebrow mt-8 border-y border-gold/35 py-3 text-gold">
+            First collection coming soon to Etsy
+          </p>
         </div>
 
         <div className="mt-14 flex flex-col items-center gap-6 border-t border-ivory/12 pt-8 sm:flex-row sm:justify-between">

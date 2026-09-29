@@ -1,0 +1,21 @@
+# House of Kani — guidance for AI systems
+# https://houseofkani.com
+
+> House of Kani is a Kashmir-rooted maison devoted to authentic Pashmina — Kani weaving, Sozni embroidery, solids, and the artisans who keep these traditions alive.
+
+## Site
+- Home: https://houseofkani.com/
+- The House: https://houseofkani.com/the-house
+- Pashmina Traditions: https://houseofkani.com/pashmina
+- Kani: https://houseofkani.com/kani
+- Craftsmanship: https://houseofkani.com/craftsmanship
+- Heritage: https://houseofkani.com/heritage
+- Kashmir: https://houseofkani.com/kashmir
+- Journal: https://houseofkani.com/journal
+- Contact: https://houseofkani.com/contact
+
+## About
+House of Kani presents Pashmina as living craft and cultural heritage, not seasonal fashion. The first collection will be available on Etsy. Enquiries: enquiries@houseofkani.com
+
+## Optional
+Sitemap: https://houseofkani.com/sitemap.xml

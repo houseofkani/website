@@ -1,0 +1,269 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * HOUSE OF KANI — design system.
+ * Victorian Kashmir x British heritage x contemporary luxury.
+ * All colours are oklch equivalents of the brand palette.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: var(--font-cormorant), "Times New Roman", serif;
+  --font-body: var(--font-cormorant), "Times New Roman", serif;
+  --font-sans: var(--font-jost), "Helvetica Neue", Arial, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-burgundy: var(--burgundy);
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-charcoal: var(--charcoal);
+  --color-stone: var(--stone);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.125rem;
+
+  --forest: oklch(0.243 0.024 158.3);
+  --forest-deep: oklch(0.196 0.021 158.3);
+  --burgundy: oklch(0.283 0.048 21.5);
+  --ivory: oklch(0.951 0.015 85.6);
+  --cream: oklch(0.897 0.028 84.5);
+  --gold: oklch(0.638 0.062 76.4);
+  --charcoal: oklch(0.233 0.004 67.8);
+  --stone: oklch(0.594 0.014 74.6);
+  --image-text-shadow: 0 2px 18px oklch(0.12 0.02 158 / 72%);
+
+  --background: var(--ivory);
+  --foreground: var(--charcoal);
+  --card: oklch(0.973 0.01 85.6);
+  --card-foreground: var(--charcoal);
+  --popover: var(--ivory);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--forest);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--cream);
+  --secondary-foreground: var(--charcoal);
+  --muted: var(--cream);
+  --muted-foreground: var(--stone);
+  --accent: var(--gold);
+  --accent-foreground: var(--forest);
+  --destructive: oklch(0.49 0.13 25);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.84 0.022 82);
+  --input: oklch(0.84 0.022 82);
+  --ring: var(--gold);
+
+  --chart-1: var(--forest);
+  --chart-2: var(--burgundy);
+  --chart-3: var(--gold);
+  --chart-4: var(--stone);
+  --chart-5: var(--cream);
+  --sidebar: var(--ivory);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--forest);
+  --sidebar-primary-foreground: var(--ivory);
+  --sidebar-accent: var(--cream);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: oklch(0.84 0.022 82);
+  --sidebar-ring: var(--gold);
+}
+
+.dark {
+  --background: var(--forest);
+  --foreground: var(--ivory);
+  --card: var(--forest-deep);
+  --card-foreground: var(--ivory);
+  --popover: var(--forest-deep);
+  --popover-foreground: var(--ivory);
+  --primary: var(--ivory);
+  --primary-foreground: var(--forest);
+  --secondary: var(--burgundy);
+  --secondary-foreground: var(--ivory);
+  --muted: oklch(0.29 0.02 158);
+  --muted-foreground: oklch(0.74 0.015 80);
+  --accent: var(--gold);
+  --accent-foreground: var(--forest);
+  --border: oklch(0.951 0.015 85.6 / 14%);
+  --input: oklch(0.951 0.015 85.6 / 20%);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    line-height: 1.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.005em;
+    line-height: 1.08;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-ivory);
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: clamp(0.625rem, 0.6rem + 0.1vw, 0.72rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  line-height: 1.6;
+}
+
+@utility nav-label {
+  font-family: var(--font-sans);
+  font-size: clamp(0.6875rem, 0.66rem + 0.1vw, 0.8125rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+@utility display-hero {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.375rem, 1.4rem + 5.2vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+}
+
+@utility display-1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.125rem, 1.4rem + 3.4vw, 4rem);
+  line-height: 1.06;
+}
+
+@utility display-2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.875rem, 1.35rem + 2.3vw, 3.25rem);
+  line-height: 1.1;
+}
+
+@utility display-3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  line-height: 1.18;
+}
+
+@utility body-editorial {
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  line-height: 1.85;
+}
+
+@utility image-copy {
+  text-shadow: var(--image-text-shadow);
+}
+
+@utility rule-gold {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--color-gold) 70%, transparent),
+    transparent
+  );
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  transition:
+    opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@utility image-reveal {
+  clip-path: inset(0 0 0 0);
+  transform: scale(1.06);
+  transition: transform 2.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility image-reveal-in {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

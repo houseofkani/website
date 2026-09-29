@@ -1,6 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { type ReactNode } from "react";
 
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +24,7 @@ export function TextLink({
 }) {
   return (
     <Link
-      to={to}
+      href={to}
       className={cn(
         "nav-label group inline-flex items-center gap-3 border-b pb-1 transition-colors duration-500",
         tone === "light"
@@ -45,26 +46,21 @@ export function FramedImage({
   src,
   alt,
   className,
-  width,
-  height,
 }: {
   src: string;
   alt: string;
   className?: string;
-  width?: number;
-  height?: number;
 }) {
   return (
     <div className={cn("relative mx-auto w-full max-w-[34rem]", className)}>
       <div className="relative aspect-square overflow-hidden rounded-[50%] border border-gold/45 p-2">
-        <div className="h-full w-full overflow-hidden rounded-[50%] border border-gold/25">
-          <img
+        <div className="relative h-full w-full overflow-hidden rounded-[50%] border border-gold/25">
+          <OptimizedImage
             src={src}
             alt={alt}
-            loading="lazy"
-            width={width}
-            height={height}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 90vw, 34rem"
+            className="object-cover"
           />
         </div>
       </div>
@@ -116,8 +112,14 @@ export function SplitSection({
         )}
       >
         <Reveal>
-          <div className={cn("overflow-hidden", ratio)}>
-            <img src={image} alt={imageAlt} loading="lazy" className="h-full w-full object-cover" />
+          <div className={cn("relative overflow-hidden", ratio)}>
+            <OptimizedImage
+              src={image}
+              alt={imageAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
           </div>
         </Reveal>
         <Reveal delay={120} className="max-w-xl">
@@ -149,6 +151,7 @@ export function ImmersiveSection({
   align = "left",
   minHeight = "min-h-[80svh]",
   position = "center",
+  priority = false,
 }: {
   image: string;
   imageAlt: string;
@@ -159,14 +162,17 @@ export function ImmersiveSection({
   align?: "left" | "center";
   minHeight?: string;
   position?: string;
+  priority?: boolean;
 }) {
   return (
     <section className={cn("relative isolate flex items-center overflow-hidden", minHeight)}>
-      <img
+      <OptimizedImage
         src={image}
         alt={imageAlt}
-        loading="lazy"
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+        fill
+        priority={priority}
+        sizes="100vw"
+        className="-z-20 object-cover"
         style={{ objectPosition: position }}
       />
       <div
@@ -178,7 +184,7 @@ export function ImmersiveSection({
             : "bg-gradient-to-r from-forest/88 via-forest/55 to-transparent",
         )}
       />
-      <div className="mx-auto w-full max-w-[1560px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1560px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <Reveal
           className={cn(
             "image-copy text-ivory",

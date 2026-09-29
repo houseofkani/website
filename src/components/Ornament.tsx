@@ -1,4 +1,5 @@
-import ornament from "@/assets/ornament-flourish.png";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import { images } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 /** Engraved botanical flourish used to separate movements of a page. */
@@ -11,13 +12,13 @@ export function Ornament({
 }) {
   const width = size === "sm" ? "w-24" : size === "lg" ? "w-64" : "w-40";
   return (
-    <img
-      src={ornament}
+    <OptimizedImage
+      src={images.ornament}
       alt=""
-      aria-hidden="true"
-      loading="lazy"
-      width={1248}
-      height={544}
+      aria-hidden
+      width={640}
+      height={279}
+      sizes="(max-width: 640px) 6rem, 10rem"
       className={cn("h-auto opacity-70 select-none", width, className)}
     />
   );

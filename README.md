@@ -1,24 +1,43 @@
-# Pixel Perfect Replication
+# House of Kani
 
-Implement exactly the screenshot and nothing else
+Editorial website for House of Kani — a Kashmir-rooted Pashmina maison.
 
-This project was built with [Lovable](https://lovable.dev).
+## Stack
 
-## Build with Lovable
+- **Next.js** (App Router) + React 19
+- Tailwind CSS v4
+- Static generation for all editorial routes
+- `next/image` with AVIF/WebP + pre-compressed assets in `public/images`
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/51b6eb93-1211-459e-b9aa-a1f5c8627b62).
+## Develop
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
+npm install
+npm run optimize:images   # regenerate AVIF/WebP from src/assets
 npm run dev
 ```
+
+## Build
+
+```bash
+npm run build
+npm start
+```
+
+## Environment
+
+Copy `.env.example` to `.env.local`:
+
+```
+NEXT_PUBLIC_SITE_URL=https://houseofkani.com
+```
+
+## Deploy (Vercel)
+
+1. Import the GitHub repo in Vercel
+2. Set `NEXT_PUBLIC_SITE_URL` to the production domain
+3. Deploy — no special build command beyond `next build`
+
+## Content
+
+Editorial copy lives in typed modules (`src/lib/site.ts`, `src/lib/journal.ts`) and route pages under `src/app/`.
