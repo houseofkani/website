@@ -16,7 +16,11 @@ import { Route as HeritageRouteImport } from './routes/heritage'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as KaniRouteImport } from './routes/kani'
 import { Route as KashmirRouteImport } from './routes/kashmir'
+import { Route as PressRouteImport } from './routes/press'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrivateClientRouteImport } from './routes/private-client'
+import { Route as StockistsRouteImport } from './routes/stockists'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TheHouseRouteImport } from './routes/the-house'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
@@ -55,9 +59,29 @@ const KashmirRoute = KashmirRouteImport.update({
   path: '/kashmir',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivateClientRoute = PrivateClientRouteImport.update({
   id: '/private-client',
   path: '/private-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StockistsRoute = StockistsRouteImport.update({
+  id: '/stockists',
+  path: '/stockists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TheHouseRoute = TheHouseRouteImport.update({
@@ -79,7 +103,11 @@ export interface FileRoutesByFullPath {
   '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
   '/private-client': typeof PrivateClientRoute
+  '/stockists': typeof StockistsRoute
+  '/terms': typeof TermsRoute
   '/the-house': typeof TheHouseRoute
   '/journal/$slug': typeof JournalSlugRoute
 }
@@ -91,7 +119,11 @@ export interface FileRoutesByTo {
   '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
   '/private-client': typeof PrivateClientRoute
+  '/stockists': typeof StockistsRoute
+  '/terms': typeof TermsRoute
   '/the-house': typeof TheHouseRoute
   '/journal/$slug': typeof JournalSlugRoute
 }
@@ -104,7 +136,11 @@ export interface FileRoutesById {
   '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
   '/private-client': typeof PrivateClientRoute
+  '/stockists': typeof StockistsRoute
+  '/terms': typeof TermsRoute
   '/the-house': typeof TheHouseRoute
   '/journal/$slug': typeof JournalSlugRoute
 }
@@ -118,7 +154,11 @@ export interface FileRouteTypes {
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/press'
+    | '/privacy'
     | '/private-client'
+    | '/stockists'
+    | '/terms'
     | '/the-house'
     | '/journal/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -130,7 +170,11 @@ export interface FileRouteTypes {
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/press'
+    | '/privacy'
     | '/private-client'
+    | '/stockists'
+    | '/terms'
     | '/the-house'
     | '/journal/$slug'
   id:
@@ -142,7 +186,11 @@ export interface FileRouteTypes {
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/press'
+    | '/privacy'
     | '/private-client'
+    | '/stockists'
+    | '/terms'
     | '/the-house'
     | '/journal/$slug'
   fileRoutesById: FileRoutesById
@@ -155,7 +203,11 @@ export interface RootRouteChildren {
   JournalRoute: typeof JournalRouteWithChildren
   KaniRoute: typeof KaniRoute
   KashmirRoute: typeof KashmirRoute
+  PressRoute: typeof PressRoute
+  PrivacyRoute: typeof PrivacyRoute
   PrivateClientRoute: typeof PrivateClientRoute
+  StockistsRoute: typeof StockistsRoute
+  TermsRoute: typeof TermsRoute
   TheHouseRoute: typeof TheHouseRoute
 }
 
@@ -210,11 +262,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KashmirRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/private-client': {
       id: '/private-client'
       path: '/private-client'
       fullPath: '/private-client'
       preLoaderRoute: typeof PrivateClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stockists': {
+      id: '/stockists'
+      path: '/stockists'
+      fullPath: '/stockists'
+      preLoaderRoute: typeof StockistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/the-house': {
@@ -253,7 +333,11 @@ const rootRouteChildren: RootRouteChildren = {
   JournalRoute: JournalRouteWithChildren,
   KaniRoute: KaniRoute,
   KashmirRoute: KashmirRoute,
+  PressRoute: PressRoute,
+  PrivacyRoute: PrivacyRoute,
   PrivateClientRoute: PrivateClientRoute,
+  StockistsRoute: StockistsRoute,
+  TermsRoute: TermsRoute,
   TheHouseRoute: TheHouseRoute,
 }
 export const routeTree = rootRouteImport
