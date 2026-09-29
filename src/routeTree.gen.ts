@@ -10,16 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CraftsmanshipRouteImport } from './routes/craftsmanship'
 import { Route as HeritageRouteImport } from './routes/heritage'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as KaniRouteImport } from './routes/kani'
 import { Route as KashmirRouteImport } from './routes/kashmir'
+import { Route as PrivateClientRouteImport } from './routes/private-client'
 import { Route as TheHouseRouteImport } from './routes/the-house'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CraftsmanshipRoute = CraftsmanshipRouteImport.update({
@@ -47,77 +55,107 @@ const KashmirRoute = KashmirRouteImport.update({
   path: '/kashmir',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivateClientRoute = PrivateClientRouteImport.update({
+  id: '/private-client',
+  path: '/private-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TheHouseRoute = TheHouseRouteImport.update({
   id: '/the-house',
   path: '/the-house',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/craftsmanship': typeof CraftsmanshipRoute
   '/heritage': typeof HeritageRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/private-client': typeof PrivateClientRoute
   '/the-house': typeof TheHouseRoute
+  '/journal/$slug': typeof JournalSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/craftsmanship': typeof CraftsmanshipRoute
   '/heritage': typeof HeritageRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/private-client': typeof PrivateClientRoute
   '/the-house': typeof TheHouseRoute
+  '/journal/$slug': typeof JournalSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/craftsmanship': typeof CraftsmanshipRoute
   '/heritage': typeof HeritageRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/kani': typeof KaniRoute
   '/kashmir': typeof KashmirRoute
+  '/private-client': typeof PrivateClientRoute
   '/the-house': typeof TheHouseRoute
+  '/journal/$slug': typeof JournalSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contact'
     | '/craftsmanship'
     | '/heritage'
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/private-client'
     | '/the-house'
+    | '/journal/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contact'
     | '/craftsmanship'
     | '/heritage'
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/private-client'
     | '/the-house'
+    | '/journal/$slug'
   id:
     | '__root__'
     | '/'
+    | '/contact'
     | '/craftsmanship'
     | '/heritage'
     | '/journal'
     | '/kani'
     | '/kashmir'
+    | '/private-client'
     | '/the-house'
+    | '/journal/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   CraftsmanshipRoute: typeof CraftsmanshipRoute
   HeritageRoute: typeof HeritageRoute
-  JournalRoute: typeof JournalRoute
+  JournalRoute: typeof JournalRouteWithChildren
   KaniRoute: typeof KaniRoute
   KashmirRoute: typeof KashmirRoute
+  PrivateClientRoute: typeof PrivateClientRoute
   TheHouseRoute: typeof TheHouseRoute
 }
 
@@ -128,6 +166,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/craftsmanship': {
@@ -165,6 +210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KashmirRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/private-client': {
+      id: '/private-client'
+      path: '/private-client'
+      fullPath: '/private-client'
+      preLoaderRoute: typeof PrivateClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/the-house': {
       id: '/the-house'
       path: '/the-house'
@@ -172,16 +224,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TheHouseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
+    }
   }
 }
 
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   CraftsmanshipRoute: CraftsmanshipRoute,
   HeritageRoute: HeritageRoute,
-  JournalRoute: JournalRoute,
+  JournalRoute: JournalRouteWithChildren,
   KaniRoute: KaniRoute,
   KashmirRoute: KashmirRoute,
+  PrivateClientRoute: PrivateClientRoute,
   TheHouseRoute: TheHouseRoute,
 }
 export const routeTree = rootRouteImport
