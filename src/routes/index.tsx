@@ -19,10 +19,10 @@ import { Reveal } from "@/components/Reveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "House of Kani — The Art of Pashmina. The Soul of Kashmir." },
-      { name: "description", content: "Enter House of Kani, a luxury Pashmina heritage house dedicated to Kashmir's Kani weaving tradition." },
-      { property: "og:title", content: "House of Kani — The Art of Pashmina" },
-      { property: "og:description", content: "A digital maison devoted to the soul, artistry and enduring heritage of Kashmir." },
+      { title: "House of Kani — From Kashmir, Woven for the World" },
+      { name: "description", content: "Discover authentic Kani weaving, Pashmina and the Kashmiri artisans behind House of Kani. Our first collection is coming soon to Etsy." },
+      { property: "og:title", content: "House of Kani — From Kashmir, Woven for the World" },
+      { property: "og:description", content: "The people, process and living heritage behind authentic Kashmiri Kani Pashmina." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -39,7 +39,7 @@ function Index() {
         <div className="mx-auto flex w-full max-w-[1560px] flex-col items-center px-5 pt-32 pb-14 text-center sm:px-8 sm:pb-20 lg:px-12 lg:pb-24">
           <Reveal className="flex max-w-3xl flex-col items-center">
             <Monogram className="mb-6 w-12 opacity-95 sm:w-14" />
-            <p className="eyebrow text-gold">A Legacy Woven in Time</p>
+             <p className="eyebrow text-gold">From Kashmir, Woven for the World</p>
             <h1 className="display-hero mt-5 uppercase">House of Kani</h1>
             <p className="font-display mt-5 text-[1.15rem] font-light text-ivory/85 italic sm:text-[1.35rem]">The Art of Pashmina. The Soul of Kashmir.</p>
             <Link to="/the-house" className="nav-label mt-9 border-b border-ivory/50 pb-1 text-ivory transition-colors duration-500 hover:border-gold hover:text-gold">Enter the House</Link>
@@ -53,18 +53,18 @@ function Index() {
           <Reveal delay={120} className="max-w-xl">
             <Eyebrow>A Heritage That Endures</Eyebrow>
             <h2 className="display-1 mt-4">More Than a Shawl.<br />A Living Tradition.</h2>
-            <p className="body-editorial mt-7 text-charcoal/80">House of Kani is devoted to the timeless art of Kani weaving — where patience, poetry and nature converge in Pashmina. Each piece is a canvas of centuries, carried forward by extraordinary hands in the valleys of Kashmir.</p>
+            <p className="body-editorial mt-7 text-charcoal/80">We are a Kashmir-rooted house sharing the truth of Kani weaving: what authentic Pashmina is, how a shawl is woven, and why the hands behind it matter. We connect this living knowledge with a new generation around the world.</p>
             <Ornament size="sm" className="mt-5 w-20" />
             <TextLink to="/the-house" className="mt-8">Our Story</TextLink>
           </Reveal>
         </div>
       </section>
 
-      <ImmersiveSection image={loom} imageAlt="Hands guiding kani needles through an intricate weave" eyebrow="The Art of Kani" title={<>A Thousand Threads.<br />Infinite Stories.</>} body={<p>Kani is not merely a weave, but a language — expressing the landscapes, gardens and heritage of Kashmir through intricate, handwoven designs in Pashmina.</p>} action={<TextLink to="/kani" tone="light">Explore Kani</TextLink>} position="60% center" />
+      <ImmersiveSection image={loom} imageAlt="A Kashmiri artisan weaving a vivid Kani textile on a wooden loom" eyebrow="What We Do" title={<>We Make the Craft<br />Visible.</>} body={<p>We document Kani with clarity, honour its makers, and present authentic Pashmina through real cloth, real process and informed storytelling — before offering our first collection on Etsy.</p>} action={<TextLink to="/kani" tone="light">Understand Kani</TextLink>} position="60% center" />
 
       <SplitSection image={hall} imageAlt="A woman displaying an heirloom Kani shawl in a heritage hall" eyebrow="An Heirloom for Generations" title={<>Bound by Craft.<br />Inspired by Eternity.</>} body={<p>From the royal courts of the past to the contemporary world, Kani remains a symbol of refinement, heritage and quiet luxury. Time is not hidden in the cloth; it is its greatest beauty.</p>} action={<TextLink to="/craftsmanship">Discover Craftsmanship</TextLink>} imageRatio="portrait" />
 
-      <SplitSection image={fibre} imageAlt="Fine Pashmina fibre and a delicately woven textile" eyebrow="Pashmina" title={<>The Finest Fibre.<br />The Longest Patience.</>} body={<><p>Born in the severe beauty of the high Himalaya, Pashmina arrives in Kashmir almost weightless. Here, the hand learns its delicacy and gives it form.</p><p>Warmth, fineness and touch become a quiet kind of permanence.</p></>} reverse tone="cream" imageRatio="landscape" />
+      <SplitSection image={fibre} imageAlt="A finely woven floral Pashmina with matching wooden thread bobbins" eyebrow="Why We Matter" title={<>Knowledge Protects<br />What Is Genuine.</>} body={<><p>Pashmina is widely named and often misunderstood. By showing the fibre, weave, motifs, time and human skill behind the cloth, House of Kani helps people recognise work of integrity.</p><p>When craft is understood, its makers and traditions are valued more fairly.</p></>} reverse tone="cream" imageRatio="landscape" />
 
       <ImmersiveSection image={pattern} imageAlt="Macro detail of a complex woven Kani pattern" eyebrow="The Kani Tradition" title={<>Woven by Hand.<br />Drawn from Memory.</>} body={<p>Each colour travels on its own small wooden kani. The pattern emerges not upon the cloth, but within it — inseparable from the weave.</p>} action={<TextLink to="/kani" tone="light">The Kani Tradition</TextLink>} />
 
@@ -95,6 +95,15 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-cream px-5 py-20 text-center sm:px-8 sm:py-28 lg:py-36">
+        <Reveal className="mx-auto max-w-3xl">
+          <Eyebrow>Our First Collection</Eyebrow>
+          <h2 className="display-1 mt-4">House of Kani on Etsy.</h2>
+          <p className="body-editorial mx-auto mt-7 max-w-2xl text-charcoal/75">We are beginning with one trusted, familiar destination. Our first edit of authentic Kashmiri shawls will be available on Etsy, accompanied by clear information about its material, method and making.</p>
+          <p className="eyebrow mt-9 inline-block border-y border-gold/40 py-3 text-gold">Coming Soon</p>
+        </Reveal>
+      </section>
+
       <ImmersiveSection image={privateClient} imageAlt="Folded Kani Pashmina beside candlelight" eyebrow="Private Client" title="For Those Who Seek the Exceptional." body={<p>Private viewings, considered gifts, bespoke commissions and collection enquiries — guided with discretion by the House.</p>} action={<TextLink to="/private-client" tone="light">Private Enquiries</TextLink>} minHeight="min-h-[70svh]" />
 
       <section className="relative isolate flex min-h-[82svh] items-center justify-center overflow-hidden px-5 py-24 text-center text-ivory sm:px-8">
@@ -103,7 +112,7 @@ function Index() {
         <Reveal className="flex max-w-2xl flex-col items-center">
           <Monogram className="mb-6 w-14" />
           <h2 className="display-1 uppercase">House of Kani</h2>
-          <p className="font-display mt-5 text-[1.2rem] font-light italic sm:text-[1.45rem]">The Art of Pashmina.<br />The Soul of Kashmir.</p>
+          <p className="font-display mt-5 text-[1.2rem] font-light italic sm:text-[1.45rem]">From Kashmir.<br />Woven for the World.</p>
           <TextLink to="/the-house" tone="light" className="mt-9">Enter the House</TextLink>
         </Reveal>
       </section>
