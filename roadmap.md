@@ -10,3 +10,9 @@
 - [x] Regenerate the logo from the supplied brand reference
 - [x] Reframe messaging around knowledge, visibility and an Etsy-first launch
 - [x] Verify all updated imagery, brand explanation and responsive presentation
+
+## Pashmina range refinement
+- [ ] Broaden the brand from Kani-only to Kani, Sozni, solids and other Pashmina traditions
+- [ ] Introduce the supplied Victorian and Sozni imagery
+- [ ] Improve text contrast and navigation clarity across image and solid backgrounds
+- [ ] Verify the revised experience on desktop and mobile
