@@ -6,7 +6,7 @@
 - [ ] Verify desktop and mobile presentation
 
 ## Current refinement
-- [ ] Replace synthetic textile imagery using the supplied authentic shawl, loom, thread and model photographs
-- [ ] Regenerate the logo from the supplied brand reference
-- [ ] Reframe messaging around knowledge, visibility and an Etsy-first launch
-- [ ] Verify all updated imagery, brand explanation and responsive presentation
+- [x] Replace synthetic textile imagery using the supplied authentic shawl, loom, thread and model photographs
+- [x] Regenerate the logo from the supplied brand reference
+- [x] Reframe messaging around knowledge, visibility and an Etsy-first launch
+- [x] Verify all updated imagery, brand explanation and responsive presentation

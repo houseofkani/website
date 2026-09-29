@@ -1,6 +1,7 @@
 export const SITE = {
   name: "House of Kani",
-  tagline: "The Art of Pashmina. The Soul of Kashmir.",
+  tagline: "From Kashmir, Woven for the World.",
+  descriptor: "A house devoted to Kani weaving, authentic Pashmina and the people who keep this Kashmiri tradition alive.",
   // Placeholder details — replace with the maison's real particulars.
   email: "enquiries@houseofkani.com",
   privateEmail: "privateclient@houseofkani.com",
@@ -41,14 +42,12 @@ export const FOOTER_COLUMNS = [
       { label: "Kashmir", to: "/kashmir" },
       { label: "Journal", to: "/journal" },
       { label: "Press", to: "/press" },
-      { label: "Stockists", to: "/stockists" },
     ],
   },
   {
     title: "Contact",
     links: [
       { label: "Contact", to: "/contact" },
-      { label: "Private Client", to: "/private-client" },
     ],
   },
   {

@@ -38,10 +38,10 @@ export function SiteFooter() {
           <p className="font-display mt-4 text-[1.0625rem] font-light italic text-ivory/70">
             {SITE.tagline}
           </p>
-          <address className="mt-8 space-y-1 text-[0.95rem] font-light text-ivory/55 not-italic">
-            <p>{SITE.atelier}</p>
-            <p>{SITE.email}</p>
-          </address>
+          <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed font-light text-ivory/55">
+            {SITE.descriptor}
+          </p>
+          <p className="eyebrow mt-8 border-y border-gold/35 py-3 text-gold">First collection coming soon to Etsy</p>
         </div>
 
         <div className="mt-14 flex flex-col items-center gap-6 border-t border-ivory/12 pt-8 sm:flex-row sm:justify-between">

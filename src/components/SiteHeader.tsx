@@ -132,12 +132,9 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/private-client"
-            className="eyebrow mt-8 border-b border-gold/60 pb-1 text-gold"
-          >
-            Private Enquiries
-          </Link>
+          <p className="eyebrow mt-8 border-y border-gold/40 py-3 text-gold">
+            First collection coming soon to Etsy
+          </p>
         </nav>
       </div>
     </>
