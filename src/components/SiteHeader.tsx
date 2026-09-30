@@ -31,7 +31,7 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const light = !scrolled && !open;
+  const light = pathname === "/" && !scrolled && !open;
 
   return (
     <>
@@ -39,8 +39,8 @@ export function SiteHeader() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,padding] duration-700",
           scrolled || open
-            ? "border-b border-border/70 bg-ivory/95 py-3 backdrop-blur-sm"
-            : "border-b border-transparent py-5",
+            ? "border-b border-charcoal/10 bg-ivory/95 py-3 backdrop-blur-md"
+            : "border-b border-ivory/15 py-5",
         )}
       >
         <div className="mx-auto flex max-w-[1560px] items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
@@ -72,22 +72,22 @@ export function SiteHeader() {
             href="/"
             aria-label="House of Kani — home"
             className={cn(
-              "flex flex-1 items-center justify-center gap-2 lg:flex-none lg:justify-start lg:gap-3",
+                "absolute left-1/2 flex -translate-x-1/2 items-center gap-2 lg:gap-3",
               light ? "text-ivory" : "text-charcoal",
             )}
           >
             <Monogram
               className={cn(
-                "w-6 transition-opacity duration-500 sm:w-7",
+                "w-7 transition-opacity duration-500 sm:w-8",
                 light ? "opacity-95" : "opacity-100",
               )}
             />
-            <span className="font-display text-[0.95rem] leading-none font-light tracking-[0.22em] whitespace-nowrap uppercase sm:text-[1.1rem]">
+            <span className="font-display text-[0.95rem] leading-none font-light tracking-[0.18em] whitespace-nowrap uppercase sm:text-[1.15rem]">
               House of Kani
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex xl:gap-9">
+          <nav className="ml-auto hidden items-center gap-6 lg:flex xl:gap-8">
             {NAV.map((item) => {
               const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
               return (
