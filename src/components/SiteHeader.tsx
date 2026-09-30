@@ -72,7 +72,7 @@ export function SiteHeader() {
             href="/"
             aria-label="House of Kani — home"
             className={cn(
-                "absolute left-1/2 flex -translate-x-1/2 items-center gap-2 lg:gap-3",
+                "absolute left-1/2 flex -translate-x-1/2 items-center gap-2 lg:static lg:left-auto lg:mr-8 lg:translate-x-0 lg:gap-3 xl:mr-14",
               light ? "text-ivory" : "text-charcoal",
             )}
           >
