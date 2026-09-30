@@ -73,10 +73,10 @@
   --forest: oklch(0.243 0.024 158.3);
   --forest-deep: oklch(0.196 0.021 158.3);
   --burgundy: oklch(0.283 0.048 21.5);
-  --ivory: oklch(0.951 0.015 85.6);
+  --ivory: oklch(0.977 0.008 86);
   --cream: oklch(0.897 0.028 84.5);
-  --gold: oklch(0.638 0.062 76.4);
-  --charcoal: oklch(0.233 0.004 67.8);
+  --gold: oklch(0.702 0.055 72);
+  --charcoal: oklch(0.205 0 0);
   --stone: oklch(0.594 0.014 74.6);
   --image-text-shadow: 0 2px 18px oklch(0.12 0.02 158 / 72%);
 
@@ -189,9 +189,19 @@
 @utility display-hero {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(2.375rem, 1.4rem + 5.2vw, 5.5rem);
+  font-size: clamp(3rem, 1.5rem + 6.4vw, 7.5rem);
   line-height: 1.02;
   letter-spacing: 0.02em;
+}
+
+@utility hero-shade {
+  background: linear-gradient(
+    90deg,
+    oklch(0.12 0.018 158 / 78%) 0%,
+    oklch(0.12 0.018 158 / 46%) 48%,
+    oklch(0.12 0.018 158 / 18%) 72%,
+    oklch(0.12 0.018 158 / 32%) 100%
+  );
 }
 
 @utility display-1 {

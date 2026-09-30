@@ -13,3 +13,4 @@
 
 - Keep all editorial copy and journal content in typed local modules because the site is intentionally non-commerce and requires no persistent user data.
 - Use shared editorial primitives for all routes so typography, pacing, ornament, imagery and navigation stay consistent across the digital maison.
+- Use an inline SVG monogram for brand marks so the identity remains crisp at every display size.
