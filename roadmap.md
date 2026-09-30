@@ -18,7 +18,7 @@
 - [x] Verify the revised experience on desktop and mobile
 
 ## Heritage editorial refinement
-- [ ] Refine the opening, navigation and first-screen brand explanation
-- [ ] Replace raster logo usage with a sharp vector monogram
-- [ ] Improve homepage story order and closing image section
-- [ ] Verify the final desktop and mobile experience
+- [x] Refine the opening, navigation and first-screen brand explanation
+- [x] Replace raster logo usage with a sharp vector monogram
+- [x] Improve homepage story order and closing image section
+- [x] Verify the final desktop and mobile experience
