@@ -9,15 +9,15 @@ type OptimizedImageProps = Omit<ImageProps, "alt"> & {
 };
 
 /**
- * Performance-first image wrapper: AVIF/WebP via next/image, CLS-safe sizes,
- * priority for LCP, lazy + async decode below the fold.
+ * Performance-first image wrapper: next/image encodes JPG masters → WebP once,
+ * with high quality and retina-capable device sizes from next.config.
  */
 export function OptimizedImage({
   alt,
   className,
   priority = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px",
-  quality = 92,
+  quality = 100,
   ...props
 }: OptimizedImageProps) {
   return (

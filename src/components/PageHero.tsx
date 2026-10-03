@@ -40,7 +40,7 @@ export function PageHero({
         fill
         priority={priority}
         sizes="100vw"
-        quality={92}
+        quality={100}
         className="-z-20 object-cover"
         style={{ objectPosition: position }}
       />

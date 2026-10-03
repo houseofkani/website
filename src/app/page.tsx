@@ -57,7 +57,7 @@ export default function HomePage() {
           alt="Kashmiri woman wearing a purple Kani Pashmina in a Victorian-inspired royal salon"
           fill
           priority
-          quality={92}
+          quality={100}
           sizes="100vw"
           className="-z-20 object-cover object-[62%_center] sm:object-center"
         />

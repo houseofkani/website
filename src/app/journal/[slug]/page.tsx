@@ -73,7 +73,7 @@ export default async function JournalArticlePage({ params }: Props) {
           fill
           priority
           sizes="100vw"
-          quality={92}
+          quality={100}
           className="-z-20 object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/60 via-forest/15 to-forest/90" />
