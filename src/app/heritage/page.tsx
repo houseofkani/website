@@ -82,8 +82,8 @@ export default function HeritagePage() {
         tone="cream"
       />
       <SplitSection
-        image={images.kaniPattern}
-        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        image={images.kaniTaupePaisley}
+        imageAlt="A taupe Kani Pashmina shawl woven with ivory boteh (paisley) motifs, laid flat on wood"
         eyebrow="The Motif"
         title="The Boteh, Known Abroad as Paisley."
         body={
@@ -103,8 +103,8 @@ export default function HeritagePage() {
         </PullQuote>
       </section>
       <SplitSection
-        image={images.craftsmanshipHall}
-        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        image={images.kaniOatmealSeated}
+        imageAlt="A woman seated in a sunlit room wrapped in an oatmeal Kani Pashmina shawl"
         eyebrow="Our Part"
         title="Four Generations in This Story."
         body={

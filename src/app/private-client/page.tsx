@@ -11,7 +11,7 @@ export const metadata: Metadata = seoBundle({
   description:
     "Arrange an appointment with House of Kani — in person at our Srinagar office, with a visit to our looms, or online by video call.",
   pathname: "/private-client",
-  image: images.privateClient,
+  image: images.kaniPurpleStripeSeated,
 });
 
 const options = [
@@ -36,8 +36,8 @@ export default function PrivateClientPage() {
   return (
     <>
       <PageHero
-        image={images.privateClient}
-        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        image={images.kaniPurpleStripeSeated}
+        imageAlt="A woman seated on a plinth wearing a striped Kani Pashmina shawl"
         eyebrow="Appointments"
         title="See Our Pashmina Up Close."
         subtitle="Meet our family in Srinagar, visit our looms, or see pieces with us online."

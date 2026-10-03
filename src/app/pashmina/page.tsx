@@ -139,8 +139,8 @@ export default function PashminaPage() {
       </section>
       <SplitSection
         id="kani"
-        image={images.kaniPattern}
-        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        image={images.kaniSaffronWorn}
+        imageAlt="A saffron Kani Pashmina shawl woven with flowers, worn around the shoulders"
         eyebrow="01 · Kani"
         title="Pattern Woven Into the Cloth."
         body={
@@ -160,8 +160,8 @@ export default function PashminaPage() {
       />
       <SplitSection
         id="sozni"
-        image={images.originalSozni}
-        imageAlt="A woman in an ivory Pashmina shawl with an embroidered Sozni border"
+        image={images.sozniTaupeWindow}
+        imageAlt="A woman by a window wearing a taupe Pashmina shawl with coral Sozni embroidery"
         eyebrow="02 · Sozni"
         title="Embroidered by Needle."
         body={
@@ -197,6 +197,7 @@ export default function PashminaPage() {
             </p>
           </>
         }
+        action={<TextLink to="/shade-card">View the Shade Card</TextLink>}
         imageRatio="portrait"
       />
 

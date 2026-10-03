@@ -137,7 +137,7 @@ export default function KaniPage() {
       </section>
       <section className="relative min-h-[72svh] overflow-hidden bg-forest text-ivory">
         <OptimizedImage
-          src={images.kaniPattern}
+          src={images.kaniWeaveDetail}
           alt=""
           fill
           sizes="100vw"
@@ -151,8 +151,8 @@ export default function KaniPage() {
         </div>
       </section>
       <SplitSection
-        image={images.craftsmanshipHall}
-        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        image={images.kaniSaffronDark}
+        imageAlt="A saffron Kani Pashmina shawl with striped borders, draped in a dark studio"
         eyebrow="Our Kani"
         title="Woven on Our Looms and by Weavers We Trust."
         body={

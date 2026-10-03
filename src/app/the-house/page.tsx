@@ -68,8 +68,8 @@ export default function TheHousePage() {
         imageRatio="landscape"
       />
       <SplitSection
-        image={images.kaniPattern}
-        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        image={images.kaniEarthStripeRod}
+        imageAlt="A striped Kani Pashmina shawl with magenta flowers, draped over a walnut rod"
         eyebrow="Why “Kani”"
         title="A Name That Sets the Standard."
         body={

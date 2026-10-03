@@ -18,6 +18,16 @@ export const images = {
   kashmirDusk: "/images/kashmir-dusk.jpg",
   threads: "/images/threads.jpg",
   ornament: "/images/ornament-flourish.webp",
+  kaniPurpleStripeModel: "/images/kani-purple-stripe-model.jpg",
+  kaniPurpleStripeSeated: "/images/kani-purple-stripe-seated.jpg",
+  kaniSaffronWorn: "/images/kani-saffron-worn.jpg",
+  kaniSaffronDark: "/images/kani-saffron-dark.jpg",
+  kaniTaupePaisley: "/images/kani-taupe-paisley.jpg",
+  kaniOatmealSeated: "/images/kani-oatmeal-seated.jpg",
+  kaniEarthStripeRod: "/images/kani-earth-stripe-rod.jpg",
+  kaniWeaveDetail: "/images/kani-weave-detail.jpg",
+  sozniBlackLatticeArches: "/images/sozni-black-lattice-arches.jpg",
+  sozniTaupeWindow: "/images/sozni-taupe-window.jpg",
 } as const;
 
 export type ImageKey = keyof typeof images;
