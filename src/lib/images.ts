@@ -39,6 +39,18 @@ export const images = {
     "/images/kani-quote-11.jpg",
     "/images/kani-quote-13.jpg",
   ],
+  kaniQuoteWide: [
+    "/images/kani-quote-1-wide.jpg",
+    "/images/kani-quote-2-wide.jpg",
+    "/images/kani-quote-4-wide.jpg",
+    "/images/kani-quote-5-wide.jpg",
+    "/images/kani-quote-7-wide.jpg",
+    "/images/kani-quote-8-wide.jpg",
+    "/images/kani-quote-9-wide.jpg",
+    "/images/kani-quote-10-wide.jpg",
+    "/images/kani-quote-11-wide.jpg",
+    "/images/kani-quote-13-wide.jpg",
+  ],
   sozniBlackPaisleyEditorial: "/images/sozni-black-paisley-editorial.jpg",
   sozniTaupeWindow: "/images/sozni-taupe-window.jpg",
 } as const;

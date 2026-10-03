@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { MovementList, PullQuote, SplitSection, TextLink } from "@/components/Editorial";
-import { OptimizedImage } from "@/components/OptimizedImage";
+import { FadeGallery } from "@/components/FadeGallery";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
@@ -96,8 +96,8 @@ export default function KaniPage() {
             <p className="eyebrow text-gold">What Is Kani?</p>
             <h2 className="display-1 mt-4">The Pattern Is the Weave.</h2>
             <p className="body-editorial mt-7 text-charcoal/75">
-              Kani is a hand-weaving technique from Kashmir. Unlike embroidery, every motif is formed
-              during weaving itself: colour passes through the warp on dozens of small wooden
+              Kani is a hand-weaving technique from Kashmir. Unlike embroidery, every motif is
+              formed during weaving itself: colour passes through the warp on dozens of small wooden
               bobbins, called kanis, so the pattern and the cloth are made together.
             </p>
           </Reveal>
@@ -136,14 +136,61 @@ export default function KaniPage() {
         </div>
       </section>
       <section className="relative min-h-[72svh] overflow-hidden bg-forest text-ivory">
-        <OptimizedImage
-          src={images.kaniWeaveDetail}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-50"
+        <FadeGallery
+          slides={[
+            {
+              src: images.kaniQuote[0],
+              landscapeSrc: images.kaniQuoteWide[0],
+              alt: "A full Kani shawl with a large paisley medallion, laid flat",
+            },
+            {
+              src: images.kaniQuote[1],
+              landscapeSrc: images.kaniQuoteWide[1],
+              alt: "A full black floral Kani shawl with a striped border, laid flat",
+            },
+            {
+              src: images.kaniQuote[2],
+              landscapeSrc: images.kaniQuoteWide[2],
+              alt: "A full Kani shawl with a round central medallion and striped edges, laid flat",
+            },
+            {
+              src: images.kaniQuote[3],
+              landscapeSrc: images.kaniQuoteWide[3],
+              alt: "A full Kani shawl with repeating paisleys, laid flat",
+            },
+            {
+              src: images.kaniQuote[4],
+              landscapeSrc: images.kaniQuoteWide[4],
+              alt: "A full floral Kani shawl with a blue striped border, laid flat",
+            },
+            {
+              src: images.kaniQuote[5],
+              landscapeSrc: images.kaniQuoteWide[5],
+              alt: "A full dark floral Kani shawl with a striped border, laid flat",
+            },
+            {
+              src: images.kaniQuote[6],
+              landscapeSrc: images.kaniQuoteWide[6],
+              alt: "A full Kani shawl with large paisleys around a central medallion, laid flat",
+            },
+            {
+              src: images.kaniQuote[7],
+              landscapeSrc: images.kaniQuoteWide[7],
+              alt: "A full Kani shawl with four flowering trees, laid flat",
+            },
+            {
+              src: images.kaniQuote[8],
+              landscapeSrc: images.kaniQuoteWide[8],
+              alt: "A full Kani shawl with a bright central medallion and striped edges, laid flat",
+            },
+            {
+              src: images.kaniQuote[9],
+              landscapeSrc: images.kaniQuoteWide[9],
+              alt: "A full peach floral Kani shawl with a striped border, laid flat",
+            },
+          ]}
         />
-        <div className="absolute inset-0 bg-forest/50" />
+        <div className="absolute inset-0 bg-forest/55" />
         <div className="relative mx-auto flex min-h-[72svh] max-w-[1560px] items-center px-5 py-24 sm:px-8 lg:px-12">
           <PullQuote cite="The Kani Tradition">
             The design does not rest upon the cloth. It is the cloth.
@@ -152,7 +199,7 @@ export default function KaniPage() {
       </section>
       <SplitSection
         image={images.kaniSaffronDark}
-        imageAlt="A saffron Kani Pashmina shawl with striped borders, draped in a dark studio"
+        imageAlt="A peach Kani Pashmina shawl with floral motifs and striped borders, draped against a light studio backdrop"
         eyebrow="Our Kani"
         title="Woven on Our Looms and by Weavers We Trust."
         body={
