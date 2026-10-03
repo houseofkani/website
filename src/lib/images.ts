@@ -18,7 +18,7 @@ export const images = {
   kashmirDusk: "/images/kashmir-dusk.jpg",
   threads: "/images/threads.jpg",
   ornament: "/images/ornament-flourish.webp",
-  kaniJamawarPaisleyFlat: "/images/kani-jamawar-paisley-flat.jpg",
+  kaniVioletPaisleyModel: "/images/kani-violet-paisley-model.jpg",
   kaniEarthStripeRodDraped: "/images/kani-earth-stripe-rod-draped.jpg",
   kaniSaffronRod: "/images/kani-saffron-rod.jpg",
   kaniSaffronDark: "/images/kani-saffron-dark.jpg",
