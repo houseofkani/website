@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Monogram } from "@/components/Monogram";
-import { NAV } from "@/lib/site";
+import { ETSY_HREF, NAV } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -136,9 +136,9 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <p className="eyebrow mt-8 border-y border-gold/40 py-3 text-gold">
-            First collection coming soon to Etsy
-          </p>
+          <Link href={ETSY_HREF} className="eyebrow mt-8 border-y border-gold/40 py-3 text-gold">
+            Our first collection opens on Etsy →
+          </Link>
         </nav>
       </div>
     </>

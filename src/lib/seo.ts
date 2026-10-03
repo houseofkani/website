@@ -104,7 +104,7 @@ export function organizationLd() {
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    email: siteConfig.email,
+    ...(siteConfig.contactConfirmed ? { email: siteConfig.email } : {}),
     logo: absoluteImageUrl("/images/house-of-kani-logo.webp"),
     image: absoluteImageUrl(siteConfig.ogImage),
     address: {
@@ -112,7 +112,6 @@ export function organizationLd() {
       addressLocality: "Srinagar",
       addressRegion: "Jammu and Kashmir",
       addressCountry: "IN",
-      streetAddress: siteConfig.atelier,
     },
   };
 }

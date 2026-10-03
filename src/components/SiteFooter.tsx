@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Monogram } from "@/components/Monogram";
 import { OrnamentRule } from "@/components/Ornament";
-import { FOOTER_COLUMNS, SITE } from "@/lib/site";
+import { ETSY_HREF, FOOTER_COLUMNS, SITE } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -41,24 +41,31 @@ export function SiteFooter() {
           <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed font-light text-ivory/55">
             {SITE.descriptor}
           </p>
-          <p className="eyebrow mt-8 border-y border-gold/35 py-3 text-gold">
-            First collection coming soon to Etsy
-          </p>
+          <Link
+            href={ETSY_HREF}
+            className="eyebrow mt-8 border-y border-gold/35 py-3 text-gold transition-colors duration-500 hover:text-ivory"
+          >
+            Our first collection opens on Etsy →
+          </Link>
         </div>
 
         <div className="mt-14 flex flex-col items-center gap-6 border-t border-ivory/12 pt-8 sm:flex-row sm:justify-between">
-          <ul className="flex flex-wrap items-center justify-center gap-6">
-            {SITE.social.map((s) => (
-              <li key={s.label}>
-                <a
-                  href={s.href}
-                  className="nav-label text-ivory/55 transition-colors duration-500 hover:text-gold"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {SITE.social.length ? (
+            <ul className="flex flex-wrap items-center justify-center gap-6">
+              {SITE.social.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    className="nav-label text-ivory/55 transition-colors duration-500 hover:text-gold"
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="eyebrow text-ivory/40">{SITE.appointments}</p>
+          )}
           <p className="eyebrow text-ivory/40">
             © {new Date().getFullYear()} House of Kani — Srinagar, Kashmir
           </p>

@@ -1,28 +1,28 @@
 export const SITE = {
   name: "House of Kani",
   tagline: "From Kashmir, Woven for the World.",
-  descriptor: "A house devoted to authentic Pashmina — Kani, Sozni, solids and the people who keep Kashmir’s traditions alive.",
-  // Placeholder details — replace with the maison's real particulars.
+  descriptor:
+    "A fourth-generation Kashmiri family house of 100% pure Pashmina — Kani, Sozni and fine solids, woven on our own looms and chosen from artisans we have known for years.",
+  // Placeholder details — replace with the house's confirmed particulars before launch.
   email: "enquiries@houseofkani.com",
-  privateEmail: "privateclient@houseofkani.com",
-  pressEmail: "press@houseofkani.com",
   phone: "+91 000 000 0000",
-  atelier: "The Atelier, Zaina Kadal, Srinagar, Kashmir",
-  studio: "By appointment — London · Srinagar",
-  social: [
-    { label: "Instagram", href: "#" },
-    { label: "Pinterest", href: "#" },
-    { label: "LinkedIn", href: "#" },
-  ],
+  location: "Srinagar, Kashmir",
+  appointments: "By appointment — in person in Srinagar, or online",
+  contactConfirmed: false,
+  // Empty until the Etsy shop is live; links fall back to the Where to Buy page.
+  etsyUrl: "",
+  social: [] as { label: string; href: string }[],
 } as const;
+
+export const ETSY_HREF = SITE.etsyUrl || "/where-to-buy";
 
 export const NAV = [
   { label: "The House", to: "/the-house" },
   { label: "Pashmina", to: "/pashmina" },
+  { label: "Kani", to: "/kani" },
   { label: "Craftsmanship", to: "/craftsmanship" },
-  { label: "Heritage", to: "/heritage" },
   { label: "Journal", to: "/journal" },
-  { label: "Kashmir", to: "/kashmir" },
+  { label: "Where to Buy", to: "/where-to-buy" },
   { label: "Contact", to: "/contact" },
 ] as const;
 
@@ -34,20 +34,21 @@ export const FOOTER_COLUMNS = [
       { label: "Pashmina", to: "/pashmina" },
       { label: "Kani", to: "/kani" },
       { label: "Craftsmanship", to: "/craftsmanship" },
-      { label: "Heritage", to: "/heritage" },
     ],
   },
   {
     title: "Discover",
     links: [
+      { label: "Heritage", to: "/heritage" },
       { label: "Kashmir", to: "/kashmir" },
       { label: "Journal", to: "/journal" },
-      { label: "Press", to: "/press" },
     ],
   },
   {
-    title: "Contact",
+    title: "Visit & Buy",
     links: [
+      { label: "Where to Buy", to: "/where-to-buy" },
+      { label: "Appointments", to: "/private-client" },
       { label: "Contact", to: "/contact" },
     ],
   },

@@ -1,56 +1,76 @@
 import type { Metadata } from "next";
 
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { SplitSection } from "@/components/Editorial";
+import { MovementList, SplitSection } from "@/components/Editorial";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
 import { seoBundle } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
-  title: "Private Client",
+  title: "Appointments and Loom Visits",
   description:
-    "Private viewings, bespoke Pashmina, gifting, hospitality and interior commissions.",
+    "Arrange an appointment with House of Kani — in person at our Srinagar office, with a visit to our looms, or online by video call.",
   pathname: "/private-client",
   image: images.privateClient,
 });
+
+const options = [
+  {
+    index: "01",
+    title: "In Srinagar",
+    body: "Visit our office to see and handle pieces, with time to ask about fibre, technique and care.",
+  },
+  {
+    index: "02",
+    title: "At the looms",
+    body: "With notice, we can take you to our looms to watch Pashmina being woven.",
+  },
+  {
+    index: "03",
+    title: "Online",
+    body: "If you cannot travel, we show pieces on a video call — close up, in daylight, front and reverse.",
+  },
+];
 
 export default function PrivateClientPage() {
   return (
     <>
       <PageHero
         image={images.privateClient}
-        imageAlt="A Kani Pashmina by candlelight"
-        eyebrow="Private Client"
-        title="A More Personal Way to Discover Pashmina."
-        subtitle="For collectors, thoughtful gifts and singular commissions, the House offers a discreet, individual service."
-        height="full"
+        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        eyebrow="Appointments"
+        title="See Our Pashmina Up Close."
+        subtitle="Meet our family in Srinagar, visit our looms, or see pieces with us online."
+        height="tall"
       />
       <SplitSection
-        image={images.craftsmanshipHall}
-        imageAlt="A rare Kani Pashmina in a private salon"
-        eyebrow="The Appointment"
-        title="Time to Look. Space to Understand."
+        image={images.closingDrape}
+        imageAlt="Paisley Pashmina shawls laid out on a long wooden table in a Kashmiri workroom"
+        eyebrow="How It Works"
+        title="Unhurried, and by Appointment."
         body={
           <>
             <p>
-              A private appointment is unhurried. We begin with what draws you — a colour, a motif, a
-              place, an occasion — and open the collection around that conversation.
+              Tell us what you are looking for — a colour, a technique, an occasion or a gift — and
+              we will prepare pieces for you to see.
             </p>
-            <p>
-              For bespoke work, we guide scale, palette and pattern with equal respect for your
-              intention and the integrity of Kani.
-            </p>
+            <p>All appointments are arranged in advance, in person or online.</p>
           </>
         }
-        imageRatio="portrait"
+        imageRatio="landscape"
       />
+      <section className="bg-ivory px-5 pb-8 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <MovementList items={options} />
+        </div>
+      </section>
       <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <div className="mb-12 text-center">
-            <p className="eyebrow text-gold">Private Enquiries</p>
-            <h2 className="display-2 mt-4">How May the House Assist?</h2>
+            <p className="eyebrow text-gold">Request an Appointment</p>
+            <h2 className="display-2 mt-4">When Would You Like to Visit?</h2>
           </div>
-          <EnquiryForm kind="private" />
+          <EnquiryForm kind="appointment" />
         </div>
       </section>
     </>

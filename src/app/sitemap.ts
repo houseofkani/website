@@ -12,10 +12,9 @@ const staticRoutes = [
   "/heritage",
   "/kashmir",
   "/journal",
+  "/where-to-buy",
   "/contact",
   "/private-client",
-  "/press",
-  "/stockists",
   "/privacy",
   "/terms",
 ] as const;

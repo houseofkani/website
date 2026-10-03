@@ -8,9 +8,10 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = seoBundle({
   title: "Press",
-  description: "Press information and media enquiries for House of Kani.",
+  description: "Press and media enquiries for House of Kani.",
   pathname: "/press",
   image: images.heritageArchive,
+  robots: "noindex",
 });
 
 export default function PressPage() {
@@ -18,51 +19,34 @@ export default function PressPage() {
     <>
       <PageHero
         image={images.heritageArchive}
-        imageAlt="House of Kani archival materials"
+        imageAlt="Botanical drawings, old books and a paisley shawl on a study table"
         eyebrow="Press"
-        title="The House in Print."
-        subtitle="Background, imagery and conversations for editors, writers and cultural institutions."
+        title="For Editors and Writers."
         height="medium"
       />
       <SplitSection
         image={images.heroHome}
-        imageAlt="House of Kani campaign portrait"
+        imageAlt="A woman wearing a lilac paisley Pashmina shawl in a carved wooden Kashmiri interior"
         eyebrow="About the House"
-        title="A Digital Maison Rooted in Kashmir."
+        title="A Kashmiri Pashmina Family in Srinagar."
         body={
           <>
             <p>
-              House of Kani presents Pashmina as an art form: inseparable from Kashmir, the hand of
-              the artisan and the cultural memory of Kani weaving.
+              House of Kani is a fourth-generation Kashmiri family selling 100% pure Pashmina —
+              handwoven Kani, hand-embroidered Sozni and fine solids — woven on our own looms and
+              chosen from artisans we trust.
             </p>
             <p>
-              For interviews, image requests and editorial information, please write to{" "}
-              {SITE.pressEmail}.
+              For interviews and information, please write to{" "}
+              <a href={`mailto:${SITE.email}`} className="border-b border-gold/50">
+                {SITE.email}
+              </a>
+              .
             </p>
           </>
         }
         imageRatio="landscape"
       />
-      <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28">
-        <div className="mx-auto grid max-w-5xl gap-12 sm:grid-cols-3">
-          <PressNote title="Brand Notes" body="The House, its philosophy and the language of Kani." />
-          <PressNote
-            title="Image Library"
-            body="Campaign, craft and landscape imagery for approved editorial use."
-          />
-          <PressNote title="Press Enquiries" body={SITE.pressEmail} />
-        </div>
-      </section>
     </>
-  );
-}
-
-function PressNote({ title, body }: { title: string; body: string }) {
-  return (
-    <div className="border-t border-gold/45 pt-6">
-      <p className="eyebrow text-gold">Press Material</p>
-      <h2 className="display-3 mt-3">{title}</h2>
-      <p className="mt-4 text-charcoal/70">{body}</p>
-    </div>
   );
 }

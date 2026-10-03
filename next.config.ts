@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     // Prefer near-source fidelity; size wins come from responsive widths + WebP.
     qualities: [85, 90, 92, 100],
   },
+  async redirects() {
+    return [{ source: "/stockists", destination: "/where-to-buy", permanent: true }];
+  },
   async headers() {
     return [
       {

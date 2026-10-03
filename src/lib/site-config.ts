@@ -6,6 +6,6 @@ export const siteConfig = {
   description: SITE.descriptor,
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://houseofkani.com",
   email: SITE.email,
-  atelier: SITE.atelier,
+  contactConfirmed: SITE.contactConfirmed,
   ogImage: "/images/victorian-kani-hero-wide.jpg",
 } as const;
