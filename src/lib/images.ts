@@ -19,7 +19,7 @@ export const images = {
   kashmirDusk: "/images/kashmir-dusk.jpg",
   threads: "/images/threads.jpg",
   ornament: "/images/ornament-flourish.webp",
-  kaniJaalStripeCourtyard: "/images/kani-jaal-stripe-courtyard.jpg",
+  kaniSalonModel: "/images/kani-salon-model.jpg",
   kaniEarthStripeRodDraped: "/images/kani-earth-stripe-rod-draped.jpg",
   kaniSaffronRod: "/images/kani-saffron-rod.jpg",
   kaniSaffronDark: "/images/kani-saffron-dark.jpg",
@@ -51,7 +51,7 @@ export const images = {
     "/images/kani-quote-11-wide.jpg",
     "/images/kani-quote-13-wide.jpg",
   ],
-  sozniChairSalon: "/images/sozni-chair-salon.jpg",
+  sozniSalonModel: "/images/sozni-salon-model.jpg",
   sozniTaupeWindow: "/images/sozni-taupe-window.jpg",
 } as const;
 
