@@ -43,7 +43,7 @@ const traditions = [
     name: "Kani",
     line: "The pattern is woven into the cloth on the loom, colour by colour.",
     image: images.kaniSalonModel,
-    alt: "A woman in a sunlit salon holding a dark Kani Pashmina shawl woven with large paisleys and a striped border",
+    alt: "A woman seated in a sunlit salon with a purple Kani Pashmina shawl woven with large paisleys draped over her shoulder",
     to: "/kani",
   },
   {
