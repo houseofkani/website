@@ -9,6 +9,7 @@ export const images = {
   kaniLoom: "/images/kani-loom.jpg",
   originalSozni: "/images/original-sozni-editorial.jpg",
   originalSolid: "/images/original-solid-pashmina.jpg",
+  solidBurgundyPortrait: "/images/solid-burgundy-portrait.jpg",
   pashminaFibre: "/images/pashmina-fibre.jpg",
   journalArtisan: "/images/journal-artisan.jpg",
   journalWorkshop: "/images/journal-workshop.jpg",
@@ -38,7 +39,7 @@ export const images = {
     "/images/kani-quote-11.jpg",
     "/images/kani-quote-13.jpg",
   ],
-  sozniBlackLatticeArches: "/images/sozni-black-lattice-arches.jpg",
+  sozniBlackPaisleyEditorial: "/images/sozni-black-paisley-editorial.jpg",
   sozniTaupeWindow: "/images/sozni-taupe-window.jpg",
 } as const;
 
