@@ -50,8 +50,8 @@ const traditions = [
     number: "02",
     name: "Sozni",
     line: "Fine embroidery worked by hand with a needle on finished Pashmina.",
-    image: images.sozniBlackPaisleyEditorial,
-    alt: "A woman in a warm interior wearing a black Sozni Pashmina shawl embroidered with paisleys and flowers in rust, lilac and teal",
+    image: images.sozniChairSalon,
+    alt: "A dark Sozni Pashmina shawl embroidered with tree and floral motifs, draped over a chair in a sunlit salon",
     to: "/pashmina#sozni",
   },
   {

@@ -51,7 +51,7 @@ export const images = {
     "/images/kani-quote-11-wide.jpg",
     "/images/kani-quote-13-wide.jpg",
   ],
-  sozniBlackPaisleyEditorial: "/images/sozni-black-paisley-editorial.jpg",
+  sozniChairSalon: "/images/sozni-chair-salon.jpg",
   sozniTaupeWindow: "/images/sozni-taupe-window.jpg",
 } as const;
 
