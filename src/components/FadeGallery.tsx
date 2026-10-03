@@ -23,6 +23,7 @@ export function FadeGallery({
   className?: string;
 }) {
   const [index, setIndex] = useState(0);
+  const hasLandscape = slides.some((slide) => slide.landscapeSrc);
 
   useEffect(() => {
     if (slides.length < 2) return;
@@ -35,36 +36,40 @@ export function FadeGallery({
 
   return (
     <div className={cn("absolute inset-0", className)}>
-      {slides.map((slide, i) => {
-        const active = i === index;
-        return (
-          <div key={slide.src} className="absolute inset-0" aria-hidden={active ? undefined : true}>
+      <div className={cn("absolute inset-0", hasLandscape && "lg:hidden")}>
+        {slides.map((slide, i) => (
+          <OptimizedImage
+            key={`portrait-${slide.src}`}
+            src={slide.src}
+            alt={i === index ? slide.alt : ""}
+            aria-hidden={i === index ? undefined : true}
+            fill
+            sizes="100vw"
+            className={cn(
+              "object-cover transition-opacity duration-[1800ms] ease-in-out",
+              i === index ? "opacity-100" : "opacity-0",
+            )}
+          />
+        ))}
+      </div>
+      {hasLandscape ? (
+        <div className="absolute inset-0 hidden lg:block">
+          {slides.map((slide, i) => (
             <OptimizedImage
-              src={slide.src}
-              alt={active ? slide.alt : ""}
+              key={`landscape-${slide.landscapeSrc ?? slide.src}`}
+              src={slide.landscapeSrc ?? slide.src}
+              alt=""
+              aria-hidden
               fill
               sizes="100vw"
               className={cn(
                 "object-cover transition-opacity duration-[1800ms] ease-in-out",
-                slide.landscapeSrc ? "lg:hidden" : null,
-                active ? "opacity-100" : "opacity-0",
+                i === index ? "opacity-100" : "opacity-0",
               )}
             />
-            {slide.landscapeSrc ? (
-              <OptimizedImage
-                src={slide.landscapeSrc}
-                alt=""
-                fill
-                sizes="100vw"
-                className={cn(
-                  "hidden object-cover transition-opacity duration-[1800ms] ease-in-out lg:block",
-                  active ? "opacity-100" : "opacity-0",
-                )}
-              />
-            ) : null}
-          </div>
-        );
-      })}
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
