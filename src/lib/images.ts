@@ -1,4 +1,4 @@
-/** Editorial image paths — JPG masters; next/image encodes AVIF/WebP once at request time. */
+/** Editorial image paths — JPG masters; next/image encodes WebP once at request time. */
 export const images = {
   victorianKaniHero: "/images/victorian-kani-hero-wide.jpg",
   heroHome: "/images/hero-home.jpg",

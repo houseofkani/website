@@ -10,7 +10,7 @@ import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 export const metadata: Metadata = seoBundle({
   title: "Kani",
   description:
-    "Enter the intricate world of Kani weaving: its origins, tools, patterns and master artisans.",
+    "What Kani weaving is, how a Kani shawl is woven with bobbins and a talim, how long it takes, and how to tell hand-woven Kani from machine imitations.",
   pathname: "/kani",
   image: images.kaniLoom,
   type: "article",
@@ -20,12 +20,12 @@ const movements = [
   {
     index: "I",
     title: "Origins",
-    body: "Kani flourished in Kashmir’s courtly ateliers, where Persianate garden imagery met the imagination and hand of the valley’s weavers.",
+    body: "Kani weaving grew in Kashmir from the 15th century and reached its height in the Mughal period, when garden imagery from Persian art met the skill of the valley’s weavers.",
   },
   {
     index: "II",
     title: "The Talim",
-    body: "A written colour-code translates the artist’s design into instructions. The weaver reads it aloud in thread, line after patient line.",
+    body: "A talim is a written colour code that turns the designer’s drawing into instructions for the weaver, line by line across the width of the cloth.",
   },
   {
     index: "III",
@@ -35,12 +35,35 @@ const movements = [
   {
     index: "IV",
     title: "The Pattern",
-    body: "Boteh, cypress, iris and vine assemble into compositions of rhythm and balance — nature abstracted through memory.",
+    body: "The best-known Kani motif is the boteh — the teardrop shape known abroad as paisley — set among cypress, iris and climbing vines.",
   },
   {
     index: "V",
     title: "The Time",
-    body: "Complex work advances by fractions. Months and years accumulate invisibly until the textile is released from the loom.",
+    body: "A weaver may complete only a few centimetres of a dense pattern in a day. A large, fully patterned shawl can take many months, sometimes more than a year.",
+  },
+];
+
+const recognise = [
+  {
+    index: "01",
+    title: "The reverse",
+    body: "On hand-woven Kani, the back shows where each coloured weft thread turns back at the edge of its motif. Machine jacquard looks evenly mechanical, often with long floating threads.",
+  },
+  {
+    index: "02",
+    title: "Small irregularities",
+    body: "A motif repeated across a hand-woven shawl varies very slightly each time. Perfect sameness suggests a machine.",
+  },
+  {
+    index: "03",
+    title: "Weight and price",
+    body: "Genuine Kani is woven in pure Pashmina and takes months. A large, densely patterned shawl offered cheaply is not hand-woven Kani.",
+  },
+  {
+    index: "04",
+    title: "GI certification",
+    body: "Kani shawls are a registered Geographical Indication. We arrange GI certification for our Kani pieces on request.",
   },
 ];
 
@@ -60,10 +83,10 @@ export default function KaniPage() {
       />
       <PageHero
         image={images.kaniLoom}
-        imageAlt="Hands weaving a Kani textile"
-        eyebrow="One Pashmina Tradition"
-        title="Kani: Woven by Hand. Drawn from Memory."
-        subtitle="A museum of colour held within a single cloth — and one distinguished expression within the wider world of Pashmina."
+        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
+        eyebrow="Kani Weaving"
+        title="Kani: A Pattern Woven Thread by Thread."
+        subtitle="The weave our house is named after, and the most demanding way to make a Pashmina shawl."
         height="full"
         position="65% center"
       />
@@ -71,11 +94,11 @@ export default function KaniPage() {
         <div className="mx-auto max-w-5xl">
           <Reveal className="max-w-2xl">
             <p className="eyebrow text-gold">What Is Kani?</p>
-            <h2 className="display-1 mt-4">A Weave Without Equal.</h2>
+            <h2 className="display-1 mt-4">The Pattern Is the Weave.</h2>
             <p className="body-editorial mt-7 text-charcoal/75">
-              Kani is a tapestry technique native to Kashmir. Unlike embroidery, every motif is formed
-              during weaving itself. Colour passes through the warp on dozens of tiny bobbins until
-              ornament and structure become one.
+              Kani is a hand-weaving technique from Kashmir. Unlike embroidery, every motif is formed
+              during weaving itself: colour passes through the warp on dozens of small wooden
+              bobbins, called kanis, so the pattern and the cloth are made together.
             </p>
           </Reveal>
           <div className="mt-16">
@@ -85,37 +108,37 @@ export default function KaniPage() {
       </section>
       <SplitSection
         image={images.threads}
-        imageAlt="Naturally dyed yarns for Kani weaving"
+        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
         eyebrow="Colour"
         title="A Garden in Thread."
         body={
           <p>
-            Mineral, flower, bark and leaf once established the Kani palette. Today, the finest colour
-            stories retain that earthbound harmony: saffron beside moss, madder beside walnut, ivory
+            Kani colours were once drawn from minerals, flowers, bark and leaves. Fine pieces still
+            keep that earthy balance: saffron beside moss green, madder red beside walnut, ivory
             beside indigo.
           </p>
         }
         tone="cream"
         imageRatio="landscape"
       />
-      <SplitSection
-        image={images.journalArtisan}
-        imageAlt="A master Kani weaver beside his loom"
-        eyebrow="The Artisan"
-        title="The Hand Remembers."
-        body={
-          <p>
-            Technique can be described, but fluency is acquired through years beside the loom. The
-            master’s knowledge lives in pressure, tempo, correction and the ability to see the whole
-            within a single line.
-          </p>
-        }
-        reverse
-      />
+      <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-5xl">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow text-gold">Hand or Machine?</p>
+            <h2 className="display-2 mt-4">How to Recognise Hand-Woven Kani.</h2>
+            <p className="body-editorial mt-6 text-charcoal/75">
+              Machine-made “Kani-style” shawls are common. These signs point to the real thing.
+            </p>
+          </Reveal>
+          <div className="mt-12">
+            <MovementList items={recognise} />
+          </div>
+        </div>
+      </section>
       <section className="relative min-h-[72svh] overflow-hidden bg-forest text-ivory">
         <OptimizedImage
           src={images.kaniPattern}
-          alt="Macro detail of Kani paisley weaving"
+          alt=""
           fill
           sizes="100vw"
           className="object-cover opacity-50"
@@ -129,16 +152,17 @@ export default function KaniPage() {
       </section>
       <SplitSection
         image={images.craftsmanshipHall}
-        imageAlt="Contemporary presentation of a traditional Kani Pashmina"
-        eyebrow="Contemporary Kani"
-        title="An Old Language, Still Alive."
+        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        eyebrow="Our Kani"
+        title="Woven on Our Looms and by Weavers We Trust."
         body={
           <p>
-            Respect for tradition does not require stillness. Scale, colour and composition allow
-            Kani to inhabit the present while preserving the intelligence that makes it singular.
+            Our Kani shawls, stoles and wraps are 100% pure Pashmina. For each piece we state its
+            size and describe how it was made, and you can see Kani being woven on a visit to our
+            looms in Srinagar.
           </p>
         }
-        action={<TextLink to="/pashmina">Compare Pashmina Traditions</TextLink>}
+        action={<TextLink to="/where-to-buy">Where to Buy</TextLink>}
         imageRatio="portrait"
       />
     </>

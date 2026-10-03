@@ -12,7 +12,15 @@ export type JournalArticle = {
   body: { heading?: string; paragraphs: string[]; quote?: string }[];
 };
 
-export const articles: JournalArticle[] = [
+const WORDS_PER_MINUTE = 200;
+
+function readTime(body: JournalArticle["body"]): string {
+  const text = body.flatMap((s) => [s.heading ?? "", ...s.paragraphs, s.quote ?? ""]).join(" ");
+  const minutes = Math.max(1, Math.round(text.split(/\s+/).filter(Boolean).length / WORDS_PER_MINUTE));
+  return `${minutes} min read`;
+}
+
+const drafts: Omit<JournalArticle, "readTime">[] = [
   {
     slug: "the-art-of-kani-weaving",
     category: "Kani",
@@ -20,7 +28,6 @@ export const articles: JournalArticle[] = [
     dek: "A language of colour, memory and patience, spoken one wooden needle at a time.",
     image: images.kaniLoom,
     imageAlt: "Artisan hands weaving a detailed Kani textile on a traditional loom",
-    readTime: "8 min read",
     date: "Autumn 2026",
     body: [
       {
@@ -54,7 +61,6 @@ export const articles: JournalArticle[] = [
     dek: "From the high Himalayan plateau to the valley loom: the journey of an almost weightless fibre.",
     image: images.pashminaFibre,
     imageAlt: "Fine ivory pashmina fibre beside a softly woven textile",
-    readTime: "7 min read",
     date: "Autumn 2026",
     body: [
       {
@@ -86,7 +92,6 @@ export const articles: JournalArticle[] = [
     dek: "In the half-light of the workshop, wood, thread and human rhythm make a world of their own.",
     image: images.journalWorkshop,
     imageAlt: "Traditional wooden looms inside a sunlit Kashmiri weaving workshop",
-    readTime: "6 min read",
     date: "Late Summer 2026",
     body: [
       {
@@ -117,7 +122,6 @@ export const articles: JournalArticle[] = [
     dek: "Water, mountain, cypress and flower — the landscape that taught Kani its enduring grammar.",
     image: images.journalGardens,
     imageAlt: "An autumn Mughal garden in Kashmir with fountains and mountain views",
-    readTime: "5 min read",
     date: "Spring 2026",
     body: [
       {
@@ -145,36 +149,37 @@ export const articles: JournalArticle[] = [
     slug: "a-language-woven-in-thread",
     category: "People",
     title: "A Language Woven in Thread",
-    dek: "A conversation with a master weaver about inheritance, discipline and the future of Kani.",
+    dek: "How Kani weaving passes from one generation to the next — at home, beside the loom.",
     image: images.journalArtisan,
-    imageAlt: "Portrait of an elderly Kashmiri master weaver beside his loom",
-    readTime: "9 min read",
+    imageAlt: "A weaver working a colourful Kani shawl on a wooden loom",
     date: "Winter 2026",
     body: [
       {
         paragraphs: [
-          "He does not remember the first time he entered a weaving room. The loom belonged to the landscape of childhood: timber in the corner, yarn above the stove, his father’s hands moving with a certainty that seemed as natural as speech.",
-          "By fourteen, he could follow a simple talim. By twenty, he understood how much there was still to learn.",
+          "Many Kashmiri weavers cannot remember the first time they entered a weaving room. In weaving families, the loom is part of childhood: timber in the corner, yarn drying above the stove, a parent’s hands moving with a certainty that seems as natural as speech.",
+          "Children learn by watching long before they are taught. Reading a simple talim, the coded pattern sheet, often comes in the early teens; real fluency takes years more.",
         ],
       },
       {
-        heading: "Knowledge without noise",
+        heading: "Learning by correction",
         paragraphs: [
-          "Mastery reveals itself in restraint. He speaks of tension, edge and colour in the concise language of someone who has spent a lifetime correcting small things. The hand, he says, must remain alert even when the pattern is familiar.",
+          "Much of the skill lies in small corrections: the tension of the warp, a straight edge, the exact point where one colour meets the next. An experienced weaver stays alert even when the pattern is familiar, because a mistake woven in cannot be painted over.",
         ],
-        quote:
-          "We do not command the thread. We listen until it tells us what the cloth needs.",
       },
       {
         heading: "The next pair of hands",
         paragraphs: [
-          "Tradition survives when it is practiced, not merely admired. His hope is not that young weavers repeat the past exactly, but that they learn it deeply enough to make work that carries its discipline forward.",
-          "Every finished Kani is thus both inheritance and proposition: an old language, spoken once more in the present tense.",
+          "A craft survives when it is practised, not only admired. The hope in weaving families is not that the young repeat the past exactly, but that they learn it well enough to carry its discipline forward.",
+          "Our own family is now in its fourth generation of this work. Every finished Kani is both an inheritance and a beginning.",
         ],
       },
     ],
   },
 ];
+
+export const articles: JournalArticle[] = drafts.map((a) => ({ ...a, readTime: readTime(a.body) }));
+
+export const articleCategories = [...new Set(articles.map((a) => a.category))];
 
 export const getArticle = (slug: string) =>
   articles.find((article) => article.slug === slug);

@@ -8,7 +8,7 @@ import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 export const metadata: Metadata = seoBundle({
   title: "Kashmir",
   description:
-    "Kashmir as land, people, culture, craft, material and memory — the origin of Kani.",
+    "The valley behind Kashmiri Pashmina: its landscape, gardens and the community of spinners, dyers, weavers and embroiderers.",
   pathname: "/kashmir",
   image: images.kashmirDusk,
   type: "article",
@@ -38,7 +38,7 @@ export default function KashmirPage() {
       />
       <SplitSection
         image={images.kashmirLake}
-        imageAlt="Archival Kashmir lake landscape"
+        imageAlt="A shikara on Dal Lake with mountains behind, in sepia tones"
         eyebrow="Land"
         title="A Valley of Light and Shadow."
         body={
@@ -51,13 +51,14 @@ export default function KashmirPage() {
       />
       <SplitSection
         image={images.journalGardens}
-        imageAlt="Mughal garden in Kashmir"
+        imageAlt="A Mughal garden in Kashmir in autumn, with fountains and mountains behind"
         eyebrow="Culture"
         title="The Garden as an Idea."
         body={
           <p>
             Water, geometry, flower and shade form an ordered paradise. This same imagination appears
-            in carved wood, poetry, architecture and the woven garden of Kani.
+            in carved wood, poetry, architecture — and in the flowers and vines of Kani and Sozni
+            shawls.
           </p>
         }
         reverse
@@ -65,13 +66,14 @@ export default function KashmirPage() {
       />
       <SplitSection
         image={images.journalWorkshop}
-        imageAlt="Kashmiri weavers and wooden handlooms"
+        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
         eyebrow="People & Craft"
-        title="Knowledge Held in Community."
+        title="Many Hands in Every Shawl."
         body={
           <p>
-            Kani belongs to a network of human skill: the spinner, dyer, designer, talim writer and
-            weaver. Their work carries both individual intelligence and collective memory.
+            A single Pashmina shawl can pass through the hands of a spinner, a dyer, a designer, a
+            talim writer, a weaver, an embroiderer and a finisher. Most learned their skill within
+            their own families.
           </p>
         }
         tone="forest"
@@ -79,15 +81,16 @@ export default function KashmirPage() {
       />
       <SplitSection
         image={images.pashminaFibre}
-        imageAlt="Pashmina fibre and woven cloth"
+        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
         eyebrow="Material"
-        title="Mountain Warmth, Valley Hand."
+        title="From Ladakh to the Valley."
         body={
           <p>
-            Pashmina arrives from high ground and finds its final language in Kashmir. Material and
-            place complete one another.
+            The fibre comes from the Changthangi goats of Ladakh’s high plateau. It is in Kashmir
+            that it is spun, woven and embroidered into cloth.
           </p>
         }
+        action={<TextLink to="/pashmina">What Pashmina Is</TextLink>}
         reverse
       />
       <section className="bg-burgundy px-5 py-20 text-ivory sm:px-8 sm:py-28">

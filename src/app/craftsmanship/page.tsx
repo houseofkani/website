@@ -15,15 +15,14 @@ export const metadata: Metadata = seoBundle({
 });
 
 const craft = [
-  { index: "01", title: "The Fibre", body: "The finest inner down of the Changthangi goat: light, warm and almost impossibly soft." },
-  { index: "02", title: "The Thread", body: "Cleaned and spun with sensitivity, the fibre becomes a yarn whose delicacy demands an educated touch." },
-  { index: "03", title: "The Loom", body: "A timber frame holds thousands of warp threads in precise tension — the architecture beneath every design." },
-  { index: "04", title: "The Hands", body: "Knowledge passes through observation and repetition until judgment settles into the fingers." },
-  { index: "05", title: "The Weaving", body: "A cloth may remain beautifully solid or become the foundation for further work. Its quality begins with even tension, fine yarn and an educated hand." },
-  { index: "06", title: "Kani", body: "In Kani, each wooden bobbin travels only where its colour belongs. Pattern forms within the weave, advancing by millimetres." },
-  { index: "07", title: "Sozni", body: "In Sozni, a fine needle draws motifs upon woven Pashmina. Dense, precise embroidery develops slowly across borders or the entire field." },
-  { index: "08", title: "The Time", body: "Months are not a production cost here. They are a material — as essential as fibre or colour." },
-  { index: "09", title: "The Heirloom", body: "The finished Pashmina leaves the artisan ready not for a season, but for a life measured in generations." },
+  { index: "01", title: "Combing", body: "In spring, herders on the Changthang plateau of Ladakh comb the fine winter undercoat from their Changthangi goats by hand." },
+  { index: "02", title: "Sorting and cleaning", body: "The coarse outer hair is separated from the soft down, and the fibre is cleaned of dust and grease." },
+  { index: "03", title: "Spinning", body: "The down is spun into yarn so fine that it breaks easily. Spinning by hand on a wooden wheel, called a yinder, is a skill passed down within families." },
+  { index: "04", title: "Dyeing", body: "Yarn, or the finished cloth, is dyed in small batches by Kashmiri dyers." },
+  { index: "05", title: "Setting the loom", body: "Thousands of warp threads are laid out and fixed under even tension on a wooden handloom. Every later step depends on this." },
+  { index: "06", title: "Weaving", body: "A plain weave or a twill makes the base cloth of a solid or a Sozni piece. In Kani, the pattern is woven in at the same time, with small bobbins following a coded talim." },
+  { index: "07", title: "Embroidery", body: "For Sozni, an embroiderer works the design by hand with a fine needle onto the woven Pashmina — often over many months." },
+  { index: "08", title: "Washing and finishing", body: "The cloth is washed, its fringes are knotted, and it is gently pressed and inspected." },
 ];
 
 export default function CraftsmanshipPage() {
@@ -42,22 +41,22 @@ export default function CraftsmanshipPage() {
       />
       <PageHero
         image={images.journalWorkshop}
-        imageAlt="Traditional looms in a Kashmiri workshop"
+        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
         eyebrow="Craftsmanship"
-        title="Many Traditions. One Measure of Integrity."
-        subtitle="From weaving to needlework, every stage carries the intelligence of a hand and the memory of those who came before."
+        title="From Fibre to Finished Shawl."
+        subtitle="The stages a pure Pashmina passes through, and the hands that do the work."
         height="full"
       />
       <SplitSection
         image={images.pashminaFibre}
-        imageAlt="Raw Pashmina fibre and woven cloth"
+        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
         eyebrow="The Beginning"
-        title="Fineness Before Form."
+        title="It Starts in Ladakh."
         body={
           <p>
-            True Pashmina begins far above the valley, in a climate that asks the Changthangi goat to
-            grow a remarkable inner warmth. From this rare fibre, Kashmir creates cloth of
-            extraordinary lightness.
+            Pashmina comes from the Changthangi goat, which grows a very fine undercoat to survive
+            winters on the Changthang plateau. Each fibre is roughly 12 to 16 microns across, which
+            is what makes the finished cloth so light and warm.
           </p>
         }
         imageRatio="landscape"
@@ -69,13 +68,13 @@ export default function CraftsmanshipPage() {
       </section>
       <SplitSection
         image={images.threads}
-        imageAlt="Naturally coloured skeins of yarn"
-        eyebrow="Materials"
-        title="Colour with a Memory."
+        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
+        eyebrow="Colour"
+        title="A Palette from the Valley."
         body={
           <p>
-            Our palette belongs to the valley: the depth of walnut, the glow of saffron, the quiet of
-            winter ivory, the green of chinar shade. Colour is chosen for harmony, not novelty.
+            Kashmiri shawls draw their colours from the valley: walnut, saffron, winter ivory and the
+            green of chinar shade. In Kani, each of these colours is carried by its own bobbin.
           </p>
         }
         reverse
@@ -83,19 +82,22 @@ export default function CraftsmanshipPage() {
       />
       <SplitSection
         image={images.kaniLoom}
-        imageAlt="Hands weaving Kani at a loom"
-        eyebrow="The Measure of the Hand"
-        title="Patience Made Visible."
+        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
+        eyebrow="Time"
+        title="Why Handmade Takes Months."
         body={
-          <p>
-            Look closely and the presence of the maker appears — in the woven surface, the embroidered
-            line and the final drape. Each carries the rhythm of attention.
-          </p>
+          <>
+            <p>
+              A plain solid can be woven in weeks. A Sozni piece may need months of embroidery after
+              weaving, and a fully patterned Kani shawl can stay on the loom for many months or more.
+            </p>
+            <p>That time is visible in the finished piece — and it is why genuine work is costly.</p>
+          </>
         }
         tone="forest"
         action={
-          <TextLink to="/pashmina" tone="light">
-            Explore Pashmina Traditions
+          <TextLink to="/pashmina#authenticity" tone="light">
+            How to Recognise Handwork
           </TextLink>
         }
         imageRatio="landscape"

@@ -79,6 +79,7 @@ export function SplitSection({
   reverse = false,
   tone = "ivory",
   imageRatio = "portrait",
+  id,
 }: {
   image: string;
   imageAlt: string;
@@ -89,6 +90,7 @@ export function SplitSection({
   reverse?: boolean;
   tone?: "ivory" | "cream" | "forest" | "burgundy";
   imageRatio?: "portrait" | "landscape" | "square";
+  id?: string;
 }) {
   const toneClass = {
     ivory: "bg-ivory text-charcoal",
@@ -104,7 +106,7 @@ export function SplitSection({
   }[imageRatio];
 
   return (
-    <section className={cn("overflow-hidden", toneClass)}>
+    <section id={id} className={cn("scroll-mt-24 overflow-hidden", toneClass)}>
       <div
         className={cn(
           "mx-auto grid max-w-[1560px] items-center gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-20 lg:px-12 lg:py-32",

@@ -10,7 +10,7 @@ import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 export const metadata: Metadata = seoBundle({
   title: "The House",
   description:
-    "Discover the philosophy of House of Kani: a Kashmiri maison devoted to Pashmina as art.",
+    "House of Kani is a fourth-generation Kashmiri Pashmina family in Srinagar, weaving on its own looms and working with a trusted network of artisans.",
   pathname: "/the-house",
   image: images.victorianKaniHero,
 });
@@ -31,49 +31,52 @@ export default function TheHousePage() {
       />
       <PageHero
         image={images.victorianKaniHero}
-        imageAlt="A Kashmiri woman wearing a Kani Pashmina in a Victorian-inspired royal interior"
+        imageAlt="A woman wearing a lilac paisley Pashmina shawl in a carved wooden Kashmiri interior"
         eyebrow="The House"
-        title="From Kashmir, Woven for the World."
-        subtitle="We make the people, process and cultural meaning of Pashmina visible — with honesty, respect and a contemporary point of view."
+        title="A Kashmiri Pashmina Family, Four Generations On."
+        subtitle="Our great-grandparents began this work in Srinagar. House of Kani is how we now share it with the world."
         position="center"
       />
       <section className="bg-ivory px-5 py-20 text-center sm:px-8 sm:py-28 lg:py-36">
         <Reveal className="mx-auto max-w-3xl">
           <p className="eyebrow text-gold">Who We Are</p>
-          <h2 className="display-1 mt-5">A Kashmir-Rooted House of Knowledge and Craft.</h2>
+          <h2 className="display-1 mt-5">Weavers First.</h2>
           <p className="body-editorial mt-7 text-charcoal/75">
-            House of Kani exists to help people understand authentic Pashmina in its breadth: Kani,
-            Sozni, solids and other Kashmiri traditions. We tell their stories from the source,
-            recognise the artisans whose knowledge sustains them, and bring carefully presented
-            shawls to an international audience.
+            We are the fourth generation of a Kashmiri family that has lived by Pashmina. We weave on
+            our own looms, and we choose further pieces from a network of artisans we have known and
+            trusted for years. Everything we sell is a shawl, stole or wrap in 100% pure Pashmina.
           </p>
           <OrnamentRule className="mt-10" />
         </Reveal>
       </section>
       <SplitSection
-        image={images.pashminaFibre}
-        imageAlt="Pashmina fibre and fine woven cloth"
-        eyebrow="Why Pashmina"
-        title="Material as Feeling."
+        image={images.kaniLoom}
+        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
+        eyebrow="How We Work"
+        title="Our Looms, and the Artisans We Trust."
         body={
-          <p>
-            Before it is a textile, Pashmina is warmth gathered from a high-altitude winter. Its
-            fineness carries the severity of the mountains and the sensitivity of every hand it
-            passes through.
-          </p>
+          <>
+            <p>
+              Some pieces are woven on our family’s own looms. Others come from embroiderers and
+              weavers whose work we know well, and we choose every piece ourselves.
+            </p>
+            <p>
+              We describe each one honestly: its technique, its fibre, its size and how it was made.
+            </p>
+          </>
         }
         imageRatio="landscape"
       />
       <SplitSection
-        image={images.craftsmanshipHall}
-        imageAlt="Kani Pashmina in an old Kashmir-inspired hall"
-        eyebrow="Why Kani"
-        title="Pattern as Memory."
+        image={images.kaniPattern}
+        imageAlt="A paisley-woven Pashmina shawl draped over a carved walnut chest"
+        eyebrow="Why “Kani”"
+        title="A Name That Sets the Standard."
         body={
           <p>
-            Kani is one of the world’s most intricate weaving traditions. Its intelligence lives in
-            coloured thread, coded notation and the practiced rhythm of the artisan — never printed,
-            never hurried.
+            Kani is the most demanding of Kashmir’s weaves: every motif is formed on the loom, thread
+            by thread. We took its name as the standard we hold ourselves to — across our Kani, our
+            Sozni and our solids alike.
           </p>
         }
         reverse
@@ -81,32 +84,22 @@ export default function TheHousePage() {
       />
       <SplitSection
         image={images.kashmirDusk}
-        imageAlt="Kashmir lake and mountains at dusk"
-        eyebrow="The Place"
-        title="Kashmir Is Not a Reference. It Is the Origin."
+        imageAlt="Dal Lake and the mountains of Kashmir at dusk"
+        eyebrow="Srinagar"
+        title="Visit Us, or Meet Us Online."
         body={
           <p>
-            The valley’s gardens, light, architecture, seasons and people shaped every part of this
-            tradition. To speak of Kani without Kashmir would be to speak of a river without its
-            source.
+            Our office is in Srinagar. By appointment, we welcome visitors there and can take you to
+            our looms. If you cannot travel, we can show you pieces on a video call.
           </p>
         }
         tone="forest"
         imageRatio="landscape"
-      />
-      <SplitSection
-        image={images.heritageArchive}
-        imageAlt="A Kashmir textile and botanical archive"
-        eyebrow="The Living Archive"
-        title="Inheritance, Reinterpreted."
-        body={
-          <p>
-            We look back not to imitate the past, but to understand its discipline. House of Kani
-            brings that depth into the present through proportion, colour and a contemporary eye.
-          </p>
+        action={
+          <TextLink to="/private-client" tone="light">
+            Arrange an Appointment
+          </TextLink>
         }
-        reverse
-        imageRatio="landscape"
       />
       <section className="bg-burgundy px-5 py-20 text-ivory sm:px-8 sm:py-28 lg:py-36">
         <PullQuote cite="House of Kani">
@@ -114,8 +107,8 @@ export default function TheHousePage() {
           movement, and across generations.
         </PullQuote>
         <div className="mt-10 text-center">
-          <TextLink to="/private-client" tone="light">
-            Speak with the House
+          <TextLink to="/where-to-buy" tone="light">
+            Where to Buy
           </TextLink>
         </div>
       </section>

@@ -5,9 +5,9 @@ import { useState } from "react";
 
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Reveal } from "@/components/Reveal";
-import { articles, type JournalArticle } from "@/lib/journal";
+import { articleCategories, articles, type JournalArticle } from "@/lib/journal";
 
-const categories = ["All", "Kani", "Pashmina", "Craft", "Heritage", "Kashmir", "People"] as const;
+const categories = ["All", ...articleCategories] as const;
 
 export function JournalGrid({ featured }: { featured: JournalArticle }) {
   const [category, setCategory] = useState<(typeof categories)[number]>("All");

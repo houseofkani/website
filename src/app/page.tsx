@@ -9,42 +9,58 @@ import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
 import { articles } from "@/lib/journal";
 import { seoBundle } from "@/lib/seo";
+import { ETSY_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
   ...seoBundle({
-    title: "House of Kani — Authentic Pashmina from Kashmir",
+    title: "House of Kani — Pure Pashmina from a Kashmiri Weaving Family",
     description:
-      "Discover authentic Kashmiri Pashmina through Kani weaving, Sozni embroidery, pure solids and the people who sustain these living traditions.",
+      "100% pure Pashmina shawls, stoles and wraps — handwoven Kani, hand-embroidered Sozni and fine solids from a fourth-generation family in Srinagar, Kashmir.",
     pathname: "/",
     image: images.victorianKaniHero,
   }),
-  title: { absolute: "House of Kani — Authentic Pashmina from Kashmir" },
+  title: { absolute: "House of Kani — Pure Pashmina from a Kashmiri Weaving Family" },
 };
+
+const pashminaFacts = [
+  {
+    title: "The fibre",
+    body: "Pashmina is the fine winter undercoat of the Changthangi goat, which lives on the high Changthang plateau of Ladakh. It is combed out by hand each spring.",
+  },
+  {
+    title: "The fineness",
+    body: "Each fibre measures roughly 12 to 16 microns — finer than most cashmere. That is why a pure Pashmina shawl is so light yet so warm.",
+  },
+  {
+    title: "The making",
+    body: "In Kashmir the fibre is cleaned, spun, woven and finished by hand. A shawl may then be patterned on the loom (Kani) or embroidered by needle (Sozni).",
+  },
+] as const;
 
 const traditions = [
   {
     number: "01",
     name: "Kani",
-    line: "Pattern woven into the cloth",
+    line: "The pattern is woven into the cloth on the loom, colour by colour.",
     image: images.kaniPattern,
-    alt: "Macro detail of an intricate woven Kani Pashmina",
+    alt: "A paisley-woven Pashmina shawl draped over a carved walnut chest",
     to: "/kani",
   },
   {
     number: "02",
     name: "Sozni",
-    line: "Fine embroidery drawn by needle",
+    line: "Fine embroidery worked by hand with a needle on finished Pashmina.",
     image: images.originalSozni,
-    alt: "Ivory Pashmina with fine hand-worked Sozni embroidery",
-    to: "/pashmina",
+    alt: "A woman in an ivory Pashmina shawl with an embroidered Sozni border",
+    to: "/pashmina#sozni",
   },
   {
     number: "03",
     name: "Solids",
-    line: "Fibre, colour and drape revealed",
+    line: "Plain, unpatterned Pashmina, where the fibre, colour and drape speak.",
     image: images.originalSolid,
-    alt: "Deep burgundy solid Pashmina in a heritage interior",
-    to: "/pashmina",
+    alt: "A deep burgundy solid Pashmina shawl draped over a wooden chair",
+    to: "/pashmina#solids",
   },
 ] as const;
 
@@ -54,7 +70,7 @@ export default function HomePage() {
       <section className="relative isolate flex min-h-svh items-center overflow-hidden text-ivory">
         <OptimizedImage
           src={images.victorianKaniHero}
-          alt="Kashmiri woman wearing a purple Kani Pashmina in a Victorian-inspired royal salon"
+          alt="A woman wearing a lilac paisley Pashmina shawl in a carved wooden Kashmiri interior"
           fill
           priority
           quality={100}
@@ -65,15 +81,16 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-[1560px] px-5 pt-28 pb-12 sm:px-8 lg:px-12">
           <Reveal className="image-copy max-w-[42rem] text-left">
             <Monogram className="mb-8 w-14 text-gold sm:w-16" />
-            <p className="eyebrow text-gold">Authentic Pashmina · Kashmir</p>
+            <p className="eyebrow text-gold">100% Pure Pashmina · Srinagar, Kashmir</p>
             <h1 className="display-hero mt-5 text-balance">House of Kani</h1>
             <p className="font-display mt-6 max-w-lg text-[1.3rem] leading-relaxed font-light italic text-ivory sm:text-[1.6rem]">
-              Kani, Sozni and solids — understood through the hands, histories and traditions that
-              make them.
+              Handwoven Kani, hand-embroidered Sozni and fine solids — from a fourth-generation
+              Kashmiri family of weavers.
             </p>
             <TextLink to="/pashmina" tone="light" className="mt-10">
               Discover Pashmina
             </TextLink>
+            <p className="eyebrow mt-12 text-ivory/70 sm:hidden">From Kashmir, woven for the world</p>
           </Reveal>
         </div>
         <p className="eyebrow absolute right-5 bottom-6 hidden text-ivory/70 sm:block lg:right-12">
@@ -87,7 +104,7 @@ export default function HomePage() {
             <div className="relative aspect-[4/5] overflow-hidden">
               <OptimizedImage
                 src={images.pashminaFibre}
-                alt="Fine Pashmina weave and traditional wooden thread bobbins"
+                alt="A folded floral Pashmina shawl beside spools of coloured thread"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -96,15 +113,15 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={120} className="max-w-xl lg:col-span-5 lg:col-start-8">
             <Eyebrow>Who We Are</Eyebrow>
-            <h2 className="display-1 mt-6 text-balance italic">A house devoted to the truth of Pashmina.</h2>
+            <h2 className="display-1 mt-6 text-balance italic">Four generations of Pashmina in Srinagar.</h2>
             <p className="body-editorial mt-8 text-charcoal/80">
-              House of Kani is a Kashmir-rooted knowledge and brand platform for authentic Pashmina.
-              Our name honours the rare Kani weaving tradition; our world embraces Kani, Sozni,
-              beautifully finished solids and other expressions of the cloth.
+              Our great-grandparents began this work in Kashmir. Today our family weaves on our own
+              looms and chooses pieces from artisans we have worked with for years — and House of
+              Kani is how we now bring that work to the world.
             </p>
             <p className="body-editorial mt-5 text-charcoal/80">
-              We make the fibre, techniques and human skill visible, so that what is genuine can be
-              recognised, respected and carried forward.
+              We sell shawls, stoles and wraps in 100% pure Pashmina, and we explain how each one was
+              made, so that you know exactly what you are buying.
             </p>
             <TextLink to="/the-house" className="mt-10">
               Read Our Story
@@ -113,14 +130,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-y border-gold/25 bg-cream px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+        <div className="mx-auto max-w-[1420px]">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Eyebrow>What Pashmina Is</Eyebrow>
+            <h2 className="display-1 mt-5 text-balance">A rare fibre, finished by hand in Kashmir.</h2>
+            <p className="body-editorial mx-auto mt-7 max-w-2xl text-charcoal/75">
+              The word is printed on many scarves that contain little or none of it. Genuine Pashmina
+              is one specific fibre, from one animal, made into cloth in one valley.
+            </p>
+          </Reveal>
+          <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
+            {pashminaFacts.map((fact, index) => (
+              <Reveal key={fact.title} delay={index * 100} className="border-t border-gold/45 pt-6">
+                <h3 className="display-3">{fact.title}</h3>
+                <p className="body-editorial mt-4 text-charcoal/75">{fact.body}</p>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-14 text-center">
+            <TextLink to="/pashmina">How to Recognise Pure Pashmina</TextLink>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-forest px-5 py-24 text-ivory sm:px-8 sm:py-32 lg:px-12 lg:py-40">
         <div className="mx-auto max-w-[1420px]">
           <Reveal className="mx-auto max-w-3xl text-center">
             <Eyebrow>What We Offer</Eyebrow>
-            <h2 className="display-1 mt-5">One fibre. Distinct traditions.</h2>
+            <h2 className="display-1 mt-5">One fibre. Three ways of making.</h2>
             <p className="body-editorial mx-auto mt-7 max-w-2xl text-ivory/78">
-              Pashmina is the material. The making gives each piece its character. These are the
-              three expressions at the heart of our house.
+              Every piece is 100% pure Pashmina. What differs is how it is made — and that is what
+              gives each shawl, stole or wrap its character.
             </p>
             <OrnamentRule className="mt-10" />
           </Reveal>
@@ -148,29 +189,31 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-14 text-center">
-            <TextLink to="/pashmina" tone="light">Understand the Traditions</TextLink>
-          </div>
         </div>
       </section>
 
       <ImmersiveSection
         image={images.kaniLoom}
-        imageAlt="A Kashmiri artisan weaving a vivid Kani textile on a wooden loom"
+        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
         eyebrow="Craftsmanship"
-        title={<>Time Is Not Hidden.<br />It Is the Measure.</>}
-        body={<p>From sorting fibre and spinning thread to reading the talim and finishing the cloth, every stage depends on practised hands. Slowness is not theatre here; it is how integrity enters the textile.</p>}
-        action={<TextLink to="/craftsmanship" tone="light">Meet the Making</TextLink>}
+        title={<>Made by Hand,<br />at Every Stage.</>}
+        body={<p>Fibre is sorted and spun, the loom is set, and the cloth is woven, washed and finished. A Kani weaver follows a talim — a coded pattern sheet — and a fine piece can take many months. That time is the reason a genuine Kani cannot be cheap.</p>}
+        action={<TextLink to="/craftsmanship" tone="light">See How It Is Made</TextLink>}
         position="60% center"
       />
 
       <SplitSection
         image={images.heritageArchive}
-        imageAlt="Archival books, Kashmir illustrations and textile fragments"
-        eyebrow="Why House of Kani"
-        title={<>Knowledge Protects<br />What Is Genuine.</>}
-        body={<><p>Pashmina is widely named and often misunderstood. We show the fibre, method, motif, time and human skill behind the cloth without reducing a living tradition to a luxury claim.</p><p>Understanding creates trust — and helps the makers and cultural memory of Kashmir endure.</p></>}
-        action={<TextLink to="/heritage">Explore the Heritage</TextLink>}
+        imageAlt="Botanical drawings, old books and a paisley shawl on a study table"
+        eyebrow="Our Promise"
+        title={<>What We Tell You<br />About Every Piece.</>}
+        body={
+          <>
+            <p>For every shawl, stole and wrap we state the technique, the fibre and the size, and we describe how it was made.</p>
+            <p>Kashmir Pashmina, Kani shawls and Sozni embroidery are registered Geographical Indications (GI) in India. Our pieces are GI-eligible, and we arrange GI certification on request.</p>
+          </>
+        }
+        action={<TextLink to="/pashmina#authenticity">Authenticity and GI</TextLink>}
         imageRatio="landscape"
       />
 
@@ -179,7 +222,7 @@ export default function HomePage() {
           <Reveal className="flex flex-col items-center text-center">
             <Eyebrow>The Journal</Eyebrow>
             <h2 className="display-1 mt-4">Notes from the Valley</h2>
-            <p className="body-editorial mt-6 max-w-2xl text-charcoal/70">Essays on fibre, loom, motif, landscape and the people who keep Kashmir’s textile knowledge alive.</p>
+            <p className="body-editorial mt-6 max-w-2xl text-charcoal/70">Short guides and essays on Pashmina, the loom, the needle and Kashmir.</p>
           </Reveal>
           <div className="mt-16 grid gap-x-7 gap-y-12 md:grid-cols-3">
             {articles.slice(0, 3).map((article, index) => (
@@ -195,27 +238,29 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-14 text-center"><TextLink to="/journal">Enter the Journal</TextLink></div>
+          <div className="mt-14 text-center"><TextLink to="/journal">Read the Journal</TextLink></div>
         </div>
       </section>
 
       <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
         <Reveal className="mx-auto max-w-3xl">
-          <Eyebrow>Our First Collection</Eyebrow>
-          <h2 className="display-2 mt-4">Coming first to Etsy.</h2>
-          <p className="body-editorial mx-auto mt-5 max-w-2xl text-charcoal/70">A considered edit of authentic Kashmiri Pashmina, accompanied by clear information about its material, method and making.</p>
+          <Eyebrow>Where to Buy</Eyebrow>
+          <h2 className="display-2 mt-4">Our first collection opens on Etsy.</h2>
+          <p className="body-editorial mx-auto mt-5 max-w-2xl text-charcoal/70">Each listing names the technique, the fibre and the size. To see pieces in person or on a video call, arrange an appointment with our family in Srinagar.</p>
+          <TextLink to={ETSY_HREF} className="mt-8">Where to Buy</TextLink>
         </Reveal>
       </section>
 
       <section className="bg-ivory px-5 py-5 sm:px-8 sm:py-8 lg:px-12 lg:py-12">
         <div className="group relative isolate mx-auto flex min-h-[66svh] max-w-[1560px] items-center justify-center overflow-hidden px-5 py-24 text-center text-ivory">
-          <OptimizedImage src={images.closingDrape} alt="Authentic Kani Pashmina inspected in a Kashmiri heritage atelier" fill sizes="100vw" className="-z-20 object-cover transition-transform duration-[1800ms] group-hover:scale-[1.015]" />
+          <OptimizedImage src={images.closingDrape} alt="Paisley Pashmina shawls laid out on a long wooden table in a Kashmiri workroom" fill sizes="100vw" className="-z-20 object-cover transition-transform duration-[1800ms] group-hover:scale-[1.015]" />
           <div className="absolute inset-0 -z-10 bg-forest/60" />
           <Reveal className="image-copy flex max-w-3xl flex-col items-center">
             <Monogram className="mb-7 w-16 text-gold" />
-            <p className="eyebrow text-gold">The Living Art of Pashmina</p>
-            <h2 className="display-1 mt-5 italic">From Kashmir.<br />Woven for the world.</h2>
-            <TextLink to="/the-house" tone="light" className="mt-10">Enter the House</TextLink>
+            <p className="eyebrow text-gold">Visit the House</p>
+            <h2 className="display-1 mt-5 italic">See the looms.<br />Meet the family.</h2>
+            <p className="body-editorial mt-6 max-w-xl text-ivory/85">Visits to our Srinagar office and looms, and online appointments, are arranged in advance.</p>
+            <TextLink to="/private-client" tone="light" className="mt-10">Arrange a Visit</TextLink>
           </Reveal>
         </div>
       </section>
