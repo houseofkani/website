@@ -58,8 +58,8 @@ const traditions = [
     number: "03",
     name: "Solids",
     line: "Plain, unpatterned Pashmina, where the fibre, colour and drape speak.",
-    image: images.solidBurgundyPortrait,
-    alt: "A woman in a wood-panelled room wearing a deep burgundy solid Pashmina shawl over a black dress",
+    image: images.solidEmeraldSalon,
+    alt: "A woman in a sunlit salon wearing a solid emerald Pashmina shawl over a cream blouse",
     to: "/pashmina#solids",
   },
 ] as const;

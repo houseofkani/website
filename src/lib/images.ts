@@ -9,7 +9,7 @@ export const images = {
   kaniLoom: "/images/kani-loom.jpg",
   originalSozni: "/images/original-sozni-editorial.jpg",
   originalSolid: "/images/original-solid-pashmina.jpg",
-  solidBurgundyPortrait: "/images/solid-burgundy-portrait.jpg",
+  solidEmeraldSalon: "/images/solid-emerald-salon.jpg",
   pashminaFibre: "/images/pashmina-fibre.jpg",
   journalArtisan: "/images/journal-artisan.jpg",
   journalWorkshop: "/images/journal-workshop.jpg",
