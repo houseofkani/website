@@ -22,3 +22,10 @@
 - [x] Replace raster logo usage with a sharp vector monogram
 - [x] Improve homepage story order and closing image section
 - [x] Verify the final desktop and mobile experience
+
+## Consistent luxury imagery
+- [ ] Preserve the approved opening and homepage trio
+- [ ] Adapt all seven supplied shawls into matching editorial photographs
+- [ ] Refresh remaining active static photography and image descriptions
+- [ ] Update journal photography through Payload CMS (requires reachable CMS and media-write access)
+- [ ] Verify affected pages, protected assets and mobile presentation
