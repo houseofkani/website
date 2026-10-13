@@ -65,7 +65,8 @@ const traditions = [
 ] as const;
 
 export default async function HomePage() {
-  const articles = await getJournalPosts({ limit: 3 });
+  // The Journal lives in the CMS; if it is unreachable, the page still opens.
+  const articles = await getJournalPosts({ limit: 3 }).catch(() => []);
   return (
     <>
       <section className="relative isolate flex min-h-svh items-center overflow-hidden text-ivory">
@@ -218,6 +219,7 @@ export default async function HomePage() {
         imageRatio="landscape"
       />
 
+      {articles.length > 0 && (
       <section className="bg-ivory px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
         <div className="mx-auto max-w-[1420px]">
           <Reveal className="flex flex-col items-center text-center">
@@ -242,6 +244,7 @@ export default async function HomePage() {
           <div className="mt-14 text-center"><TextLink to="/journal">Read the Journal</TextLink></div>
         </div>
       </section>
+      )}
 
       <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
         <Reveal className="mx-auto max-w-3xl">
