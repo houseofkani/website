@@ -37,7 +37,7 @@ export default function PrivateClientPage() {
     <>
       <PageHero
         image={images.kaniEarthStripeRodDraped}
-        imageAlt="A striped Kani Pashmina shawl with magenta flowers, gathered over a walnut rod"
+        imageAlt="A taupe Pashmina shawl with rose and turquoise paisleys displayed over a walnut rail"
         eyebrow="Appointments"
         title="See Our Pashmina Up Close."
         subtitle="Meet our family in Srinagar, visit our looms, or see pieces with us online."
@@ -45,7 +45,7 @@ export default function PrivateClientPage() {
       />
       <SplitSection
         image={images.closingDrape}
-        imageAlt="Paisley Pashmina shawls laid out on a long wooden table in a Kashmiri workroom"
+        imageAlt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table"
         eyebrow="How It Works"
         title="Unhurried, and by Appointment."
         body={

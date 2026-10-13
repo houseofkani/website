@@ -19,14 +19,14 @@ export default function PressPage() {
     <>
       <PageHero
         image={images.heritageArchive}
-        imageAlt="Botanical drawings, old books and a paisley shawl on a study table"
+        imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"
         eyebrow="Press"
         title="For Editors and Writers."
         height="medium"
       />
       <SplitSection
         image={images.heroHome}
-        imageAlt="A woman wearing a lilac paisley Pashmina shawl in a carved wooden Kashmiri interior"
+        imageAlt="A woman wearing a mauve, turquoise and ochre paisley Pashmina in a walnut salon"
         eyebrow="About the House"
         title="A Kashmiri Pashmina Family in Srinagar."
         body={

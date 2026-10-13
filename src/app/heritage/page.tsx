@@ -39,7 +39,7 @@ export default function HeritagePage() {
       />
       <PageHero
         image={images.heritageArchive}
-        imageAlt="Botanical drawings, old books and a paisley shawl on a study table"
+        imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"
         eyebrow="Heritage"
         title="Six Centuries of the Kashmir Shawl."
         subtitle="How Pashmina weaving, Kani and Sozni grew in the valley — and travelled the world."
@@ -70,7 +70,7 @@ export default function HeritagePage() {
       </section>
       <SplitSection
         image={images.kashmirLake}
-        imageAlt="A shikara on Dal Lake with mountains behind, in sepia tones"
+        imageAlt="A wooden shikara on Dal Lake beside carved houseboats and mountain reflections"
         eyebrow="The Valley"
         title="A Culture Woven into Place."
         body={
@@ -83,7 +83,7 @@ export default function HeritagePage() {
       />
       <SplitSection
         image={images.kaniTaupePaisley}
-        imageAlt="A taupe Kani Pashmina shawl woven with ivory boteh (paisley) motifs, laid flat on wood"
+        imageAlt="A rust and walnut Pashmina shawl with large paisley medallions spread on a walnut table"
         eyebrow="The Motif"
         title="The Boteh, Known Abroad as Paisley."
         body={
@@ -104,7 +104,7 @@ export default function HeritagePage() {
       </section>
       <SplitSection
         image={images.kaniOatmealRod}
-        imageAlt="An oatmeal Kani Pashmina shawl with fine floral buti, draped over a walnut rod"
+        imageAlt="An ivory Pashmina shawl with pastel flowering trees draped over a walnut rail"
         eyebrow="Our Part"
         title="Four Generations in This Story."
         body={

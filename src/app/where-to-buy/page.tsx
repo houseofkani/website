@@ -33,7 +33,7 @@ export default function WhereToBuyPage() {
       />
       <PageHero
         image={images.closingDrape}
-        imageAlt="Paisley Pashmina shawls laid out on a long wooden table in a Kashmiri workroom"
+        imageAlt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table"
         eyebrow="Where to Buy"
         title="Our First Collection Opens on Etsy."
         subtitle="Every listing names the technique, the fibre and the size."
