@@ -19,9 +19,9 @@ export const metadata: Metadata = seoBundle({
 
 export default async function JournalPage() {
   const { isEnabled: draft } = await draftMode();
-  const articles = await getJournalPosts({ draft });
+  // If the CMS is unreachable, the journal still opens with an empty state.
+  const articles = await getJournalPosts({ draft }).catch(() => []);
   const featured = articles[0];
-  if (!featured) return null;
 
   return (
     <>
