@@ -24,8 +24,9 @@
 - [x] Verify the final desktop and mobile experience
 
 ## Consistent luxury imagery
-- [ ] Preserve the approved opening and homepage trio
-- [ ] Adapt all seven supplied shawls into matching editorial photographs
-- [ ] Refresh remaining active static photography and image descriptions
+- [x] Preserve the approved opening and homepage trio (file hashes unchanged)
+- [x] Adapt all seven supplied shawls into matching editorial photographs
+- [x] Refresh remaining active static photography and image descriptions
 - [ ] Update journal photography through Payload CMS (requires reachable CMS and media-write access)
-- [ ] Verify affected pages, protected assets and mobile presentation
+- [x] Verify affected non-journal pages, protected assets and mobile presentation
+- [ ] Verify homepage and journal presentation (blocked by unavailable Payload CMS; homepage returns HTTP 500)
