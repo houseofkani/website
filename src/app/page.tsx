@@ -205,7 +205,7 @@ export default async function HomePage() {
 
       <SplitSection
         image={images.heritageArchive}
-        imageAlt="Botanical drawings, old books and a paisley shawl on a study table"
+        imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"
         eyebrow="Our Promise"
         title={<>What We Tell You<br />About Every Piece.</>}
         body={
@@ -254,7 +254,7 @@ export default async function HomePage() {
 
       <section className="bg-ivory px-5 py-5 sm:px-8 sm:py-8 lg:px-12 lg:py-12">
         <div className="group relative isolate mx-auto flex min-h-[66svh] max-w-[1560px] items-center justify-center overflow-hidden px-5 py-24 text-center text-ivory">
-          <OptimizedImage src={images.closingDrape} alt="Paisley Pashmina shawls laid out on a long wooden table in a Kashmiri workroom" fill sizes="100vw" className="-z-20 object-cover transition-transform duration-[1800ms] group-hover:scale-[1.015]" />
+          <OptimizedImage src={images.closingDrape} alt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table" fill sizes="100vw" className="-z-20 object-cover transition-transform duration-[1800ms] group-hover:scale-[1.015]" />
           <div className="absolute inset-0 -z-10 bg-forest/60" />
           <Reveal className="image-copy flex max-w-3xl flex-col items-center">
             <Monogram className="mb-7 w-16 text-gold" />
