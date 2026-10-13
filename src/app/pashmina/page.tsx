@@ -140,7 +140,7 @@ export default function PashminaPage() {
       <SplitSection
         id="kani"
         image={images.kaniSaffronRod}
-        imageAlt="A saffron Kani Pashmina shawl woven with a floral jaal, draped over a walnut rod"
+        imageAlt="An ivory Pashmina shawl with a pastel floral garden and striped borders on a walnut table"
         eyebrow="01 · Kani"
         title="Pattern Woven Into the Cloth."
         body={

@@ -38,7 +38,7 @@ export default function KashmirPage() {
       />
       <SplitSection
         image={images.kashmirLake}
-        imageAlt="A shikara on Dal Lake with mountains behind, in sepia tones"
+        imageAlt="A wooden shikara on Dal Lake beside carved houseboats and mountain reflections"
         eyebrow="Land"
         title="A Valley of Light and Shadow."
         body={

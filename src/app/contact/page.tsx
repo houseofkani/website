@@ -20,7 +20,7 @@ export default function ContactPage() {
     <>
       <PageHero
         image={images.heritageArchive}
-        imageAlt="Botanical drawings, old books and a paisley shawl on a study table"
+        imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"
         eyebrow="Contact"
         title="Write to Our Family."
         subtitle="About a piece, an appointment, a loom visit or GI certification."

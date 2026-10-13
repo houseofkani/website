@@ -141,52 +141,37 @@ export default function KaniPage() {
             {
               src: images.kaniQuote[0],
               landscapeSrc: images.kaniQuoteWide[0],
-              alt: "A full Kani shawl with a large paisley medallion, laid flat",
+              alt: "A walnut and rust paisley medallion shawl displayed on carved walnut",
             },
             {
               src: images.kaniQuote[1],
               landscapeSrc: images.kaniQuoteWide[1],
-              alt: "A full black floral Kani shawl with a striped border, laid flat",
+              alt: "An ivory shawl with a pastel floral garden and striped borders on an atelier table",
             },
             {
               src: images.kaniQuote[2],
               landscapeSrc: images.kaniQuoteWide[2],
-              alt: "A full Kani shawl with a round central medallion and striped edges, laid flat",
+              alt: "A taupe shawl with repeating rose and turquoise paisleys draped over walnut",
             },
             {
               src: images.kaniQuote[3],
               landscapeSrc: images.kaniQuoteWide[3],
-              alt: "A full Kani shawl with repeating paisleys, laid flat",
+              alt: "An oatmeal floral shawl with blue striped borders on a carved walnut bench",
             },
             {
               src: images.kaniQuote[4],
               landscapeSrc: images.kaniQuoteWide[4],
-              alt: "A full floral Kani shawl with a blue striped border, laid flat",
+              alt: "A lilac shawl with charcoal flowers and leaves on an antique walnut table",
             },
             {
               src: images.kaniQuote[5],
               landscapeSrc: images.kaniQuoteWide[5],
-              alt: "A full dark floral Kani shawl with a striped border, laid flat",
+              alt: "A mauve shawl with turquoise and ochre sweeping paisleys on carved walnut",
             },
             {
               src: images.kaniQuote[6],
               landscapeSrc: images.kaniQuoteWide[6],
-              alt: "A full Kani shawl with large paisleys around a central medallion, laid flat",
-            },
-            {
-              src: images.kaniQuote[7],
-              landscapeSrc: images.kaniQuoteWide[7],
-              alt: "A full Kani shawl with four flowering trees, laid flat",
-            },
-            {
-              src: images.kaniQuote[8],
-              landscapeSrc: images.kaniQuoteWide[8],
-              alt: "A full Kani shawl with a bright central medallion and striped edges, laid flat",
-            },
-            {
-              src: images.kaniQuote[9],
-              landscapeSrc: images.kaniQuoteWide[9],
-              alt: "A full peach floral Kani shawl with a striped border, laid flat",
+              alt: "An ivory shawl with four pastel flowering trees displayed in a walnut atelier",
             },
           ]}
         />
@@ -199,7 +184,7 @@ export default function KaniPage() {
       </section>
       <SplitSection
         image={images.kaniSaffronDark}
-        imageAlt="A peach Kani Pashmina shawl with floral motifs and striped borders, draped against a light studio backdrop"
+        imageAlt="An oatmeal floral Pashmina shawl with blue striped borders draped over a carved walnut bench"
         eyebrow="Our Kani"
         title="Woven on Our Looms and by Weavers We Trust."
         body={
