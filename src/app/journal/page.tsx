@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 
 import { Eyebrow } from "@/components/Editorial";
 import { JournalGrid } from "@/components/JournalGrid";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
-import { articles } from "@/lib/journal";
+import { getJournalPosts } from "@/lib/cms";
 import { images } from "@/lib/images";
 import { itemListLd, jsonLdScript, seoBundle } from "@/lib/seo";
 
@@ -16,7 +17,9 @@ export const metadata: Metadata = seoBundle({
   image: images.heritageArchive,
 });
 
-export default function JournalPage() {
+export default async function JournalPage() {
+  const { isEnabled: draft } = await draftMode();
+  const articles = await getJournalPosts({ draft });
   const featured = articles[0];
   if (!featured) return null;
 
@@ -47,7 +50,7 @@ export default function JournalPage() {
           <OrnamentRule className="mt-8" />
         </Reveal>
       </section>
-      <JournalGrid featured={featured} />
+      <JournalGrid featured={featured} articles={articles} />
     </>
   );
 }

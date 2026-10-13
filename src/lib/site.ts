@@ -32,6 +32,7 @@ export const FOOTER_COLUMNS = [
     links: [
       { label: "The House", to: "/the-house" },
       { label: "Pashmina", to: "/pashmina" },
+      { label: "Shade Card", to: "/shade-card" },
       { label: "Kani", to: "/kani" },
       { label: "Craftsmanship", to: "/craftsmanship" },
     ],

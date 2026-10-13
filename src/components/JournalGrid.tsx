@@ -5,11 +5,16 @@ import { useState } from "react";
 
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Reveal } from "@/components/Reveal";
-import { articleCategories, articles, type JournalArticle } from "@/lib/journal";
+import type { JournalArticle } from "@/lib/cms";
 
-const categories = ["All", ...articleCategories] as const;
-
-export function JournalGrid({ featured }: { featured: JournalArticle }) {
+export function JournalGrid({
+  featured,
+  articles,
+}: {
+  featured: JournalArticle;
+  articles: JournalArticle[];
+}) {
+  const categories = ["All", ...new Set(articles.map((a) => a.category))];
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const visible =
     category === "All" ? articles : articles.filter((a) => a.category === category);

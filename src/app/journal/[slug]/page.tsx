@@ -1,27 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
+import { notFound, permanentRedirect } from "next/navigation";
 
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
-import { articles, getArticle } from "@/lib/journal";
+import { getJournalPost, getJournalPosts, getJournalRedirect } from "@/lib/cms";
 import {
   blogPostingLd,
   breadcrumbLd,
   jsonLdScript,
   seoBundle,
 } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return articles.map((article) => ({ slug: article.slug }));
+export async function generateStaticParams() {
+  const { getJournalSlugs } = await import("@/lib/cms");
+  try {
+    const slugs = await getJournalSlugs();
+    return slugs.map((slug) => ({ slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const { isEnabled: draft } = await draftMode();
+  const article = await getJournalPost(slug, { draft });
   if (!article) {
     return seoBundle({
       title: "Story Not Found",
@@ -29,22 +38,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       robots: "noindex",
     });
   }
+  const { seo } = article;
   return seoBundle({
-    title: article.title,
-    description: article.dek,
-    pathname: `/journal/${article.slug}`,
-    image: article.image,
+    title: seo.title || article.title,
+    description: seo.description || article.dek,
+    pathname: seo.canonicalUrl
+      ? new URL(seo.canonicalUrl, siteConfig.url).pathname
+      : `/journal/${article.slug}`,
+    image: seo.image || article.image,
     type: "article",
     authors: ["House of Kani"],
+    robots: seo.noindex ? "noindex" : undefined,
   });
 }
 
 export default async function JournalArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = getArticle(slug);
-  if (!article) notFound();
+  const { isEnabled: draft } = await draftMode();
 
-  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const article = await getJournalPost(slug, { draft });
+  if (!article) {
+    // The slug may have changed — serve the permanent redirect the CMS recorded.
+    const redirect = await getJournalRedirect(slug);
+    if (redirect?.type === "internal") permanentRedirect(redirect.path);
+    if (redirect?.type === "external") permanentRedirect(redirect.url);
+    notFound();
+  }
+
+  const all = await getJournalPosts({ draft });
+  const related = all.filter((a) => a.slug !== article.slug).slice(0, 3);
 
   return (
     <article className="bg-ivory">
@@ -53,10 +75,11 @@ export default async function JournalArticlePage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: jsonLdScript([
             blogPostingLd({
-              title: article.title,
-              description: article.dek,
+              title: article.seo.title || article.title,
+              description: article.seo.description || article.dek,
               path: `/journal/${article.slug}`,
-              image: article.image,
+              image: article.seo.image || article.image,
+              datePublished: article.publishedAt || undefined,
             }),
             breadcrumbLd([
               { name: "Home", path: "/" },

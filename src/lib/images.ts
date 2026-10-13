@@ -53,6 +53,9 @@ export const images = {
   ],
   sozniSalonModel: "/images/sozni-salon-model.jpg",
   sozniTaupeWindow: "/images/sozni-taupe-window.jpg",
+  typeKaniPaisley: "/images/type-kani-paisley.jpg",
+  typeSozniGold: "/images/type-sozni-gold.jpg",
+  typeSolidsCascade: "/images/type-solids-cascade.jpg",
 } as const;
 
 export type ImageKey = keyof typeof images;

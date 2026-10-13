@@ -7,7 +7,7 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
-import { articles } from "@/lib/journal";
+import { getJournalPosts } from "@/lib/cms";
 import { seoBundle } from "@/lib/seo";
 import { ETSY_HREF } from "@/lib/site";
 
@@ -42,29 +42,30 @@ const traditions = [
     number: "01",
     name: "Kani",
     line: "The pattern is woven into the cloth on the loom, colour by colour.",
-    image: images.kaniSalonModel,
-    alt: "A woman seated in a sunlit salon with a purple Kani Pashmina shawl woven with large paisleys draped over her shoulder",
+    image: images.typeKaniPaisley,
+    alt: "A Kani Pashmina shawl woven with repeating paisleys in teal, rose and ivory, draped over carved wood",
     to: "/kani",
   },
   {
     number: "02",
     name: "Sozni",
     line: "Fine embroidery worked by hand with a needle on finished Pashmina.",
-    image: images.sozniSalonModel,
-    alt: "A woman in a sunlit salon wearing a dark Sozni Pashmina shawl embroidered with floral and paisley motifs",
+    image: images.typeSozniGold,
+    alt: "A gold Pashmina shawl with a hand-worked paisley border, laid beside a brass vessel",
     to: "/pashmina#sozni",
   },
   {
     number: "03",
     name: "Solids",
     line: "Plain, unpatterned Pashmina, where the fibre, colour and drape speak.",
-    image: images.solidEmeraldSalon,
-    alt: "A woman in a sunlit salon wearing a solid emerald Pashmina shawl over a cream blouse",
+    image: images.typeSolidsCascade,
+    alt: "Solid Pashmina shawls in burgundy, teal, gold, blush and grey, folded and draped over carved wood",
     to: "/pashmina#solids",
   },
 ] as const;
 
-export default function HomePage() {
+export default async function HomePage() {
+  const articles = await getJournalPosts({ limit: 3 });
   return (
     <>
       <section className="relative isolate flex min-h-svh items-center overflow-hidden text-ivory">
