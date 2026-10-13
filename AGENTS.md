@@ -14,6 +14,7 @@
 - Journal content (articles, categories, images, redirects) lives in the Payload CMS at `../cms` and is fetched server-side through REST — see `src/lib/cms.ts`. Do not reintroduce local content modules for journal copy; do not import `cms.ts` from client components (it reads secret env vars).
 - Use shared editorial primitives for all routes so typography, pacing, ornament, imagery and navigation stay consistent across the digital maison.
 - Use an inline SVG monogram for brand marks so the identity remains crisp at every display size.
+- Keep static editorial image paths in the shared image registry with new, versioned filenames for refreshed photography; leave approved asset bytes and presentation untouched so imagery changes remain reversible.
 
 ## CMS integration
 
