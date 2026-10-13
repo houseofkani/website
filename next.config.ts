@@ -1,3 +1,5 @@
+import path from "node:path";
+
 import type { NextConfig } from "next";
 
 // CMS media files are served by Payload (`/api/media/file/*`) and proxied by
@@ -15,6 +17,10 @@ if (cmsUrl.hostname !== "localhost") {
 }
 
 const nextConfig: NextConfig = {
+  // Lovable's build check expects the build output in dist/.
+  distDir: "dist",
+  // The workspace root is this project — silences the multi-lockfile warning.
+  outputFileTracingRoot: path.resolve(),
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   images: {

@@ -83,6 +83,20 @@ export default function TheHousePage() {
         tone="cream"
       />
       <SplitSection
+        image={images.kaniMatriarch}
+        imageAlt="The family matriarch seated by a window in a mauve Kani Pashmina shawl"
+        eyebrow="The Family"
+        title="Four Generations of Weavers."
+        body={
+          <p>
+            The knowledge behind our shawls passes through the family itself —
+            from our great-grandparents&rsquo; looms in Srinagar to the hands that
+            sort, weave and finish every piece today.
+          </p>
+        }
+        reverse
+      />
+      <SplitSection
         image={images.kashmirDusk}
         imageAlt="Dal Lake and the mountains of Kashmir at dusk"
         eyebrow="Srinagar"
