@@ -29,4 +29,5 @@
 - [x] Refresh remaining active static photography and image descriptions
 - [x] Use the refreshed photography across the full site (all page placements point at the new files)
 - [ ] Update journal photography through Payload CMS (requires reachable CMS and media-write access)
-- [ ] Verify homepage and journal presentation (blocked by unavailable Payload CMS; homepage returns HTTP 500)
+- [x] Homepage and journal open even when the Payload CMS is unreachable (graceful empty state instead of HTTP 500)
+- [x] Verify homepage, journal and all non-journal pages, protected assets and mobile presentation
