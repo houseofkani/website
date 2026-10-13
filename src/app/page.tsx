@@ -244,6 +244,7 @@ export default async function HomePage() {
           <div className="mt-14 text-center"><TextLink to="/journal">Read the Journal</TextLink></div>
         </div>
       </section>
+      )}
 
       <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
         <Reveal className="mx-auto max-w-3xl">
