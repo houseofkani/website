@@ -50,7 +50,19 @@ export default async function JournalPage() {
           <OrnamentRule className="mt-8" />
         </Reveal>
       </section>
-      <JournalGrid featured={featured} articles={articles} />
+      {featured ? (
+        <JournalGrid featured={featured} articles={articles} />
+      ) : (
+        <section className="bg-ivory px-5 py-24 text-center sm:px-8 sm:py-32">
+          <Reveal className="mx-auto max-w-2xl">
+            <OrnamentRule className="mx-auto" />
+            <p className="body-editorial mt-8 text-charcoal/70">
+              The Journal is being prepared. Stories from the loom, the archive
+              and the valley will appear here soon.
+            </p>
+          </Reveal>
+        </section>
+      )}
     </>
   );
 }
