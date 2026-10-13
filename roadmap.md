@@ -23,6 +23,11 @@
 - [x] Improve homepage story order and closing image section
 - [x] Verify the final desktop and mobile experience
 
+## Build and image completeness
+- [x] Build output lands in dist/ for the deploy check (distDir + workspace root set)
+- [x] Every generated photograph is placed on the site (matriarch portrait added to The House)
+- [x] Homepage and journal open even when the Payload CMS is unreachable (graceful empty state instead of HTTP 500)
+
 ## Consistent luxury imagery
 - [x] Preserve the approved opening and homepage trio (file hashes unchanged)
 - [x] Adapt all seven supplied shawls into matching editorial photographs

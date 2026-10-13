@@ -12,6 +12,7 @@ export const images = {
   kashmirLake: "/images/luxury-kashmir-lake.webp",
   kashmirDusk: "/images/luxury-kashmir-dusk.webp",
   threads: "/images/luxury-threads.webp",
+  kaniMatriarch: "/images/luxury-model.webp",
   ornament: "/images/ornament-flourish.webp",
   kaniEarthStripeRodDraped: "/images/kani-earth-stripe-rod-draped.jpg",
   kaniSaffronRod: "/images/kani-saffron-rod.jpg",
