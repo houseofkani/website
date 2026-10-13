@@ -90,7 +90,7 @@ export default function TheHousePage() {
         body={
           <p>
             The knowledge behind our shawls passes through the family itself —
-            from our great-grandparents' looms in Srinagar to the hands that
+            from our great-grandparents&rsquo; looms in Srinagar to the hands that
             sort, weave and finish every piece today.
           </p>
         }
