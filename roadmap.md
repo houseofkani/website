@@ -1,9 +1,9 @@
 # Roadmap
 
 ## Rejected craft photography correction
-- [ ] Research accurate Kani textiles and craft processes for the four rejected placements
-- [ ] Create and inspect four replacement images without reusing the rejected scenes
-- [ ] Update only those placements and verify desktop and mobile display
+- [x] Research accurate Kani textiles and craft processes for the four rejected placements
+- [x] Create and inspect four replacement images without reusing the rejected scenes
+- [x] Update only those placements and verify desktop and mobile display
 
 ## Page-specific photography refresh
 - [x] Create original, distinct photographs for every Pashmina, Kani and Craftsmanship image placement
