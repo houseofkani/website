@@ -41,3 +41,6 @@ review/
 
 # cursor debug logs
 .cursor/debug-*.log
+
+
+dist/*

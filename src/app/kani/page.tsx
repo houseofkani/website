@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { MovementList, PullQuote, SplitSection, TextLink } from "@/components/Editorial";
-import { FadeGallery } from "@/components/FadeGallery";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
@@ -136,44 +136,20 @@ export default function KaniPage() {
         </div>
       </section>
       <section className="relative min-h-[72svh] overflow-hidden bg-forest text-ivory">
-        <FadeGallery
-          slides={[
-            {
-              src: images.kaniQuote[0],
-              landscapeSrc: images.kaniQuoteWide[0],
-              alt: "A walnut and rust paisley medallion shawl displayed on carved walnut",
-            },
-            {
-              src: images.kaniQuote[1],
-              landscapeSrc: images.kaniQuoteWide[1],
-              alt: "An ivory shawl with a pastel floral garden and striped borders on an atelier table",
-            },
-            {
-              src: images.kaniQuote[2],
-              landscapeSrc: images.kaniQuoteWide[2],
-              alt: "A taupe shawl with repeating rose and turquoise paisleys draped over walnut",
-            },
-            {
-              src: images.kaniQuote[3],
-              landscapeSrc: images.kaniQuoteWide[3],
-              alt: "An oatmeal floral shawl with blue striped borders on a carved walnut bench",
-            },
-            {
-              src: images.kaniQuote[4],
-              landscapeSrc: images.kaniQuoteWide[4],
-              alt: "A lilac shawl with charcoal flowers and leaves on an antique walnut table",
-            },
-            {
-              src: images.kaniQuote[5],
-              landscapeSrc: images.kaniQuoteWide[5],
-              alt: "A mauve shawl with turquoise and ochre sweeping paisleys on carved walnut",
-            },
-            {
-              src: images.kaniQuote[6],
-              landscapeSrc: images.kaniQuoteWide[6],
-              alt: "An ivory shawl with four pastel flowering trees displayed in a walnut atelier",
-            },
-          ]}
+        <OptimizedImage
+          src={images.kaniQuote[0]}
+          alt="A walnut and rust paisley medallion shawl displayed on carved walnut"
+          fill
+          sizes="100vw"
+          className="object-cover lg:hidden"
+        />
+        <OptimizedImage
+          src={images.kaniQuoteWide[0]}
+          alt=""
+          aria-hidden
+          fill
+          sizes="100vw"
+          className="hidden object-cover lg:block"
         />
         <div className="absolute inset-0 bg-forest/55" />
         <div className="relative mx-auto flex min-h-[72svh] max-w-[1560px] items-center px-5 py-24 sm:px-8 lg:px-12">

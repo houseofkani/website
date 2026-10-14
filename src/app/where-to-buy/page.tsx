@@ -12,7 +12,7 @@ export const metadata: Metadata = seoBundle({
   description:
     "House of Kani’s first collection of pure Pashmina opens on Etsy. Pieces can also be seen by appointment in Srinagar or online.",
   pathname: "/where-to-buy",
-  image: images.closingDrape,
+  image: images.kaniQuoteWide[3],
 });
 
 export default function WhereToBuyPage() {
@@ -32,8 +32,8 @@ export default function WhereToBuyPage() {
         }}
       />
       <PageHero
-        image={images.closingDrape}
-        imageAlt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table"
+        image={images.kaniQuoteWide[3]}
+        imageAlt="An oatmeal floral shawl with blue striped borders on a carved walnut bench"
         eyebrow="Where to Buy"
         title="Our First Collection Opens on Etsy."
         subtitle="Every listing names the technique, the fibre and the size."

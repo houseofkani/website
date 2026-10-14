@@ -103,8 +103,8 @@ export default function HeritagePage() {
         </PullQuote>
       </section>
       <SplitSection
-        image={images.kaniOatmealRod}
-        imageAlt="An ivory Pashmina shawl with pastel flowering trees draped over a walnut rail"
+        image={images.kaniQuote[6]}
+        imageAlt="An ivory shawl with four pastel flowering trees displayed in a walnut atelier"
         eyebrow="Our Part"
         title="Four Generations in This Story."
         body={

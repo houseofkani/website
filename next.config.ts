@@ -34,6 +34,19 @@ const nextConfig: NextConfig = {
     // Prefer near-source fidelity; size wins come from responsive widths + WebP.
     qualities: [85, 90, 92, 100],
   },
+  webpack: (config, { dev }) => {
+    // Next's watcher ignores `.next` only. This project writes dev output to
+    // `dist/`, so those writes were retriggering a compile on every compile.
+    if (dev) {
+      // This Webpack build only accepts glob strings here. The defaults match
+      // what Next ignores itself (`.git`, `.next`, `node_modules`).
+      config.watchOptions = {
+        ...config.watchOptions,
+        ignored: ["**/.git/**", "**/node_modules/**", "**/.next/**", "**/dist/**"],
+      };
+    }
+    return config;
+  },
   async redirects() {
     return [{ source: "/stockists", destination: "/where-to-buy", permanent: true }];
   },

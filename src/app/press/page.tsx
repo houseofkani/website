@@ -25,8 +25,8 @@ export default function PressPage() {
         height="medium"
       />
       <SplitSection
-        image={images.heroHome}
-        imageAlt="A woman wearing a mauve, turquoise and ochre paisley Pashmina in a walnut salon"
+        image={images.kaniQuoteWide[4]}
+        imageAlt="A lilac shawl with charcoal flowers and leaves on an antique walnut table"
         eyebrow="About the House"
         title="A Kashmiri Pashmina Family in Srinagar."
         body={

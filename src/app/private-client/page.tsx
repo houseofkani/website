@@ -44,8 +44,8 @@ export default function PrivateClientPage() {
         height="tall"
       />
       <SplitSection
-        image={images.closingDrape}
-        imageAlt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table"
+        image={images.kaniQuoteWide[5]}
+        imageAlt="A mauve shawl with turquoise and ochre sweeping paisleys on carved walnut"
         eyebrow="How It Works"
         title="Unhurried, and by Appointment."
         body={

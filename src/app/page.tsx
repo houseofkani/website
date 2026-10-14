@@ -205,8 +205,8 @@ export default async function HomePage() {
       />
 
       <SplitSection
-        image={images.heritageArchive}
-        imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"
+        image={images.kaniQuoteWide[1]}
+        imageAlt="An ivory shawl with a pastel floral garden and striped borders on an atelier table"
         eyebrow="Our Promise"
         title={<>What We Tell You<br />About Every Piece.</>}
         body={
