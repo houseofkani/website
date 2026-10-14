@@ -8,20 +8,44 @@ import { Monogram } from "@/components/Monogram";
 import { ETSY_HREF, NAV } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+/** Pages that open on a dark image, so the transparent header needs ivory type. */
+const HERO_ROUTES = new Set([
+  "/",
+  "/the-house",
+  "/pashmina",
+  "/kani",
+  "/craftsmanship",
+  "/heritage",
+  "/kashmir",
+  "/shade-card",
+  "/press",
+  "/private-client",
+  "/where-to-buy",
+  "/contact",
+]);
+
+function headerOverlaysImage(pathname: string) {
+  if (HERO_ROUTES.has(pathname)) return true;
+  return pathname.startsWith("/journal/");
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [seenPath, setSeenPath] = useState(pathname);
+
+  if (seenPath !== pathname) {
+    setSeenPath(pathname);
+    setScrolled(false);
+    setOpen(false);
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    setOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -31,16 +55,20 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const light = pathname === "/" && !scrolled && !open;
+  const overImage = headerOverlaysImage(pathname);
+  const solid = scrolled || open;
+  const light = overImage && !solid;
 
   return (
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,padding] duration-700",
-          scrolled || open
-            ? "border-b border-charcoal/10 bg-ivory/95 py-3 backdrop-blur-md"
-            : "border-b border-ivory/15 py-5",
+          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,padding,backdrop-filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          solid
+            ? "border-charcoal/10 bg-ivory/95 py-3 backdrop-blur-md"
+            : overImage
+              ? "border-ivory/15 bg-transparent py-5 backdrop-blur-none"
+              : "border-transparent bg-transparent py-5 backdrop-blur-none",
         )}
       >
         <div className="mx-auto flex max-w-[1560px] items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
@@ -50,7 +78,7 @@ export function SiteHeader() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             className={cn(
-              "-ml-1 flex h-9 w-9 shrink-0 flex-col items-center justify-center gap-[5px] lg:hidden",
+              "-ml-1 flex h-9 w-9 shrink-0 flex-col items-center justify-center gap-[5px] transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden",
               light ? "text-ivory" : "text-charcoal",
             )}
           >
@@ -72,7 +100,7 @@ export function SiteHeader() {
             href="/"
             aria-label="House of Kani — home"
             className={cn(
-                "absolute left-1/2 flex -translate-x-1/2 items-center gap-2 lg:static lg:left-auto lg:mr-8 lg:translate-x-0 lg:gap-3 xl:mr-14",
+              "absolute left-1/2 flex -translate-x-1/2 items-center gap-2 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:static lg:left-auto lg:mr-8 lg:translate-x-0 lg:gap-3 xl:mr-14",
               light ? "text-ivory" : "text-charcoal",
             )}
           >
@@ -95,7 +123,7 @@ export function SiteHeader() {
                   key={item.to}
                   href={item.to}
                   className={cn(
-                    "nav-label relative py-1 transition-colors duration-500",
+                    "nav-label relative py-1 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                     light
                       ? "text-ivory/80 hover:text-ivory"
                       : "text-charcoal/70 hover:text-charcoal",
