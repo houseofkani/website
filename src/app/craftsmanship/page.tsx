@@ -68,7 +68,7 @@ export default function CraftsmanshipPage() {
       </section>
       <SplitSection
         image={images.craftDyeRinsing}
-        imageAlt="A dyer lifting a skein of madder-coloured yarn above a weathered copper basin"
+        imageAlt="Moss-green woven cloth lifted on a wooden pole above a dye vat"
         eyebrow="Colour"
         title="A Palette from the Valley."
         body={
@@ -82,7 +82,7 @@ export default function CraftsmanshipPage() {
       />
       <SplitSection
         image={images.craftWarpSetting}
-        imageAlt="An artisan separating fine ivory warp threads while preparing a wooden handloom"
+        imageAlt="Fine ivory warp threads unwinding in a parallel sheet from a wooden loom beam"
         eyebrow="Time"
         title="Why Handmade Takes Months."
         body={
