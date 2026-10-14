@@ -144,7 +144,7 @@ export default function KaniPage() {
           className="object-cover lg:hidden"
         />
         <OptimizedImage
-          src={images.kaniWovenReverseWide}
+          src={images.kaniGardenWeaveWide}
           alt=""
           aria-hidden
           fill
