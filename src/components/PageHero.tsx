@@ -1,6 +1,5 @@
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Ornament } from "@/components/Ornament";
-import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
@@ -40,7 +39,7 @@ export function PageHero({
         fill
         priority={priority}
         sizes="100vw"
-        quality={100}
+        quality={85}
         className="-z-20 object-cover"
         style={{ objectPosition: position }}
       />
@@ -49,7 +48,7 @@ export function PageHero({
         className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/80 via-forest/20 to-forest/90"
       />
       <div className="relative z-10 mx-auto w-full max-w-[1560px] px-5 pt-32 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-28">
-        <Reveal className="image-copy max-w-3xl text-ivory">
+        <div className="image-copy max-w-3xl text-ivory">
           <Ornament size="sm" className="mb-5 w-20 brightness-[1.6]" />
           {eyebrow ? <p className="eyebrow text-gold">{eyebrow}</p> : null}
           <h1 className="display-1 mt-4 text-balance">{title}</h1>
@@ -58,7 +57,7 @@ export function PageHero({
               {subtitle}
             </p>
           ) : null}
-        </Reveal>
+        </div>
       </div>
     </section>
   );

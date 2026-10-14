@@ -17,7 +17,7 @@ export function OptimizedImage({
   className,
   priority = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px",
-  quality = 100,
+  quality = 82,
   ...props
 }: OptimizedImageProps) {
   return (

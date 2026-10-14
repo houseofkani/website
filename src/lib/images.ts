@@ -14,6 +14,7 @@ export const images = {
   craftDyeRinsing: "/images/craft-dyed-cloth-v3.webp",
   craftWarpSetting: "/images/craft-warp-beam-v3.webp",
   victorianKaniHero: "/images/victorian-kani-hero-wide.jpg",
+  ogShare: "/images/og-share-v1.webp",
   heroHome: "/images/hero-home.jpg",
   closingDrape: "/images/luxury-closing-master.webp",
   kaniLoom: "/images/luxury-loom.webp",

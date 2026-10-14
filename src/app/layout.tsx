@@ -10,7 +10,7 @@ import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400"],
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-cormorant",
@@ -18,7 +18,7 @@ const cormorant = Cormorant_Garamond({
 
 const jost = Jost({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400"],
   display: "swap",
   variable: "--font-jost",
 });
@@ -31,7 +31,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   authors: [{ name: siteConfig.name }],
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_GB",

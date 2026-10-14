@@ -18,7 +18,8 @@ if (cmsUrl.hostname !== "localhost") {
 
 const nextConfig: NextConfig = {
   // Lovable's build check expects the build output in dist/.
-  distDir: "dist",
+  // Vercel's Next.js builder looks for `.next`.
+  distDir: process.env.VERCEL ? ".next" : "dist",
   // The workspace root is this project — silences the multi-lockfile warning.
   outputFileTracingRoot: path.resolve(),
   poweredByHeader: false,
@@ -27,12 +28,11 @@ const nextConfig: NextConfig = {
     // WebP only — AVIF was decoding soft in-browser (naturalWidth << file pixels).
     formats: ["image/webp"],
     remotePatterns,
-    // Include retina full-bleed widths so heroes can use full source (e.g. 2528px).
+    // Retina full-bleed up to 2x 1280; 3840 only served 4K and inflated LCP.
     // Next will not invent pixels beyond the file's native width.
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3840],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Prefer near-source fidelity; size wins come from responsive widths + WebP.
-    qualities: [85, 90, 92, 100],
+    qualities: [82, 85, 90, 92],
   },
   webpack: (config, { dev }) => {
     // Next's watcher ignores `.next` only. This project writes dev output to

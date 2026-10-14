@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 
 import { Eyebrow, ImmersiveSection, SplitSection, TextLink } from "@/components/Editorial";
 import { Monogram } from "@/components/Monogram";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     description:
       "100% pure Pashmina shawls, stoles and wraps — handwoven Kani, hand-embroidered Sozni and fine solids from a fourth-generation family in Srinagar, Kashmir.",
     pathname: "/",
-    image: images.victorianKaniHero,
+    image: images.ogShare,
   }),
   title: { absolute: "House of Kani — Pure Pashmina from a Kashmiri Weaving Family" },
 };
@@ -64,9 +65,104 @@ const traditions = [
   },
 ] as const;
 
-export default async function HomePage() {
-  // The Journal lives in the CMS; if it is unreachable, the page still opens.
+function HomeClosing() {
+  return (
+    <>
+      <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
+        <Reveal className="mx-auto max-w-3xl">
+          <Eyebrow>Where to Buy</Eyebrow>
+          <h2 className="display-2 mt-4">Our first collection opens on Etsy.</h2>
+          <p className="body-editorial mx-auto mt-5 max-w-2xl text-charcoal/70">
+            Each listing names the technique, the fibre and the size. To see pieces in person or on a
+            video call, arrange an appointment with our family in Srinagar.
+          </p>
+          <TextLink to={ETSY_HREF} className="mt-8">
+            Where to Buy
+          </TextLink>
+        </Reveal>
+      </section>
+
+      <section className="bg-ivory px-5 py-5 sm:px-8 sm:py-8 lg:px-12 lg:py-12">
+        <div className="group relative isolate mx-auto flex min-h-[66svh] max-w-[1560px] items-center justify-center overflow-hidden px-5 py-24 text-center text-ivory">
+          <OptimizedImage
+            src={images.closingDrape}
+            alt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table"
+            fill
+            sizes="100vw"
+            className="-z-20 object-cover transition-transform duration-[1800ms] group-hover:scale-[1.015]"
+          />
+          <div className="absolute inset-0 -z-10 bg-forest/60" />
+          <Reveal className="image-copy flex max-w-3xl flex-col items-center">
+            <Monogram className="mb-7 w-16 text-gold" />
+            <p className="eyebrow text-gold">Visit the House</p>
+            <h2 className="display-1 mt-5 italic">
+              See the looms.
+              <br />
+              Meet the family.
+            </h2>
+            <p className="body-editorial mt-6 max-w-xl text-ivory/85">
+              Visits to our Srinagar office and looms, and online appointments, are arranged in
+              advance.
+            </p>
+            <TextLink to="/private-client" tone="light" className="mt-10">
+              Arrange a Visit
+            </TextLink>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}
+
+async function HomeJournalAndClose() {
   const articles = await getJournalPosts({ limit: 3 }).catch(() => []);
+
+  return (
+    <>
+      {articles.length > 0 ? (
+        <section className="bg-ivory px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+          <div className="mx-auto max-w-[1420px]">
+            <Reveal className="flex flex-col items-center text-center">
+              <Eyebrow>The Journal</Eyebrow>
+              <h2 className="display-1 mt-4">Notes from the Valley</h2>
+              <p className="body-editorial mt-6 max-w-2xl text-charcoal/70">
+                Short guides and essays on Pashmina, the loom, the needle and Kashmir.
+              </p>
+            </Reveal>
+            <div className="mt-16 grid gap-x-7 gap-y-12 md:grid-cols-3">
+              {articles.slice(0, 3).map((article, index) => (
+                <Reveal key={article.slug} delay={index * 100}>
+                  <Link href={`/journal/${article.slug}`} className="group block">
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <OptimizedImage
+                        src={article.image}
+                        alt={article.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.025]"
+                      />
+                    </div>
+                    <p className="eyebrow mt-6 text-gold">{article.category}</p>
+                    <h3 className="display-3 mt-2 transition-colors duration-500 group-hover:text-burgundy">
+                      {article.title}
+                    </h3>
+                    <p className="mt-3 text-[1rem] leading-relaxed text-charcoal/65">{article.dek}</p>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+            <div className="mt-14 text-center">
+              <TextLink to="/journal">Read the Journal</TextLink>
+            </div>
+          </div>
+        </section>
+      ) : null}
+      <HomeClosing />
+    </>
+  );
+}
+
+export default function HomePage() {
   return (
     <>
       <section className="relative isolate flex min-h-svh items-center overflow-hidden text-ivory">
@@ -75,13 +171,13 @@ export default async function HomePage() {
           alt="A woman wearing a lilac paisley Pashmina shawl in a carved wooden Kashmiri interior"
           fill
           priority
-          quality={100}
+          quality={85}
           sizes="100vw"
           className="-z-20 object-cover object-[62%_center] sm:object-center"
         />
         <div className="hero-shade absolute inset-0 -z-10" />
         <div className="mx-auto w-full max-w-[1560px] px-5 pt-28 pb-12 sm:px-8 lg:px-12">
-          <Reveal className="image-copy max-w-[42rem] text-left">
+          <div className="image-copy max-w-[42rem] text-left">
             <Monogram className="mb-8 w-14 text-gold sm:w-16" />
             <p className="eyebrow text-gold">100% Pure Pashmina · Srinagar, Kashmir</p>
             <h1 className="display-hero mt-5 text-balance">House of Kani</h1>
@@ -93,7 +189,7 @@ export default async function HomePage() {
               Discover Pashmina
             </TextLink>
             <p className="eyebrow mt-12 text-ivory/70 sm:hidden">From Kashmir, woven for the world</p>
-          </Reveal>
+          </div>
         </div>
         <p className="eyebrow absolute right-5 bottom-6 hidden text-ivory/70 sm:block lg:right-12">
           From Kashmir, woven for the world
@@ -198,9 +294,25 @@ export default async function HomePage() {
         image={images.kaniLoom}
         imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
         eyebrow="Craftsmanship"
-        title={<>Made by Hand,<br />at Every Stage.</>}
-        body={<p>Fibre is sorted and spun, the loom is set, and the cloth is woven, washed and finished. A Kani weaver follows a talim — a coded pattern sheet — and a fine piece can take many months. That time is the reason a genuine Kani cannot be cheap.</p>}
-        action={<TextLink to="/craftsmanship" tone="light">See How It Is Made</TextLink>}
+        title={
+          <>
+            Made by Hand,
+            <br />
+            at Every Stage.
+          </>
+        }
+        body={
+          <p>
+            Fibre is sorted and spun, the loom is set, and the cloth is woven, washed and finished. A
+            Kani weaver follows a talim — a coded pattern sheet — and a fine piece can take many
+            months. That time is the reason a genuine Kani cannot be cheap.
+          </p>
+        }
+        action={
+          <TextLink to="/craftsmanship" tone="light">
+            See How It Is Made
+          </TextLink>
+        }
         position="60% center"
       />
 
@@ -208,66 +320,33 @@ export default async function HomePage() {
         image={images.kaniQuoteWide[1]}
         imageAlt="An ivory shawl with a pastel floral garden and striped borders on an atelier table"
         eyebrow="Our Promise"
-        title={<>What We Tell You<br />About Every Piece.</>}
+        title={
+          <>
+            What We Tell You
+            <br />
+            About Every Piece.
+          </>
+        }
         body={
           <>
-            <p>For every shawl, stole and wrap we state the technique, the fibre and the size, and we describe how it was made.</p>
-            <p>Kashmir Pashmina, Kani shawls and Sozni embroidery are registered Geographical Indications (GI) in India. Our pieces are GI-eligible, and we arrange GI certification on request.</p>
+            <p>
+              For every shawl, stole and wrap we state the technique, the fibre and the size, and we
+              describe how it was made.
+            </p>
+            <p>
+              Kashmir Pashmina, Kani shawls and Sozni embroidery are registered Geographical
+              Indications (GI) in India. Our pieces are GI-eligible, and we arrange GI certification
+              on request.
+            </p>
           </>
         }
         action={<TextLink to="/pashmina#authenticity">Authenticity and GI</TextLink>}
         imageRatio="landscape"
       />
 
-      {articles.length > 0 && (
-      <section className="bg-ivory px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
-        <div className="mx-auto max-w-[1420px]">
-          <Reveal className="flex flex-col items-center text-center">
-            <Eyebrow>The Journal</Eyebrow>
-            <h2 className="display-1 mt-4">Notes from the Valley</h2>
-            <p className="body-editorial mt-6 max-w-2xl text-charcoal/70">Short guides and essays on Pashmina, the loom, the needle and Kashmir.</p>
-          </Reveal>
-          <div className="mt-16 grid gap-x-7 gap-y-12 md:grid-cols-3">
-            {articles.slice(0, 3).map((article, index) => (
-              <Reveal key={article.slug} delay={index * 100}>
-                <Link href={`/journal/${article.slug}`} className="group block">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <OptimizedImage src={article.image} alt={article.imageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.025]" />
-                  </div>
-                  <p className="eyebrow mt-6 text-gold">{article.category}</p>
-                  <h3 className="display-3 mt-2 transition-colors duration-500 group-hover:text-burgundy">{article.title}</h3>
-                  <p className="mt-3 text-[1rem] leading-relaxed text-charcoal/65">{article.dek}</p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-14 text-center"><TextLink to="/journal">Read the Journal</TextLink></div>
-        </div>
-      </section>
-      )}
-
-      <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
-        <Reveal className="mx-auto max-w-3xl">
-          <Eyebrow>Where to Buy</Eyebrow>
-          <h2 className="display-2 mt-4">Our first collection opens on Etsy.</h2>
-          <p className="body-editorial mx-auto mt-5 max-w-2xl text-charcoal/70">Each listing names the technique, the fibre and the size. To see pieces in person or on a video call, arrange an appointment with our family in Srinagar.</p>
-          <TextLink to={ETSY_HREF} className="mt-8">Where to Buy</TextLink>
-        </Reveal>
-      </section>
-
-      <section className="bg-ivory px-5 py-5 sm:px-8 sm:py-8 lg:px-12 lg:py-12">
-        <div className="group relative isolate mx-auto flex min-h-[66svh] max-w-[1560px] items-center justify-center overflow-hidden px-5 py-24 text-center text-ivory">
-          <OptimizedImage src={images.closingDrape} alt="An artisan inspecting a purple paisley Pashmina shawl on a walnut atelier table" fill sizes="100vw" className="-z-20 object-cover transition-transform duration-[1800ms] group-hover:scale-[1.015]" />
-          <div className="absolute inset-0 -z-10 bg-forest/60" />
-          <Reveal className="image-copy flex max-w-3xl flex-col items-center">
-            <Monogram className="mb-7 w-16 text-gold" />
-            <p className="eyebrow text-gold">Visit the House</p>
-            <h2 className="display-1 mt-5 italic">See the looms.<br />Meet the family.</h2>
-            <p className="body-editorial mt-6 max-w-xl text-ivory/85">Visits to our Srinagar office and looms, and online appointments, are arranged in advance.</p>
-            <TextLink to="/private-client" tone="light" className="mt-10">Arrange a Visit</TextLink>
-          </Reveal>
-        </div>
-      </section>
+      <Suspense>
+        <HomeJournalAndClose />
+      </Suspense>
     </>
   );
 }

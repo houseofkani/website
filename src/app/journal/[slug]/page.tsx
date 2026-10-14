@@ -96,20 +96,18 @@ export default async function JournalArticlePage({ params }: Props) {
           fill
           priority
           sizes="100vw"
-          quality={100}
+          quality={85}
           className="-z-20 object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/60 via-forest/15 to-forest/90" />
         <div className="relative z-10 mx-auto w-full max-w-[1100px] px-5 pt-36 pb-14 sm:px-8 sm:pb-20">
-          <Reveal>
-            <p className="eyebrow text-gold">
-              {article.category} · {article.readTime}
-            </p>
-            <h1 className="display-1 mt-4 max-w-4xl">{article.title}</h1>
-            <p className="font-display mt-5 max-w-2xl text-[1.2rem] leading-relaxed font-light italic text-ivory/85">
-              {article.dek}
-            </p>
-          </Reveal>
+          <p className="eyebrow text-gold">
+            {article.category} · {article.readTime}
+          </p>
+          <h1 className="display-1 mt-4 max-w-4xl">{article.title}</h1>
+          <p className="font-display mt-5 max-w-2xl text-[1.2rem] leading-relaxed font-light italic text-ivory/85">
+            {article.dek}
+          </p>
         </div>
       </header>
       <div className="mx-auto max-w-[780px] px-5 py-20 sm:px-8 sm:py-28">

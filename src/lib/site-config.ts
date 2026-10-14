@@ -7,5 +7,5 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://houseofkani.com",
   email: SITE.email,
   contactConfirmed: SITE.contactConfirmed,
-  ogImage: "/images/victorian-kani-hero-wide.jpg",
+  ogImage: "/images/og-share-v1.webp",
 } as const;
