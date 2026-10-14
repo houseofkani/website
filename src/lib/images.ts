@@ -1,5 +1,18 @@
 /** Editorial image paths — JPG masters; next/image encodes WebP once at request time. */
 export const images = {
+  pashminaMaterialHero: "/images/pashmina-material-hero-v2.webp",
+  pashminaKaniDetail: "/images/pashmina-kani-detail-v2.webp",
+  pashminaSozniNeedle: "/images/pashmina-sozni-needle-v2.webp",
+  pashminaSolidFolds: "/images/pashmina-solid-folds-v2.webp",
+  kaniWeaverHero: "/images/kani-weaver-hero-v2.webp",
+  kaniColourBobbins: "/images/kani-colour-bobbins-v2.webp",
+  kaniWovenReverseWide: "/images/kani-woven-reverse-wide-v2.webp",
+  kaniWovenReversePortrait: "/images/kani-woven-reverse-portrait-v2.webp",
+  kaniFinishedGarden: "/images/kani-finished-garden-v2.webp",
+  craftSpinningHero: "/images/craft-spinning-hero-v2.webp",
+  craftLadakhGoats: "/images/craft-ladakh-goats-v2.webp",
+  craftDyeRinsing: "/images/craft-dye-rinsing-v2.webp",
+  craftWarpSetting: "/images/craft-warp-setting-v2.webp",
   victorianKaniHero: "/images/victorian-kani-hero-wide.jpg",
   heroHome: "/images/hero-home.jpg",
   closingDrape: "/images/luxury-closing-master.webp",

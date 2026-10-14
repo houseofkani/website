@@ -12,7 +12,7 @@ export const metadata: Metadata = seoBundle({
   description:
     "What Kani weaving is, how a Kani shawl is woven with bobbins and a talim, how long it takes, and how to tell hand-woven Kani from machine imitations.",
   pathname: "/kani",
-  image: images.kaniLoom,
+  image: images.kaniWeaverHero,
   type: "article",
 });
 
@@ -82,8 +82,8 @@ export default function KaniPage() {
         }}
       />
       <PageHero
-        image={images.kaniLoom}
-        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
+        image={images.kaniWeaverHero}
+        imageAlt="A Kashmiri weaver guiding small thread-wrapped kanis across a traditional wooden handloom"
         eyebrow="Kani Weaving"
         title="Kani: A Pattern Woven Thread by Thread."
         subtitle="The weave our house is named after, and the most demanding way to make a Pashmina shawl."
@@ -107,8 +107,8 @@ export default function KaniPage() {
         </div>
       </section>
       <SplitSection
-        image={images.threads}
-        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
+        image={images.kaniColourBobbins}
+        imageAlt="Small wooden kanis wrapped with saffron, moss, madder, indigo and ivory yarn in a working tray"
         eyebrow="Colour"
         title="A Garden in Thread."
         body={
@@ -137,14 +137,14 @@ export default function KaniPage() {
       </section>
       <section className="relative min-h-[72svh] overflow-hidden bg-forest text-ivory">
         <OptimizedImage
-          src={images.kaniQuote[0]}
-          alt="A walnut and rust paisley medallion shawl displayed on carved walnut"
+          src={images.kaniWovenReversePortrait}
+          alt="An ivory, indigo and rose Kani shawl with a turned edge revealing its woven reverse"
           fill
           sizes="100vw"
           className="object-cover lg:hidden"
         />
         <OptimizedImage
-          src={images.kaniQuoteWide[0]}
+          src={images.kaniWovenReverseWide}
           alt=""
           aria-hidden
           fill
@@ -159,8 +159,8 @@ export default function KaniPage() {
         </div>
       </section>
       <SplitSection
-        image={images.kaniSaffronDark}
-        imageAlt="An oatmeal floral Pashmina shawl with blue striped borders draped over a carved walnut bench"
+        image={images.kaniFinishedGarden}
+        imageAlt="A graphite Kani garden shawl with colourful woven birds and flowers hanging from a simple walnut rail"
         eyebrow="Our Kani"
         title="Woven on Our Looms and by Weavers We Trust."
         body={

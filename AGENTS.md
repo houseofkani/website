@@ -15,6 +15,7 @@
 - Use shared editorial primitives for all routes so typography, pacing, ornament, imagery and navigation stay consistent across the digital maison.
 - Use an inline SVG monogram for brand marks so the identity remains crisp at every display size.
 - Keep static editorial image paths in the shared image registry with new, versioned filenames for refreshed photography; leave approved asset bytes and presentation untouched so imagery changes remain reversible.
+- Give each content page dedicated image registry keys rather than changing shared keys when refreshing one page; this isolates photography updates from approved imagery elsewhere.
 
 ## CMS integration
 

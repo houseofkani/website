@@ -12,7 +12,7 @@ export const metadata: Metadata = seoBundle({
   description:
     "What Pashmina is, where it comes from, how it differs from cashmere, how to recognise pure Pashmina, and how Kani, Sozni and solids are made.",
   pathname: "/pashmina",
-  image: images.victorianKaniHero,
+  image: images.pashminaMaterialHero,
   type: "article",
 });
 
@@ -100,8 +100,8 @@ export default function PashminaPage() {
         }}
       />
       <PageHero
-        image={images.victorianKaniHero}
-        imageAlt="A woman wearing a lilac paisley Pashmina shawl in a carved wooden Kashmiri interior"
+        image={images.pashminaMaterialHero}
+        imageAlt="A pearl-grey Pashmina shawl in soft folds on a green upholstered settee"
         eyebrow="A Plain Guide"
         title="What Pashmina Is."
         subtitle="One fibre, from one animal, finished by hand in one valley — and the three ways we make it into a shawl."
@@ -139,8 +139,8 @@ export default function PashminaPage() {
       </section>
       <SplitSection
         id="kani"
-        image={images.kaniSaffronRod}
-        imageAlt="An ivory Pashmina shawl with a pastel floral garden and striped borders on a walnut table"
+        image={images.pashminaKaniDetail}
+        imageAlt="A pastel garden-lattice Kani shawl folded on stone, showing its woven motifs and striped border"
         eyebrow="01 · Kani"
         title="Pattern Woven Into the Cloth."
         body={
@@ -160,8 +160,8 @@ export default function PashminaPage() {
       />
       <SplitSection
         id="sozni"
-        image={images.sozniTaupeWindow}
-        imageAlt="A woman by a window wearing a taupe Pashmina shawl with coral Sozni embroidery"
+        image={images.pashminaSozniNeedle}
+        imageAlt="An embroiderer's hands working delicate pink Sozni stitches on black Pashmina"
         eyebrow="02 · Sozni"
         title="Embroidered by Needle."
         body={
@@ -181,8 +181,8 @@ export default function PashminaPage() {
       />
       <SplitSection
         id="solids"
-        image={images.originalSolid}
-        imageAlt="A deep burgundy solid Pashmina shawl draped over a wooden chair"
+        image={images.pashminaSolidFolds}
+        imageAlt="Unpatterned petrol-teal and dove-grey Pashmina shawls resting on a stone windowsill"
         eyebrow="03 · Solids"
         title="Plain, Unpatterned Pashmina."
         body={

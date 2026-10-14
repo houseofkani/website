@@ -1,5 +1,10 @@
 # Roadmap
 
+## Page-specific photography refresh
+- [x] Create original, distinct photographs for every Pashmina, Kani and Craftsmanship image placement
+- [x] Wire new versioned photographs and accurate descriptions without changing other pages
+- [x] Verify all three pages and preserve the approved homepage images
+
 - [x] Build the full House of Kani homepage
 - [x] Add every page and journal article from the brief
 - [x] Add generated imagery, brand mark, navigation, footer and enquiry forms

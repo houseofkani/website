@@ -10,7 +10,7 @@ export const metadata: Metadata = seoBundle({
   description:
     "Follow Pashmina through fibre, weaving, Sozni embroidery, finishing and the skilled hands behind each tradition.",
   pathname: "/craftsmanship",
-  image: images.journalWorkshop,
+  image: images.craftSpinningHero,
   type: "article",
 });
 
@@ -40,16 +40,16 @@ export default function CraftsmanshipPage() {
         }}
       />
       <PageHero
-        image={images.journalWorkshop}
-        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
+        image={images.craftSpinningHero}
+        imageAlt="A Kashmiri woman drawing fine Pashmina thread at a traditional wooden spinning wheel"
         eyebrow="Craftsmanship"
         title="From Fibre to Finished Shawl."
         subtitle="The stages a pure Pashmina passes through, and the hands that do the work."
         height="full"
       />
       <SplitSection
-        image={images.pashminaFibre}
-        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
+        image={images.craftLadakhGoats}
+        imageAlt="Long-coated white Changthangi goats on the rocky high plateau of Ladakh"
         eyebrow="The Beginning"
         title="It Starts in Ladakh."
         body={
@@ -67,8 +67,8 @@ export default function CraftsmanshipPage() {
         </div>
       </section>
       <SplitSection
-        image={images.threads}
-        imageAlt="A folded floral Pashmina shawl beside spools of coloured thread"
+        image={images.craftDyeRinsing}
+        imageAlt="A dyer lifting a skein of madder-coloured yarn above a weathered copper basin"
         eyebrow="Colour"
         title="A Palette from the Valley."
         body={
@@ -81,8 +81,8 @@ export default function CraftsmanshipPage() {
         imageRatio="landscape"
       />
       <SplitSection
-        image={images.kaniLoom}
-        imageAlt="A weaver working a colourful Kani shawl on a wooden loom"
+        image={images.craftWarpSetting}
+        imageAlt="An artisan separating fine ivory warp threads while preparing a wooden handloom"
         eyebrow="Time"
         title="Why Handmade Takes Months."
         body={
