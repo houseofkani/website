@@ -105,7 +105,7 @@ export function organizationLd() {
     url: siteConfig.url,
     description: siteConfig.description,
     ...(siteConfig.contactConfirmed ? { email: siteConfig.email } : {}),
-    logo: absoluteImageUrl("/images/house-of-kani-logo.webp"),
+    logo: absoluteImageUrl("/images/house-of-kani-hk-logo.svg"),
     image: absoluteImageUrl(siteConfig.ogImage),
     address: {
       "@type": "PostalAddress",
@@ -163,7 +163,7 @@ export function blogPostingLd(options: {
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: absoluteImageUrl("/images/house-of-kani-logo.webp"),
+        url: absoluteImageUrl("/images/house-of-kani-hk-logo.svg"),
       },
     },
     ...(options.datePublished ? { datePublished: options.datePublished } : {}),

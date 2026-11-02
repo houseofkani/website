@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 export function Monogram({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="22 24 76 72"
+      viewBox="0 0 120 120"
       role="img"
       aria-label="House of Kani HK monogram"
-      className={cn("h-auto w-10 select-none text-gold", className)}
+      className={cn("h-auto w-10 select-none", className)}
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>House of Kani HK monogram</title>

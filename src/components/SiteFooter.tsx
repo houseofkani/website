@@ -31,7 +31,7 @@ export function SiteFooter() {
         <OrnamentRule className="mt-16 sm:mt-20" />
 
         <div className="mt-12 flex flex-col items-center text-center">
-          <Monogram className="w-11 opacity-90" />
+          <Monogram className="w-12 text-gold" />
           <p className="font-display mt-6 text-[1.35rem] leading-none font-light tracking-[0.22em] uppercase sm:text-[1.6rem]">
             House of Kani
           </p>
