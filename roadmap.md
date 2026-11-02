@@ -16,7 +16,7 @@
 - [x] Verify desktop and mobile presentation
 
 ## Current refinement
-- [ ] Make the HK logo artwork consistent and fully visible across the header, homepage, footer, browser icon and shared brand metadata
+- [x] Make the HK logo artwork consistent and fully visible across the header, homepage, footer, browser icon and shared brand metadata
 - [x] Replace synthetic textile imagery using the supplied authentic shawl, loom, thread and model photographs
 - [x] Regenerate the logo from the supplied brand reference
 - [x] Reframe messaging around knowledge, visibility and an Etsy-first launch
