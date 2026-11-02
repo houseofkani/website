@@ -33,7 +33,34 @@ export type JournalRedirect =
   | { type: "internal"; path: string }
   | { type: "external"; url: string };
 
-const CMS_URL = (process.env.CMS_URL ?? "http://localhost:3000").replace(/\/$/, "");
+/**
+ * Stable public origin for the Payload CMS: exe.dev HTTPS proxy -> Caddy -> CMS.
+ *
+ * Cloudflare quick tunnels (`*.trycloudflare.com`) are ephemeral — they stop
+ * resolving as soon as cloudflared restarts — so a leftover tunnel URL in the
+ * environment must never be treated as a durable CMS origin.
+ */
+const STABLE_CMS_URL = "https://house-of-kani-cms.exe.xyz";
+const CONFIGURED_CMS_URL = (process.env.CMS_URL ?? "").replace(/\/$/, "");
+
+function resolveCmsUrl(): string {
+  if (!CONFIGURED_CMS_URL) return STABLE_CMS_URL;
+  try {
+    const { hostname } = new URL(CONFIGURED_CMS_URL);
+    if (hostname === "trycloudflare.com" || hostname.endsWith(".trycloudflare.com")) {
+      console.warn(
+        "[cms] CMS_URL points at an ephemeral trycloudflare tunnel; using the stable CMS origin instead.",
+      );
+      return STABLE_CMS_URL;
+    }
+  } catch {
+    console.warn("[cms] CMS_URL is not a valid URL; using the stable CMS origin instead.");
+    return STABLE_CMS_URL;
+  }
+  return CONFIGURED_CMS_URL;
+}
+
+const CMS_URL = resolveCmsUrl();
 const CMS_API_KEY = process.env.CMS_API_KEY;
 const WORDS_PER_MINUTE = 200;
 
@@ -196,6 +223,8 @@ async function cmsFetch(path: string, options: FetchOptions = {}): Promise<unkno
 
   const res = await fetch(url, {
     headers,
+    // Never let a dead CMS origin hang a page render or a build forever.
+    signal: AbortSignal.timeout(10_000),
     next: { tags: options.tags ?? ["journal"], revalidate: options.revalidate ?? false },
   });
   if (!res.ok) {

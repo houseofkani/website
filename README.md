@@ -30,7 +30,15 @@ Copy `.env.example` to `.env.local`:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://houseofkani.com
+CMS_URL=https://house-of-kani-cms.exe.xyz
+CMS_API_KEY=
+PREVIEW_SECRET=
+REVALIDATE_SECRET=
 ```
+
+`CMS_URL` must be a durable public origin. Never use an ephemeral
+`*.trycloudflare.com` quick tunnel: it stops resolving when cloudflared
+restarts, and the Journal falls back to its empty state.
 
 ## Deploy (Vercel)
 

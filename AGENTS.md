@@ -20,8 +20,9 @@
 ## CMS integration
 
 - The CMS (`../cms`) serves the Payload REST API and media files. Local dev: run the CMS first (`cd ../cms && pnpm dev`, port 3000), then the site with `PORT=3001 pnpm dev` (the CMS expects the site on 3001).
-- Env vars (see `.env.local` / `.env.example`): `CMS_URL` (CMS origin), `CMS_API_KEY` (viewer API key for draft preview), `PREVIEW_SECRET` and `REVALIDATE_SECRET` (must match the CMS `.env`), `NEXT_PUBLIC_SITE_URL`.
+- Env vars (see `.env.local` / `.env.example`): `CMS_URL` (CMS origin — use the stable `https://house-of-kani-cms.exe.xyz`, never an ephemeral `*.trycloudflare.com` tunnel), `CMS_API_KEY` (viewer API key for draft preview), `PREVIEW_SECRET` and `REVALIDATE_SECRET` (must match the CMS `.env`), `NEXT_PUBLIC_SITE_URL`.
+- The CMS is hosted on the exe.dev VM `house-of-kani-cms`. Its public origin is the exe.dev HTTPS proxy (TLS termination) pointed at Caddy on port 80, which reverse-proxies Payload. Publish it with `ssh exe.dev share port house-of-kani-cms 80 && ssh exe.dev share set-public house-of-kani-cms`. Do not re-introduce quick tunnels.
+- `next.config.ts` allows the stable CMS origin and the configured `CMS_URL` in `images.remotePatterns`; keep both so image optimisation survives an env change.
 - Draft preview: the CMS admin "Preview" button opens `/api/preview?secret=…&slug=…`, which enables Next draft mode; `/api/preview/disable` exits it. Drafts are only ever visible with the preview cookie.
 - Revalidation: after content changes the CMS POSTs `{"tags":["journal","post:<slug>"]}` to `/api/revalidate` with header `x-revalidate-signature` = HMAC-SHA256 hex of the raw body keyed by `REVALIDATE_SECRET`. All journal fetches are tagged `journal` + `post:<slug>`.
 - Renaming a published article slug creates a 308 redirect handled by `permanentRedirect()` in `src/app/journal/[slug]/page.tsx`.
-- `next.config.ts` allows CMS media origins in `images.remotePatterns` — extend it when `CMS_URL` changes.

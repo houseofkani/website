@@ -3,18 +3,30 @@ import path from "node:path";
 import type { NextConfig } from "next";
 
 // CMS media files are served by Payload (`/api/media/file/*`) and proxied by
-// next/image — allow the configured CMS origin plus localhost for development.
-const cmsUrl = new URL(process.env.CMS_URL ?? "https://cms.houseofkani.com");
+// next/image. Always allow the stable CMS origin as well as the configured one:
+// a stale/ephemeral CMS_URL must not break image optimisation.
+const STABLE_CMS_ORIGIN = "https://house-of-kani-cms.exe.xyz";
+function safeUrl(value: string | undefined, fallback: string): URL {
+  try {
+    return new URL(value || fallback);
+  } catch {
+    return new URL(fallback);
+  }
+}
+const cmsUrl = safeUrl(process.env.CMS_URL, STABLE_CMS_ORIGIN);
 const mediaPattern = (url: URL): { protocol: "http" | "https"; hostname: string; port?: string; pathname: string } => ({
   protocol: url.protocol === "http:" ? "http" : "https",
   hostname: url.hostname,
   ...(url.port ? { port: url.port } : {}),
   pathname: "/api/media/file/**",
 });
-const remotePatterns = [mediaPattern(cmsUrl)];
+const cmsOrigins = [cmsUrl, safeUrl(STABLE_CMS_ORIGIN, STABLE_CMS_ORIGIN)];
 if (cmsUrl.hostname !== "localhost") {
-  remotePatterns.push(mediaPattern(new URL("http://localhost:3000")));
+  cmsOrigins.push(safeUrl("http://localhost:3000", "http://localhost:3000"));
 }
+const remotePatterns = [
+  ...new Map(cmsOrigins.map((url) => [url.origin, mediaPattern(url)])).values(),
+];
 
 const nextConfig: NextConfig = {
   // Lovable's build check expects the build output in dist/.
