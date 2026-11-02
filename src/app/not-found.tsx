@@ -1,9 +1,12 @@
 import Link from "next/link";
 
+import { Monogram } from "@/components/Monogram";
+
 export default function NotFound() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-ivory px-4">
       <div className="max-w-md text-center">
+        <Monogram decorative className="mx-auto mb-6 w-12" />
         <p className="eyebrow text-gold">House of Kani</p>
         <h1 className="display-1 mt-4">Page not found</h1>
         <p className="body-editorial mt-4 text-charcoal/70">

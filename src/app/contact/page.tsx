@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { TextLink } from "@/components/Editorial";
 import { EnquiryForm } from "@/components/EnquiryForm";
+import { Monogram } from "@/components/Monogram";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
 import { seoBundle } from "@/lib/seo";
@@ -29,6 +30,7 @@ export default function ContactPage() {
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
           <aside>
+            <Monogram decorative className="mb-6 w-11" />
             <p className="eyebrow text-gold">House of Kani</p>
             <h2 className="display-3 mt-4">We read every note ourselves.</h2>
             <div className="mt-8 space-y-7 text-charcoal/70">

@@ -6,6 +6,9 @@ export const SITE = {
   // Placeholder details — replace with the house's confirmed particulars before launch.
   email: "enquiries@houseofkani.com",
   phone: "+91 000 000 0000",
+  // Placeholder — replace with the house's confirmed WhatsApp number before launch.
+  whatsapp: "+91 000 000 0000",
+  whatsappMessage: "Hello House of Kani, I'd like to ask about a piece.",
   location: "Srinagar, Kashmir",
   appointments: "By appointment — in person in Srinagar, or online",
   contactConfirmed: false,

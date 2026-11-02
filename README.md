@@ -35,8 +35,10 @@ NEXT_PUBLIC_SITE_URL=https://houseofkani.com
 ## Deploy (Vercel)
 
 1. Import the GitHub repo in Vercel
-2. Set `NEXT_PUBLIC_SITE_URL` to the production domain
-3. Deploy — no special build command beyond `next build`
+2. Deploy — no special build command beyond `next build`
+3. The built-in `*.vercel.app` production domain is picked up automatically
+   (`VERCEL_PROJECT_PRODUCTION_URL`) for canonicals, the sitemap and JSON-LD.
+   `NEXT_PUBLIC_SITE_URL` only applies to local development or non-Vercel hosts.
 
 ## Content
 

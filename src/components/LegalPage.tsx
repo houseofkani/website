@@ -1,3 +1,4 @@
+import { Monogram } from "@/components/Monogram";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
 
@@ -14,6 +15,7 @@ export function LegalPage({
     <section className="min-h-screen bg-ivory px-5 pt-36 pb-24 sm:px-8 sm:pt-44 sm:pb-32">
       <div className="mx-auto max-w-3xl">
         <Reveal className="text-center">
+          <Monogram decorative className="mx-auto mb-6 w-11" />
           <p className="eyebrow text-gold">House of Kani</p>
           <h1 className="display-1 mt-4">{title}</h1>
           <p className="body-editorial mx-auto mt-6 max-w-2xl text-charcoal/70">{intro}</p>

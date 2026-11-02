@@ -7,6 +7,23 @@ import { cache } from "react";
  * must not be imported from client components — pass data down as props.
  */
 
+/** An image embedded in the article body (Payload rich-text upload block). */
+export type JournalImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+};
+
+export type JournalSection = {
+  heading?: string;
+  paragraphs: string[];
+  quote?: string;
+  /** Body images keep their position by owning a section of their own. */
+  images?: JournalImage[];
+};
+
 export type JournalArticle = {
   slug: string;
   category: "Kani" | "Pashmina" | "Craft" | "Heritage" | "Kashmir" | "People";
@@ -14,6 +31,8 @@ export type JournalArticle = {
   dek: string;
   image: string;
   imageAlt: string;
+  author?: string;
+  tags: string[];
   readTime: string;
   date: string;
   /** ISO 8601 publication date for structured data. */
@@ -26,7 +45,7 @@ export type JournalArticle = {
     canonicalUrl?: string;
     noindex?: boolean;
   };
-  body: { heading?: string; paragraphs: string[]; quote?: string }[];
+  body: JournalSection[];
 };
 
 export type JournalRedirect =
@@ -54,13 +73,30 @@ export class CmsError extends Error {
   }
 }
 
-type CmsMedia = { url?: string | null; alt?: string | null };
+type CmsMedia = {
+  url?: string | null;
+  alt?: string | null;
+  caption?: string | null;
+  width?: number | null;
+  height?: number | null;
+};
 type CmsCategory = { name?: string | null };
 type LexicalNode = {
   type?: string;
   text?: string;
   children?: LexicalNode[];
   tag?: string;
+  /** Upload nodes (depth 2) carry the resolved media document. */
+  value?: CmsMedia | number | string | null;
+  /** Some editors emit a plain `image` node instead of an upload node. */
+  src?: string | null;
+  alt?: string | null;
+  caption?: string | null;
+  width?: number | null;
+  height?: number | null;
+  relationTo?: string | null;
+  /** Optional per-instance fields attached by the rich-text upload feature. */
+  fields?: { caption?: string | null } | null;
 };
 type CmsPost = {
   slug?: string | null;
@@ -70,6 +106,8 @@ type CmsPost = {
   featuredImage?: CmsMedia | number | null;
   imageAlt?: string | null;
   categories?: CmsCategory[] | null;
+  author?: { name?: string | null } | number | null;
+  tags?: string[] | null;
   publishedAt?: string | null;
   updatedAt?: string | null;
   meta?: {
@@ -90,6 +128,30 @@ function mediaUrl(media: CmsMedia | number | null | undefined): string {
   } catch {
     return media.url;
   }
+}
+
+/** Resolve an inline image node to a renderable body image. */
+function imageFromNode(node: LexicalNode): JournalImage | null {
+  const media =
+    node.value && typeof node.value === "object" ? (node.value as CmsMedia) : null;
+  const src = media
+    ? mediaUrl(media)
+    : node.src
+      ? mediaUrl({ url: node.src })
+      : "";
+  if (!src) return null;
+
+  const caption = (node.fields?.caption ?? media?.caption ?? node.caption ?? "").trim();
+  const width = media?.width ?? node.width ?? undefined;
+  const height = media?.height ?? node.height ?? undefined;
+
+  return {
+    src,
+    alt: (media?.alt ?? node.alt ?? "").trim(),
+    ...(caption ? { caption } : {}),
+    ...(width ? { width } : {}),
+    ...(height ? { height } : {}),
+  };
 }
 
 function lexicalText(node: LexicalNode | undefined): string {
@@ -122,6 +184,12 @@ function lexicalToSections(root: LexicalNode | undefined): JournalArticle["body"
         sections.push(current);
       }
       current.quote = text;
+    } else if (node.type === "upload" || node.type === "image") {
+      const image = imageFromNode(node);
+      if (!image) continue;
+      // Close the running section so the image sits between text blocks.
+      sections.push({ paragraphs: [], images: [image] });
+      current = undefined;
     } else if (node.type === "paragraph") {
       const text = lexicalText(node).trim();
       if (text) pushParagraph(text);
@@ -133,7 +201,9 @@ function lexicalToSections(root: LexicalNode | undefined): JournalArticle["body"
     }
   }
 
-  return sections.filter((s) => s.heading || s.quote || s.paragraphs.length > 0);
+  return sections.filter(
+    (s) => s.heading || s.quote || s.paragraphs.length > 0 || (s.images?.length ?? 0) > 0,
+  );
 }
 
 function readTime(sections: JournalArticle["body"]): string {
@@ -154,6 +224,9 @@ function toArticle(post: CmsPost): JournalArticle | null {
   const media = typeof post.featuredImage === "number" ? null : post.featuredImage;
   const meta = post.meta;
   const metaImage = meta?.image && typeof meta.image !== "number" ? meta.image : null;
+  const author =
+    post.author && typeof post.author === "object" ? (post.author.name ?? undefined) : undefined;
+  const tags = (post.tags ?? []).map((tag) => tag.trim()).filter(Boolean);
 
   return {
     slug: post.slug,
@@ -162,6 +235,8 @@ function toArticle(post: CmsPost): JournalArticle | null {
     dek: post.excerpt ?? "",
     image: mediaUrl(post.featuredImage),
     imageAlt: post.imageAlt || media?.alt || post.title,
+    ...(author ? { author } : {}),
+    tags,
     readTime: readTime(body),
     date: published ? dateFormatter.format(new Date(published)) : "",
     publishedAt: published ?? "",

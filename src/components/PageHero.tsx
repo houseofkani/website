@@ -1,5 +1,5 @@
+import { Monogram } from "@/components/Monogram";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import { Ornament } from "@/components/Ornament";
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
@@ -49,7 +49,7 @@ export function PageHero({
       />
       <div className="relative z-10 mx-auto w-full max-w-[1560px] px-5 pt-32 pb-16 sm:px-8 sm:pb-20 lg:px-12 lg:pb-28">
         <div className="image-copy max-w-3xl text-ivory">
-          <Ornament size="sm" className="mb-5 w-20 brightness-[1.6]" />
+          <Monogram decorative className="mb-6 w-12 text-gold sm:w-14" />
           {eyebrow ? <p className="eyebrow text-gold">{eyebrow}</p> : null}
           <h1 className="display-1 mt-4 text-balance">{title}</h1>
           {subtitle ? (

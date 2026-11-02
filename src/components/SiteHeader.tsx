@@ -105,8 +105,9 @@ export function SiteHeader() {
             )}
           >
             <Monogram
+              decorative
               className={cn(
-                "w-7 transition-opacity duration-500 sm:w-8",
+                "w-8 transition-opacity duration-500 sm:w-9",
                 light ? "opacity-95" : "opacity-100",
               )}
             />
@@ -151,6 +152,7 @@ export function SiteHeader() {
         )}
       >
         <nav className="flex h-full flex-col items-center justify-center gap-1 px-8 text-center">
+          <Monogram decorative className="mb-8 w-12 text-gold" />
           {NAV.map((item, i) => (
             <Link
               key={item.to}
