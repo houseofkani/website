@@ -106,8 +106,8 @@ export function SiteHeader() {
           >
             <Monogram
               className={cn(
-                "w-7 transition-opacity duration-500 sm:w-8",
-                light ? "opacity-95" : "opacity-100",
+                "w-9 transition-colors duration-500 sm:w-10",
+                light ? "text-gold" : "text-forest",
               )}
             />
             <span className="font-display text-[0.95rem] leading-none font-light tracking-[0.18em] whitespace-nowrap uppercase sm:text-[1.15rem]">
