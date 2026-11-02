@@ -23,7 +23,11 @@ export const metadata: Metadata = seoBundle({
 
 async function JournalListing() {
   const { isEnabled: draft } = await draftMode();
-  const articles = await getJournalPosts({ draft }).catch(() => []);
+  const articles = await getJournalPosts({ draft }).catch((error) => {
+    // Keep the page usable, but make CMS outages visible in the deployment logs.
+    console.error("[journal] Failed to load posts from the CMS:", error);
+    return [];
+  });
   const featured = articles[0];
 
   if (!featured) {
