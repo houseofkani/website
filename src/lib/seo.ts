@@ -26,6 +26,8 @@ export type SeoBundleOptions = {
   title: string;
   description?: string;
   pathname?: string;
+  /** Verbatim canonical (may include a query, e.g. `/journal?page=2`). */
+  canonical?: string;
   image?: string;
   images?: Array<string | { url: string; width?: number; height?: number; alt?: string }>;
   type?: "website" | "article";
@@ -41,11 +43,10 @@ export function seoBundle(options: SeoBundleOptions): Metadata {
     description: options.description,
   };
 
-  if (options.pathname) {
-    metadata.alternates = {
-      canonical: canonicalPathname(options.pathname),
-      types: FEED_ALTERNATES,
-    };
+  const canonical =
+    options.canonical ?? (options.pathname ? canonicalPathname(options.pathname) : undefined);
+  if (canonical) {
+    metadata.alternates = { canonical, types: FEED_ALTERNATES };
   } else {
     metadata.alternates = { types: FEED_ALTERNATES };
   }

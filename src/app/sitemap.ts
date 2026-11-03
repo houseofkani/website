@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getJournalPosts } from "@/lib/cms";
+import { getJournalArchive } from "@/lib/cms";
 import { siteConfig } from "@/lib/site-config";
 
 const staticRoutes = [
@@ -30,9 +30,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : path === "/journal" ? 0.9 : 0.7,
   }));
 
-  let articles: Awaited<ReturnType<typeof getJournalPosts>> = [];
+  let articles: Awaited<ReturnType<typeof getJournalArchive>> = [];
   try {
-    articles = await getJournalPosts({ limit: 100 });
+    // Every published story, not just the first page of them.
+    articles = await getJournalArchive();
   } catch {
     // CMS unreachable — serve the static routes rather than failing the sitemap.
   }

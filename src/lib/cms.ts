@@ -30,8 +30,7 @@ export type JournalArticle = {
 };
 
 export type JournalRedirect =
-  | { type: "internal"; path: string }
-  | { type: "external"; url: string };
+  { type: "internal"; path: string } | { type: "external"; url: string };
 
 /**
  * Stable public origin for the Payload CMS: exe.dev HTTPS proxy -> Caddy -> CMS.
@@ -164,9 +163,7 @@ function lexicalToSections(root: LexicalNode | undefined): JournalArticle["body"
 }
 
 function readTime(sections: JournalArticle["body"]): string {
-  const text = sections
-    .flatMap((s) => [s.heading ?? "", ...s.paragraphs, s.quote ?? ""])
-    .join(" ");
+  const text = sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, s.quote ?? ""]).join(" ");
   const minutes = Math.max(
     1,
     Math.round(text.split(/\s+/).filter(Boolean).length / WORDS_PER_MINUTE),
@@ -214,9 +211,7 @@ async function cmsFetch(path: string, options: FetchOptions = {}): Promise<unkno
   const headers: HeadersInit = { "Content-Type": "application/json" };
   if (options.draft) {
     if (!CMS_API_KEY) {
-      throw new CmsError(
-        "CMS_API_KEY is not set — draft preview requires a CMS viewer API key.",
-      );
+      throw new CmsError("CMS_API_KEY is not set — draft preview requires a CMS viewer API key.");
     }
     headers.Authorization = `users API-Key ${CMS_API_KEY}`;
   }
@@ -283,45 +278,133 @@ export const getJournalPost = cache(
   },
 );
 
+/** One page of the journal, with the pagination envelope the index needs. */
+export type JournalPage = {
+  articles: JournalArticle[];
+  page: number;
+  totalPages: number;
+  totalDocs: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+};
+
+/** Payload page size when walking the whole archive — small enough to stay fast. */
+const CMS_PAGE_LIMIT = 100;
+/** Safety stop so a paging bug can never loop forever. */
+const CMS_MAX_PAGES = 50;
+
+type PostPage = {
+  docs?: CmsPost[];
+  page?: number;
+  totalPages?: number;
+  totalDocs?: number;
+  hasNextPage?: boolean;
+  hasPrevPage?: boolean;
+};
+
+function postQuery(params: Record<string, string>): string {
+  return `posts?${new URLSearchParams(params)}`;
+}
+
+export const getJournalPage = cache(
+  async ({
+    page = 1,
+    limit = 9,
+    draft = false,
+  }: { page?: number; limit?: number; draft?: boolean } = {}): Promise<JournalPage> => {
+    const params: Record<string, string> = {
+      limit: String(limit),
+      page: String(Math.max(1, Math.floor(page))),
+      depth: "2",
+      sort: "-publishedAt",
+    };
+    if (draft) params.draft = "true";
+    else params["where[_status][equals]"] = "published";
+
+    const data = (await cmsFetch(postQuery(params), { draft, tags: ["journal"] })) as PostPage;
+    const articles = (data.docs ?? [])
+      .map(toArticle)
+      .filter((a): a is JournalArticle => a !== null);
+
+    return {
+      articles,
+      page: data.page ?? page,
+      totalPages: data.totalPages ?? 1,
+      totalDocs: data.totalDocs ?? articles.length,
+      hasNextPage: data.hasNextPage ?? false,
+      hasPrevPage: data.hasPrevPage ?? false,
+    };
+  },
+);
+
+/** Every published story, slug + date only — sitemaps and static params. */
+export type JournalArchiveEntry = { slug: string; publishedAt: string };
+
+export const getJournalArchive = cache(async (): Promise<JournalArchiveEntry[]> => {
+  const entries: JournalArchiveEntry[] = [];
+
+  for (let page = 1; page <= CMS_MAX_PAGES; page += 1) {
+    const data = (await cmsFetch(
+      postQuery({
+        limit: String(CMS_PAGE_LIMIT),
+        page: String(page),
+        depth: "0",
+        sort: "-publishedAt",
+        "where[_status][equals]": "published",
+      }),
+      { tags: ["journal"] },
+    )) as PostPage;
+
+    for (const doc of data.docs ?? []) {
+      if (!doc.slug) continue;
+      entries.push({
+        slug: doc.slug,
+        publishedAt: doc.publishedAt ?? doc.updatedAt ?? "",
+      });
+    }
+
+    if (!data.hasNextPage) break;
+  }
+
+  return entries;
+});
+
 /** Canonical slugs for static generation (published only). */
 export const getJournalSlugs = cache(async (): Promise<string[]> => {
-  const posts = await getJournalPosts({ limit: 100 });
-  return posts.map((p) => p.slug);
+  const archive = await getJournalArchive();
+  return archive.map((entry) => entry.slug);
 });
 
 /**
  * Look up a permanent redirect for a journal URL that no longer resolves.
  * Old slugs are rewritten automatically when an editor changes a slug.
  */
-export const getJournalRedirect = cache(
-  async (slug: string): Promise<JournalRedirect | null> => {
-    try {
-      const params = new URLSearchParams({
-        limit: "1",
-        depth: "2",
-        "where[from][equals]": `/journal/${slug}`,
-      });
-      const data = (await cmsFetch(`redirects?${params}`, { tags: ["journal"] })) as {
-        docs?: Array<{
-          to?: {
-            type?: string;
-            url?: string | null;
-            reference?: { relationTo?: string; value?: unknown } | null;
-          } | null;
-        }>;
-      };
-      const to = data.docs?.[0]?.to;
-      if (!to) return null;
-      if (to.type === "custom" && to.url) return { type: "external", url: to.url };
-      if (to.type === "reference" && to.reference?.relationTo === "posts") {
-        const value = to.reference.value;
-        const targetSlug =
-          value && typeof value === "object" ? (value as CmsPost).slug : null;
-        if (targetSlug) return { type: "internal", path: `/journal/${targetSlug}` };
-      }
-      return null;
-    } catch {
-      return null;
+export const getJournalRedirect = cache(async (slug: string): Promise<JournalRedirect | null> => {
+  try {
+    const params = new URLSearchParams({
+      limit: "1",
+      depth: "2",
+      "where[from][equals]": `/journal/${slug}`,
+    });
+    const data = (await cmsFetch(`redirects?${params}`, { tags: ["journal"] })) as {
+      docs?: Array<{
+        to?: {
+          type?: string;
+          url?: string | null;
+          reference?: { relationTo?: string; value?: unknown } | null;
+        } | null;
+      }>;
+    };
+    const to = data.docs?.[0]?.to;
+    if (!to) return null;
+    if (to.type === "custom" && to.url) return { type: "external", url: to.url };
+    if (to.type === "reference" && to.reference?.relationTo === "posts") {
+      const value = to.reference.value;
+      const targetSlug = value && typeof value === "object" ? (value as CmsPost).slug : null;
+      if (targetSlug) return { type: "internal", path: `/journal/${targetSlug}` };
     }
-  },
-);
+    return null;
+  } catch {
+    return null;
+  }
+});

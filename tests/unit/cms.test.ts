@@ -32,7 +32,11 @@ function restPost(overrides: Record<string, unknown> = {}) {
             children: [
               // Lexical keeps boundary spaces inside the text nodes themselves.
               { type: "text", text: "There is no haste at a Kani loom. ", version: 1 },
-              { type: "text", text: "The weaver sits before a forest of warp threads.", version: 1 },
+              {
+                type: "text",
+                text: "The weaver sits before a forest of warp threads.",
+                version: 1,
+              },
             ],
           },
           {
@@ -44,7 +48,9 @@ function restPost(overrides: Record<string, unknown> = {}) {
           {
             type: "paragraph",
             version: 1,
-            children: [{ type: "text", text: "The word kani names the slender wooden bobbins.", version: 1 }],
+            children: [
+              { type: "text", text: "The word kani names the slender wooden bobbins.", version: 1 },
+            ],
           },
           {
             type: "quote",
@@ -53,7 +59,9 @@ function restPost(overrides: Record<string, unknown> = {}) {
               {
                 type: "paragraph",
                 version: 1,
-                children: [{ type: "text", text: "Its beauty is the act of weaving itself.", version: 1 }],
+                children: [
+                  { type: "text", text: "Its beauty is the act of weaving itself.", version: 1 },
+                ],
               },
             ],
           },
@@ -171,7 +179,9 @@ describe("getJournalPosts", () => {
 
 describe("getJournalPost", () => {
   it("returns null when the CMS responds 404", async () => {
-    fetchMock.mockImplementation(async () => jsonResponse({ errors: [{ message: "Not Found" }] }, 404));
+    fetchMock.mockImplementation(async () =>
+      jsonResponse({ errors: [{ message: "Not Found" }] }, 404),
+    );
     const { getJournalPost } = await loadCms();
     expect(await getJournalPost("missing")).toBeNull();
   });
@@ -180,6 +190,101 @@ describe("getJournalPost", () => {
     fetchMock.mockImplementation(async () => jsonResponse({ docs: [] }));
     const { getJournalPost } = await loadCms();
     expect(await getJournalPost("missing")).toBeNull();
+  });
+});
+
+describe("getJournalPage", () => {
+  it("asks Payload for the requested page and returns the pagination envelope", async () => {
+    fetchMock.mockImplementation(async () =>
+      jsonResponse({
+        docs: [restPost()],
+        page: 2,
+        totalPages: 4,
+        totalDocs: 34,
+        hasNextPage: true,
+        hasPrevPage: true,
+      }),
+    );
+    const { getJournalPage } = await loadCms();
+    const result = await getJournalPage({ page: 2, limit: 9 });
+
+    const [url] = fetchMock.mock.calls[0] as [URL];
+    expect(String(url)).toContain("page=2");
+    expect(String(url)).toContain("limit=9");
+    expect(String(url)).toContain("where%5B_status%5D%5Bequals%5D=published");
+
+    expect(result).toMatchObject({
+      page: 2,
+      totalPages: 4,
+      totalDocs: 34,
+      hasNextPage: true,
+      hasPrevPage: true,
+    });
+    expect(result.articles).toHaveLength(1);
+  });
+
+  it("defaults to the first page when the envelope is missing", async () => {
+    const { getJournalPage } = await loadCms();
+    const result = await getJournalPage();
+    expect(result.page).toBe(1);
+    expect(result.totalPages).toBe(1);
+  });
+
+  it("clamps nonsense page numbers to one", async () => {
+    const { getJournalPage } = await loadCms();
+    await getJournalPage({ page: -3 });
+    const [url] = fetchMock.mock.calls[0] as [URL];
+    expect(String(url)).toContain("page=1");
+    expect(String(url)).not.toContain("page=-3");
+  });
+});
+
+describe("getJournalArchive", () => {
+  it("walks every page of published stories instead of stopping at 100", async () => {
+    let call = 0;
+    fetchMock.mockImplementation(async () => {
+      call += 1;
+      return jsonResponse({
+        docs: [{ slug: `post-${call}-a` }, { slug: `post-${call}-b` }],
+        page: call,
+        totalPages: 3,
+        hasNextPage: call < 3,
+        hasPrevPage: call > 1,
+      });
+    });
+
+    const { getJournalArchive } = await loadCms();
+    const archive = await getJournalArchive();
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(archive).toHaveLength(6);
+    expect(archive[0]).toEqual({ slug: "post-1-a", publishedAt: "" });
+
+    const [url] = fetchMock.mock.calls[0] as [URL];
+    expect(String(url)).toContain("depth=0");
+    expect(String(url)).toContain("limit=100");
+    expect(String(url)).toContain("where%5B_status%5D%5Bequals%5D=published");
+  });
+
+  it("feeds getJournalSlugs with every slug", async () => {
+    let call = 0;
+    fetchMock.mockImplementation(async () => {
+      call += 1;
+      return jsonResponse({
+        docs: [{ slug: `slug-${call}` }],
+        hasNextPage: call < 2,
+      });
+    });
+
+    const { getJournalSlugs } = await loadCms();
+    expect(await getJournalSlugs()).toEqual(["slug-1", "slug-2"]);
+  });
+
+  it("stops after one page when there is no next page", async () => {
+    const { getJournalArchive } = await loadCms();
+    const archive = await getJournalArchive();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(archive.length).toBeGreaterThan(0);
   });
 });
 
