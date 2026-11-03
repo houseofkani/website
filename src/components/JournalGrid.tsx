@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
-import { JournalArticleLink } from "@/components/JournalArticleLink";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Reveal } from "@/components/Reveal";
 import type { JournalArticle } from "@/lib/cms";
@@ -35,7 +35,7 @@ export function JournalGrid({ articles }: { articles: JournalArticle[] }) {
         <div className="mt-12 grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((a, i) => (
             <Reveal key={a.slug} delay={i * 70}>
-              <JournalArticleLink href={`/journal/${a.slug}`} className="group block">
+              <Link href={`/journal/${a.slug}`} className="group block">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <OptimizedImage
                     src={a.image}
@@ -50,7 +50,7 @@ export function JournalGrid({ articles }: { articles: JournalArticle[] }) {
                 </p>
                 <h2 className="display-3 mt-2 group-hover:text-burgundy">{a.title}</h2>
                 <p className="mt-3 text-charcoal/65">{a.dek}</p>
-              </JournalArticleLink>
+              </Link>
             </Reveal>
           ))}
         </div>

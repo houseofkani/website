@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { draftMode } from "next/headers";
 import { notFound, permanentRedirect } from "next/navigation";
 
-import { JournalArticleLink } from "@/components/JournalArticleLink";
-import { Monogram } from "@/components/Monogram";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
-import {
-  getJournalPost,
-  getJournalPosts,
-  getJournalRedirect,
-  type JournalImage,
-} from "@/lib/cms";
+import { getJournalPost, getJournalPosts, getJournalRedirect } from "@/lib/cms";
 import {
   blogPostingLd,
   breadcrumbLd,
@@ -22,38 +16,6 @@ import {
 import { siteConfig } from "@/lib/site-config";
 
 type Props = { params: Promise<{ slug: string }> };
-
-function ArticleFigure({ image, fallbackAlt }: { image: JournalImage; fallbackAlt: string }) {
-  const alt = image.alt || fallbackAlt;
-
-  return (
-    <figure className="my-11">
-      {image.width && image.height ? (
-        <OptimizedImage
-          src={image.src}
-          alt={alt}
-          width={image.width}
-          height={image.height}
-          sizes="(max-width: 780px) 92vw, 780px"
-          className="h-auto w-full"
-        />
-      ) : (
-        <div className="relative aspect-[3/2] overflow-hidden bg-cream">
-          <OptimizedImage
-            src={image.src}
-            alt={alt}
-            fill
-            sizes="(max-width: 780px) 92vw, 780px"
-            className="object-cover"
-          />
-        </div>
-      )}
-      {image.caption ? (
-        <figcaption className="eyebrow mt-4 text-center text-stone">{image.caption}</figcaption>
-      ) : null}
-    </figure>
-  );
-}
 
 export async function generateStaticParams() {
   const { getJournalSlugs } = await import("@/lib/cms");
@@ -69,13 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const { isEnabled: draft } = await draftMode();
   const article = await getJournalPost(slug, { draft });
-  // Resolve old and unknown slugs before rendering so missing stories keep a
-  // real 404 (or 308) response instead of a soft 200.
   if (!article) {
-    const redirect = await getJournalRedirect(slug);
-    if (redirect?.type === "internal") permanentRedirect(redirect.path);
-    if (redirect?.type === "external") permanentRedirect(redirect.url);
-    notFound();
+    return seoBundle({
+      title: "Story Not Found",
+      pathname: `/journal/${slug}`,
+      robots: "noindex",
+    });
   }
   const { seo } = article;
   return seoBundle({
@@ -119,7 +80,6 @@ export default async function JournalArticlePage({ params }: Props) {
               path: `/journal/${article.slug}`,
               image: article.seo.image || article.image,
               datePublished: article.publishedAt || undefined,
-              author: article.author,
             }),
             breadcrumbLd([
               { name: "Home", path: "/" },
@@ -141,7 +101,6 @@ export default async function JournalArticlePage({ params }: Props) {
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/60 via-forest/15 to-forest/90" />
         <div className="relative z-10 mx-auto w-full max-w-[1100px] px-5 pt-36 pb-14 sm:px-8 sm:pb-20">
-          <Monogram decorative className="mb-6 w-11 text-gold" />
           <p className="eyebrow text-gold">
             {article.category} · {article.readTime}
           </p>
@@ -152,10 +111,7 @@ export default async function JournalArticlePage({ params }: Props) {
         </div>
       </header>
       <div className="mx-auto max-w-[780px] px-5 py-20 sm:px-8 sm:py-28">
-        <p className="eyebrow text-gold">
-          {article.date}
-          {article.author ? ` · By ${article.author}` : null}
-        </p>
+        <p className="eyebrow text-gold">{article.date}</p>
         {article.body.map((section, i) => (
           <Reveal key={i} className="mt-12 first:mt-7">
             {section.heading ? <h2 className="display-3 mb-5">{section.heading}</h2> : null}
@@ -164,13 +120,6 @@ export default async function JournalArticlePage({ params }: Props) {
                 {p}
               </p>
             ))}
-            {section.images?.map((image, index) => (
-              <ArticleFigure
-                key={`${image.src}-${index}`}
-                image={image}
-                fallbackAlt={article.imageAlt}
-              />
-            ))}
             {section.quote ? (
               <blockquote className="my-14 border-y border-gold/35 py-10 text-center font-display text-[1.55rem] leading-snug font-light italic sm:text-[2rem]">
                 {section.quote}
@@ -178,15 +127,6 @@ export default async function JournalArticlePage({ params }: Props) {
             ) : null}
           </Reveal>
         ))}
-        {article.tags.length > 0 ? (
-          <div className="mt-16 flex flex-wrap gap-x-3 gap-y-2 border-t border-border pt-8">
-            {article.tags.map((tag) => (
-              <span key={tag} className="eyebrow border border-border px-3 py-1.5 text-stone">
-                {tag}
-              </span>
-            ))}
-          </div>
-        ) : null}
       </div>
       <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto max-w-[1560px]">
@@ -197,7 +137,7 @@ export default async function JournalArticlePage({ params }: Props) {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {related.map((a) => (
-              <JournalArticleLink key={a.slug} href={`/journal/${a.slug}`} className="group">
+              <Link key={a.slug} href={`/journal/${a.slug}`} className="group">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <OptimizedImage
                     src={a.image}
@@ -209,7 +149,7 @@ export default async function JournalArticlePage({ params }: Props) {
                 </div>
                 <p className="eyebrow mt-5 text-gold">{a.category}</p>
                 <h3 className="display-3 mt-2">{a.title}</h3>
-              </JournalArticleLink>
+              </Link>
             ))}
           </div>
         </div>

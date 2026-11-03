@@ -105,7 +105,7 @@ export function organizationLd() {
     url: siteConfig.url,
     description: siteConfig.description,
     ...(siteConfig.contactConfirmed ? { email: siteConfig.email } : {}),
-    logo: absoluteImageUrl("/images/house-of-kani-logo-v2.png"),
+    logo: absoluteImageUrl("/images/house-of-kani-hk-logo.svg"),
     image: absoluteImageUrl(siteConfig.ogImage),
     address: {
       "@type": "PostalAddress",
@@ -148,7 +148,6 @@ export function blogPostingLd(options: {
   path: string;
   image: string;
   datePublished?: string;
-  author?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -158,15 +157,13 @@ export function blogPostingLd(options: {
     image: absoluteImageUrl(options.image),
     url: absoluteUrl(options.path),
     mainEntityOfPage: absoluteUrl(options.path),
-    author: options.author
-      ? { "@type": "Person", name: options.author }
-      : { "@type": "Organization", name: siteConfig.name },
+    author: { "@type": "Organization", name: siteConfig.name },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: absoluteImageUrl("/images/house-of-kani-logo-v2.png"),
+        url: absoluteImageUrl("/images/house-of-kani-hk-logo.svg"),
       },
     },
     ...(options.datePublished ? { datePublished: options.datePublished } : {}),

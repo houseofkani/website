@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
-import { JournalArticleLink } from "@/components/JournalArticleLink";
+import { Eyebrow } from "@/components/Editorial";
 import { JournalGrid } from "@/components/JournalGrid";
-import { JournalMasthead } from "@/components/JournalMasthead";
-import { JournalListingSkeleton } from "@/components/JournalSkeletons";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
@@ -62,7 +61,7 @@ async function JournalListing() {
         }}
       />
       <section className="bg-forest text-ivory">
-        <JournalArticleLink
+        <Link
           href={`/journal/${featured.slug}`}
           className="group mx-auto grid max-w-[1560px] lg:grid-cols-[1.35fr_0.65fr]"
         >
@@ -83,7 +82,7 @@ async function JournalListing() {
             <p className="mt-6 text-ivory/70">{featured.dek}</p>
             <span className="nav-label mt-8 text-gold">Read the Story →</span>
           </div>
-        </JournalArticleLink>
+        </Link>
       </section>
       <JournalGrid articles={articles} />
     </>
@@ -93,8 +92,15 @@ async function JournalListing() {
 export default function JournalPage() {
   return (
     <>
-      <JournalMasthead />
-      <Suspense fallback={<JournalListingSkeleton />}>
+      <section className="bg-ivory px-5 pt-36 pb-16 text-center sm:px-8 sm:pt-44 sm:pb-24">
+        <Eyebrow>House of Kani</Eyebrow>
+        <h1 className="display-1 mt-4">The Journal</h1>
+        <p className="body-editorial mx-auto mt-5 max-w-xl text-charcoal/70">
+          Essays from the loom, the archive and the valley.
+        </p>
+        <OrnamentRule className="mt-8" />
+      </section>
+      <Suspense>
         <JournalListing />
       </Suspense>
     </>

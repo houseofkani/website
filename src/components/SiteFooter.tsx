@@ -31,14 +31,14 @@ export function SiteFooter() {
         <OrnamentRule className="mt-16 sm:mt-20" />
 
         <div className="mt-12 flex flex-col items-center text-center">
-          <Monogram decorative className="w-12 opacity-90" />
+          <Monogram className="w-12 text-gold" />
           <p className="font-display mt-6 text-[1.35rem] leading-none font-light tracking-[0.22em] uppercase sm:text-[1.6rem]">
             House of Kani
           </p>
           <p className="font-display mt-4 text-[1.0625rem] font-light italic text-ivory/70">
             {SITE.tagline}
           </p>
-          <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed font-light text-ivory/70">
+          <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed font-light text-ivory/55">
             {SITE.descriptor}
           </p>
           <Link
@@ -56,7 +56,7 @@ export function SiteFooter() {
                 <li key={s.label}>
                   <a
                     href={s.href}
-                    className="nav-label text-ivory/70 transition-colors duration-500 hover:text-gold"
+                    className="nav-label text-ivory/55 transition-colors duration-500 hover:text-gold"
                   >
                     {s.label}
                   </a>
@@ -64,9 +64,9 @@ export function SiteFooter() {
               ))}
             </ul>
           ) : (
-            <p className="eyebrow text-ivory/70">{SITE.appointments}</p>
+            <p className="eyebrow text-ivory/40">{SITE.appointments}</p>
           )}
-          <p className="eyebrow text-ivory/70">
+          <p className="eyebrow text-ivory/40">
             © {new Date().getFullYear()} House of Kani — Srinagar, Kashmir
           </p>
         </div>

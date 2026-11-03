@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -11,27 +11,17 @@ type RevealProps = {
   as?: ElementType;
 };
 
-/** Quiet entrance for blocks that start below the fold. In-view copy stays painted. */
+/** Slow, quiet entrance — the house never hurries. */
 export function Reveal({ children, className, delay = 0, as: Tag = "div" }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
-  const [belowFold, setBelowFold] = useState(false);
   const [shown, setShown] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const node = ref.current;
     if (!node || typeof IntersectionObserver === "undefined") {
       setShown(true);
       return;
     }
-
-    const rect = node.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (inView) {
-      setShown(true);
-      return;
-    }
-
-    setBelowFold(true);
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -39,19 +29,17 @@ export function Reveal({ children, className, delay = 0, as: Tag = "div" }: Reve
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.06 },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
-  const animate = belowFold;
-
   return (
     <Tag
       ref={ref as never}
-      style={animate && delay && !shown ? { transitionDelay: `${delay}ms` } : undefined}
-      className={cn(animate && "reveal", animate && shown && "reveal-in", className)}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      className={cn("reveal", shown && "reveal-in", className)}
     >
       {children}
     </Tag>

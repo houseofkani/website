@@ -3,8 +3,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { Eyebrow, ImmersiveSection, SplitSection, TextLink } from "@/components/Editorial";
-import { JournalArticleLink } from "@/components/JournalArticleLink";
-import { HomeJournalSkeleton } from "@/components/JournalSkeletons";
 import { Monogram } from "@/components/Monogram";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
@@ -95,7 +93,7 @@ function HomeClosing() {
           />
           <div className="absolute inset-0 -z-10 bg-forest/60" />
           <Reveal className="image-copy flex max-w-3xl flex-col items-center">
-            <Monogram decorative className="mb-7 w-16 text-gold" />
+            <Monogram className="mb-7 w-16 text-gold sm:w-20" />
             <p className="eyebrow text-gold">Visit the House</p>
             <h2 className="display-1 mt-5 italic">
               See the looms.
@@ -134,7 +132,7 @@ async function HomeJournalAndClose() {
             <div className="mt-16 grid gap-x-7 gap-y-12 md:grid-cols-3">
               {articles.slice(0, 3).map((article, index) => (
                 <Reveal key={article.slug} delay={index * 100}>
-                  <JournalArticleLink href={`/journal/${article.slug}`} className="group block">
+                  <Link href={`/journal/${article.slug}`} className="group block">
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <OptimizedImage
                         src={article.image}
@@ -149,7 +147,7 @@ async function HomeJournalAndClose() {
                       {article.title}
                     </h3>
                     <p className="mt-3 text-[1rem] leading-relaxed text-charcoal/65">{article.dek}</p>
-                  </JournalArticleLink>
+                  </Link>
                 </Reveal>
               ))}
             </div>
@@ -180,7 +178,7 @@ export default function HomePage() {
         <div className="hero-shade absolute inset-0 -z-10" />
         <div className="mx-auto w-full max-w-[1560px] px-5 pt-28 pb-12 sm:px-8 lg:px-12">
           <div className="image-copy max-w-[42rem] text-left">
-            <Monogram decorative className="mb-8 w-14 text-gold sm:w-16" />
+            <Monogram className="mb-8 w-16 text-gold sm:w-20" />
             <p className="eyebrow text-gold">100% Pure Pashmina · Srinagar, Kashmir</p>
             <h1 className="display-hero mt-5 text-balance">House of Kani</h1>
             <p className="font-display mt-6 max-w-lg text-[1.3rem] leading-relaxed font-light italic text-ivory sm:text-[1.6rem]">
@@ -206,7 +204,7 @@ export default function HomePage() {
                 src={images.pashminaFibre}
                 alt="A folded floral Pashmina shawl beside spools of coloured thread"
                 fill
-                sizes="(max-width: 1024px) 92vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -346,7 +344,7 @@ export default function HomePage() {
         imageRatio="landscape"
       />
 
-      <Suspense fallback={<HomeJournalSkeleton />}>
+      <Suspense>
         <HomeJournalAndClose />
       </Suspense>
     </>

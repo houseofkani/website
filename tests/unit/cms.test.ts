@@ -122,64 +122,6 @@ describe("getJournalPosts", () => {
     ]);
   });
 
-  it("keeps inline body images in reading order", async () => {
-    const post = restPost();
-    const children = post.content.root.children as unknown[];
-    children.splice(1, 0, {
-      type: "upload",
-      relationTo: "media",
-      value: {
-        id: 9,
-        url: "/api/media/file/loom-detail.jpg",
-        alt: "Detail of a Kani loom",
-        width: 1600,
-        height: 1067,
-      },
-    });
-    fetchMock.mockImplementation(async () => jsonResponse({ docs: [post] }));
-
-    const { getJournalPosts } = await loadCms();
-    const [article] = await getJournalPosts();
-
-    expect(article!.body).toEqual([
-      {
-        paragraphs: [
-          "There is no haste at a Kani loom. The weaver sits before a forest of warp threads.",
-        ],
-      },
-      {
-        paragraphs: [],
-        images: [
-          {
-            src: `${CMS_URL}/api/media/file/loom-detail.jpg`,
-            alt: "Detail of a Kani loom",
-            width: 1600,
-            height: 1067,
-          },
-        ],
-      },
-      {
-        heading: "A vocabulary held in the hand",
-        paragraphs: ["The word kani names the slender wooden bobbins."],
-        quote: "Its beauty is the act of weaving itself.",
-      },
-    ]);
-  });
-
-  it("maps the author and tags", async () => {
-    fetchMock.mockImplementation(async () =>
-      jsonResponse({
-        docs: [restPost({ author: { id: 3, name: "Amina Mir" }, tags: [" loom ", "Kashmir", ""] })],
-      }),
-    );
-
-    const { getJournalPosts } = await loadCms();
-    const [article] = await getJournalPosts();
-
-    expect(article!.author).toBe("Amina Mir");
-    expect(article!.tags).toEqual(["loom", "Kashmir"]);
-  });
-
   it("queries published posts without authentication", async () => {
     const { getJournalPosts } = await loadCms();
     await getJournalPosts();
