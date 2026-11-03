@@ -23,3 +23,5 @@ House of Kani presents Pashmina as living craft and cultural heritage, not seaso
 
 ## Optional
 - [Sitemap](https://houseofkani.com/sitemap.xml): Machine-readable list of every public URL.
+- [RSS feed](https://houseofkani.com/feed.xml): Journal stories, newest first, with full text.
+- [JSON Feed](https://houseofkani.com/feed.json): The same stories as JSON Feed 1.1.

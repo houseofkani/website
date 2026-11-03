@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { FEED_ALTERNATES } from "@/lib/feed";
 import { siteConfig } from "@/lib/site-config";
 import { jsonLdScript, organizationLd, websiteLd } from "@/lib/seo";
 
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   authors: [{ name: siteConfig.name }],
+  alternates: { types: FEED_ALTERNATES },
   openGraph: {
     type: "website",
     locale: "en_GB",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { FEED_ALTERNATES } from "@/lib/feed";
 import { siteConfig } from "@/lib/site-config";
 
 export function canonicalPathname(pathname: string): string {
@@ -7,10 +8,7 @@ export function canonicalPathname(pathname: string): string {
   return path.startsWith("/") ? path : `/${path}`;
 }
 
-export function absoluteUrl(
-  pathname: string,
-  storeUrl: string = siteConfig.url,
-): string {
+export function absoluteUrl(pathname: string, storeUrl: string = siteConfig.url): string {
   const path = canonicalPathname(pathname);
   return `${storeUrl.replace(/\/$/, "")}${path === "/" ? "" : path}`;
 }
@@ -29,9 +27,7 @@ export type SeoBundleOptions = {
   description?: string;
   pathname?: string;
   image?: string;
-  images?: Array<
-    string | { url: string; width?: number; height?: number; alt?: string }
-  >;
+  images?: Array<string | { url: string; width?: number; height?: number; alt?: string }>;
   type?: "website" | "article";
   robots?: "noindex";
   publishedTime?: string;
@@ -46,7 +42,12 @@ export function seoBundle(options: SeoBundleOptions): Metadata {
   };
 
   if (options.pathname) {
-    metadata.alternates = { canonical: canonicalPathname(options.pathname) };
+    metadata.alternates = {
+      canonical: canonicalPathname(options.pathname),
+      types: FEED_ALTERNATES,
+    };
+  } else {
+    metadata.alternates = { types: FEED_ALTERNATES };
   }
 
   if (options.robots === "noindex") {
@@ -74,9 +75,7 @@ export function seoBundle(options: SeoBundleOptions): Metadata {
     ...(options.type === "article" && options.publishedTime
       ? { publishedTime: options.publishedTime }
       : {}),
-    ...(options.type === "article" && options.authors?.length
-      ? { authors: options.authors }
-      : {}),
+    ...(options.type === "article" && options.authors?.length ? { authors: options.authors } : {}),
   };
 
   const twitterImage = options.image
@@ -134,9 +133,7 @@ export function websiteLd() {
   };
 }
 
-export function breadcrumbLd(
-  items: Array<{ name: string; path: string }>,
-) {
+export function breadcrumbLd(items: Array<{ name: string; path: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
