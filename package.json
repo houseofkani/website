@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "optimize:images": "node scripts/optimize-images.mjs",
+    "brand:assets": "node scripts/generate-brand-assets.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "lighthouse": "lhci autorun"

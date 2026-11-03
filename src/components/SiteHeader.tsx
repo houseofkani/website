@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Monogram } from "@/components/Monogram";
+import { Emblem } from "@/components/Emblem";
 import { ETSY_HREF, NAV } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -104,12 +104,7 @@ export function SiteHeader() {
               light ? "text-ivory" : "text-charcoal",
             )}
           >
-            <Monogram
-              className={cn(
-                "w-9 transition-colors duration-500 sm:w-10",
-                light ? "text-gold" : "text-forest",
-              )}
-            />
+            <Emblem className="w-10 sm:w-11" priority />
             <span className="font-display text-[0.95rem] leading-none font-light tracking-[0.18em] whitespace-nowrap uppercase sm:text-[1.15rem]">
               House of Kani
             </span>

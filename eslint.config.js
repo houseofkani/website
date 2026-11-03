@@ -11,7 +11,8 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   {
-    ignores: [".next/**", "out/**", "next-env.d.ts"],
+    // This project writes build output to dist/ (see next.config.ts), not .next.
+    ignores: [".next/**", "dist/**", "out/**", "next-env.d.ts"],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];

@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { siteConfig } from "@/lib/site-config";
 import { jsonLdScript, organizationLd, websiteLd } from "@/lib/seo";
 
@@ -51,6 +52,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon.png", sizes: "180x180", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
@@ -70,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <WhatsAppFab />
         <Analytics />
         <SpeedInsights />
       </body>

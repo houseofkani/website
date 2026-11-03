@@ -97,6 +97,8 @@ export function jsonLdScript(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
+const BRAND_LOGO = "/images/house-of-kani-emblem-v1.png";
+
 export function organizationLd() {
   return {
     "@context": "https://schema.org",
@@ -105,7 +107,12 @@ export function organizationLd() {
     url: siteConfig.url,
     description: siteConfig.description,
     ...(siteConfig.contactConfirmed ? { email: siteConfig.email } : {}),
-    logo: absoluteImageUrl("/images/house-of-kani-hk-logo.svg"),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteImageUrl(BRAND_LOGO),
+      width: 1024,
+      height: 1024,
+    },
     image: absoluteImageUrl(siteConfig.ogImage),
     address: {
       "@type": "PostalAddress",
@@ -163,7 +170,9 @@ export function blogPostingLd(options: {
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: absoluteImageUrl("/images/house-of-kani-hk-logo.svg"),
+        url: absoluteImageUrl(BRAND_LOGO),
+        width: 1024,
+        height: 1024,
       },
     },
     ...(options.datePublished ? { datePublished: options.datePublished } : {}),

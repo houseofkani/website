@@ -3,10 +3,12 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { Eyebrow, ImmersiveSection, SplitSection, TextLink } from "@/components/Editorial";
-import { Monogram } from "@/components/Monogram";
+import { Emblem } from "@/components/Emblem";
+import { MediaSkeleton } from "@/components/MediaSkeleton";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
+import { HomeJournalSkeleton } from "@/components/Skeleton";
 import { images } from "@/lib/images";
 import { getJournalPosts } from "@/lib/cms";
 import { seoBundle } from "@/lib/seo";
@@ -93,7 +95,7 @@ function HomeClosing() {
           />
           <div className="absolute inset-0 -z-10 bg-forest/60" />
           <Reveal className="image-copy flex max-w-3xl flex-col items-center">
-            <Monogram className="mb-7 w-16 text-gold sm:w-20" />
+            <Emblem className="mb-7 w-16 sm:w-20" />
             <p className="eyebrow text-gold">Visit the House</p>
             <h2 className="display-1 mt-5 italic">
               See the looms.
@@ -134,12 +136,11 @@ async function HomeJournalAndClose() {
                 <Reveal key={article.slug} delay={index * 100}>
                   <Link href={`/journal/${article.slug}`} className="group block">
                     <div className="relative aspect-[4/3] overflow-hidden">
-                      <OptimizedImage
+                      <MediaSkeleton
                         src={article.image}
                         alt={article.imageAlt}
-                        fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.025]"
+                        className="duration-[1400ms] group-hover:scale-[1.025]"
                       />
                     </div>
                     <p className="eyebrow mt-6 text-gold">{article.category}</p>
@@ -178,7 +179,7 @@ export default function HomePage() {
         <div className="hero-shade absolute inset-0 -z-10" />
         <div className="mx-auto w-full max-w-[1560px] px-5 pt-28 pb-12 sm:px-8 lg:px-12">
           <div className="image-copy max-w-[42rem] text-left">
-            <Monogram className="mb-8 w-16 text-gold sm:w-20" />
+            <Emblem className="mb-8 w-16 sm:w-20" priority />
             <p className="eyebrow text-gold">100% Pure Pashmina · Srinagar, Kashmir</p>
             <h1 className="display-hero mt-5 text-balance">House of Kani</h1>
             <p className="font-display mt-6 max-w-lg text-[1.3rem] leading-relaxed font-light italic text-ivory sm:text-[1.6rem]">
@@ -344,7 +345,7 @@ export default function HomePage() {
         imageRatio="landscape"
       />
 
-      <Suspense>
+      <Suspense fallback={<HomeJournalSkeleton />}>
         <HomeJournalAndClose />
       </Suspense>
     </>

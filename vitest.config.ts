@@ -8,6 +8,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  // tsconfig keeps `jsx: preserve` for Next; tests render real components.
+  oxc: {
+    jsx: { runtime: "automatic" },
+  },
   test: {
     environment: "node",
     include: ["tests/unit/**/*.test.ts"],

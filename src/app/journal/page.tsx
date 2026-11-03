@@ -5,9 +5,10 @@ import { Suspense } from "react";
 
 import { Eyebrow } from "@/components/Editorial";
 import { JournalGrid } from "@/components/JournalGrid";
-import { OptimizedImage } from "@/components/OptimizedImage";
+import { MediaSkeleton } from "@/components/MediaSkeleton";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
+import { JournalListingSkeleton } from "@/components/Skeleton";
 import { getJournalPosts } from "@/lib/cms";
 import { images } from "@/lib/images";
 import { itemListLd, jsonLdScript, seoBundle } from "@/lib/seo";
@@ -66,14 +67,13 @@ async function JournalListing() {
           className="group mx-auto grid max-w-[1560px] lg:grid-cols-[1.35fr_0.65fr]"
         >
           <div className="relative min-h-[52svh] overflow-hidden">
-            <OptimizedImage
+            <MediaSkeleton
               src={featured.image}
               alt={featured.imageAlt}
-              fill
               priority
               quality={85}
               sizes="(max-width: 1024px) 100vw, 65vw"
-              className="object-cover transition-transform duration-[1600ms] group-hover:scale-[1.02]"
+              className="duration-[1600ms] group-hover:scale-[1.02]"
             />
           </div>
           <div className="flex flex-col justify-center px-7 py-14 sm:px-12 lg:px-16">
@@ -100,7 +100,7 @@ export default function JournalPage() {
         </p>
         <OrnamentRule className="mt-8" />
       </section>
-      <Suspense>
+      <Suspense fallback={<JournalListingSkeleton />}>
         <JournalListing />
       </Suspense>
     </>

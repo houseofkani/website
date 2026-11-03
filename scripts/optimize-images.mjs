@@ -21,6 +21,9 @@ const SKIP = new Set([
   "authentic-loom.jpg",
   "authentic-threads.jpg",
   "hok-monogram.png.asset.json",
+  // Brand marks are published by `scripts/generate-brand-assets.mjs` under
+  // versioned names; converting them here would add an unversioned duplicate.
+  "house-of-kani-emblem-new.png",
 ]);
 
 async function optimizeOne(file) {

@@ -51,6 +51,9 @@
   --color-gold: var(--gold);
   --color-charcoal: var(--charcoal);
   --color-stone: var(--stone);
+  /* WhatsApp's official brand green, kept apart from the house palette. */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-deep: #1da851;
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -266,6 +269,95 @@
 
 @utility image-reveal-in {
   transform: scale(1);
+}
+
+/* ---- Loading skeletons (journal cards) ---------------------------------- */
+
+@keyframes skeleton-sweep {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@utility skeleton-block {
+  position: relative;
+  overflow: hidden;
+  background-color: oklch(0.921 0.013 84.5);
+}
+
+@utility skeleton-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.988 0.006 85.6 / 74%) 50%,
+    transparent 100%
+  );
+  animation: skeleton-sweep 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@utility skeleton-block-dark {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-forest-deep);
+}
+
+@utility skeleton-sheen-dim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.98 0.01 86 / 10%) 50%,
+    transparent 100%
+  );
+  animation: skeleton-sweep 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ---- WhatsApp floating action button ------------------------------------ */
+
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.14;
+  }
+  100% {
+    transform: scale(1.95);
+    opacity: 0;
+  }
+}
+
+@keyframes whatsapp-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility whatsapp-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--color-whatsapp);
+  pointer-events: none;
+  animation: whatsapp-pulse 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@utility whatsapp-arrive {
+  animation: whatsapp-arrive 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -30,6 +30,7 @@ Journal article pictures come from the content system at request time, so they a
 | `public/images/journal-gardens.jpg` | Kashmir |
 | `public/images/ornament-flourish.webp` | Ornament on pages |
 | `public/images/house-of-kani-logo.webp` | Site metadata |
+| `public/images/house-of-kani-emblem-v1.png` | House of Kani emblem — header, footer, homepage, JSON-LD logo |
 | `public/images/kani-quote-1.jpg` | Kani gallery |
 | `public/images/kani-quote-1-wide.jpg` | Kani gallery |
 | `public/images/kani-quote-2.jpg` | Kani gallery |

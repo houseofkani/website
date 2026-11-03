@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Monogram } from "@/components/Monogram";
+import { Emblem } from "@/components/Emblem";
 import { OrnamentRule } from "@/components/Ornament";
 import { ETSY_HREF, FOOTER_COLUMNS, SITE } from "@/lib/site";
 
@@ -31,7 +31,7 @@ export function SiteFooter() {
         <OrnamentRule className="mt-16 sm:mt-20" />
 
         <div className="mt-12 flex flex-col items-center text-center">
-          <Monogram className="w-12 text-gold" />
+          <Emblem className="w-20" />
           <p className="font-display mt-6 text-[1.35rem] leading-none font-light tracking-[0.22em] uppercase sm:text-[1.6rem]">
             House of Kani
           </p>

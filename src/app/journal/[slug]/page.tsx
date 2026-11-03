@@ -3,6 +3,7 @@ import Link from "next/link";
 import { draftMode } from "next/headers";
 import { notFound, permanentRedirect } from "next/navigation";
 
+import { MediaSkeleton } from "@/components/MediaSkeleton";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
@@ -139,12 +140,11 @@ export default async function JournalArticlePage({ params }: Props) {
             {related.map((a) => (
               <Link key={a.slug} href={`/journal/${a.slug}`} className="group">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <OptimizedImage
+                  <MediaSkeleton
                     src={a.image}
                     alt={a.imageAlt}
-                    fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-[1400ms] group-hover:scale-[1.03]"
+                    className="duration-[1400ms] group-hover:scale-[1.03]"
                   />
                 </div>
                 <p className="eyebrow mt-5 text-gold">{a.category}</p>
