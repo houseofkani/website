@@ -24,7 +24,10 @@ function request(body: unknown, headers: Record<string, string> = {}) {
   });
 }
 
+const FILLED_A_WHILE_AGO = Date.now() - 30_000;
+
 const VALID = {
+  startedAt: FILLED_A_WHILE_AGO,
   name: "Ayesha Khan",
   email: "ayesha@example.com",
   telephone: "+91 98027 32612",
@@ -71,6 +74,37 @@ describe("POST /api/enquiry — validation", () => {
     const { POST } = await loadRoute();
     const response = await POST(request({ ...VALID, message: "x".repeat(20_000) }));
     expect(response.status).toBe(413);
+  });
+});
+
+describe("POST /api/enquiry — bot traps", () => {
+  it("silently drops a submission completed faster than a person can type", async () => {
+    const { POST } = await loadRoute();
+    const response = await POST(request({ ...VALID, startedAt: Date.now() - 200 }));
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ sent: true });
+  });
+
+  it("rejects a form that sat open far too long", async () => {
+    const { POST } = await loadRoute();
+    const response = await POST(request({ ...VALID, startedAt: Date.now() - 7 * 60 * 60 * 1000 }));
+
+    expect(response.status).toBe(400);
+    expect((await response.json()).error).toContain("expired");
+  });
+
+  it("rejects a note that is mostly links", async () => {
+    const { POST } = await loadRoute();
+    const response = await POST(
+      request({
+        ...VALID,
+        message: "buy https://a.example https://b.example https://c.example https://d.example now",
+      }),
+    );
+
+    expect(response.status).toBe(400);
+    expect((await response.json()).error).toContain("links");
   });
 });
 

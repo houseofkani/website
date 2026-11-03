@@ -20,6 +20,8 @@ const TOPICS = [
 
 export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
   const [status, setStatus] = useState<Status>("idle");
+  // Captured on mount: the API rejects notes submitted faster than a human can type.
+  const [startedAt] = useState(() => Date.now());
   const [error, setError] = useState<string | null>(null);
 
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -53,6 +55,7 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
           topic,
           message: String(data.get("message") ?? ""),
           website: String(data.get("website") ?? ""),
+          startedAt,
         }),
       });
 

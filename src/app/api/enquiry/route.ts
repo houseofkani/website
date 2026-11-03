@@ -13,6 +13,12 @@ import type { EnquiryInput } from "@/lib/email-templates";
 export const runtime = "nodejs";
 
 const MAX_BODY_BYTES = 12_000;
+/** A human needs at least this long to fill the form; bots submit instantly. */
+const MIN_FILL_MS = 1_500;
+/** A form left open for hours is more likely a replayed payload. */
+const MAX_FILL_MS = 6 * 60 * 60 * 1000;
+/** Notes with more links than this are linkspam, not enquiries. */
+const MAX_LINKS = 3;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 3;
 
@@ -49,6 +55,16 @@ function validate(body: Record<string, unknown>): Validation {
     return { ok: true, value: null };
   }
 
+  const startedAt = Number(body.startedAt);
+  if (!Number.isFinite(startedAt)) {
+    return { ok: false, error: "Malformed request." };
+  }
+  const elapsed = Date.now() - startedAt;
+  // Too fast to be a person: accept silently, exactly like the honeypot.
+  if (elapsed < MIN_FILL_MS) return { ok: true, value: null };
+  if (elapsed > MAX_FILL_MS)
+    return { ok: false, error: "This form has expired. Please reload the page." };
+
   const name = readString(body, "name");
   const email = readString(body, "email");
   const telephone = readString(body, "telephone");
@@ -63,6 +79,8 @@ function validate(body: Record<string, unknown>): Validation {
   if (telephone.length > 40) return { ok: false, error: "That telephone number is too long." };
   if (message.length < 10) return { ok: false, error: "Please add a little more detail." };
   if (message.length > 5_000) return { ok: false, error: "That note is too long." };
+  const links = message.match(/https?:\/\//gi)?.length ?? 0;
+  if (links > MAX_LINKS) return { ok: false, error: "Please remove the links and try again." };
   if (topic.length > 120) return { ok: false, error: "Unrecognised enquiry type." };
 
   return { ok: true, value: { name, email, telephone: telephone || undefined, topic, message } };
