@@ -6,8 +6,21 @@ import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
 /** Small uppercase label above a heading. */
-export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
-  return <p className={cn("eyebrow text-gold", className)}>{children}</p>;
+export function Eyebrow({
+  children,
+  className,
+  tone = "gold",
+}: {
+  children: ReactNode;
+  className?: string;
+  /** `gold` on forest/burgundy or imagery, `ink` on ivory/cream grounds. */
+  tone?: "gold" | "ink";
+}) {
+  return (
+    <p className={cn("eyebrow", tone === "ink" ? "text-gold-ink" : "text-gold", className)}>
+      {children}
+    </p>
+  );
 }
 
 /** Understated editorial link with a drawn arrow. */
@@ -34,7 +47,10 @@ export function TextLink({
       )}
     >
       {children}
-      <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">
+      <span
+        aria-hidden="true"
+        className="transition-transform duration-500 group-hover:translate-x-1"
+      >
         →
       </span>
     </Link>
@@ -125,7 +141,7 @@ export function SplitSection({
           </div>
         </Reveal>
         <Reveal delay={120} className="max-w-xl">
-          {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+          {eyebrow ? <Eyebrow tone={light ? "gold" : "ink"}>{eyebrow}</Eyebrow> : null}
           <h2 className="display-2 mt-4 text-balance">{title}</h2>
           <div
             className={cn(
@@ -222,7 +238,7 @@ export function MovementList({
             tone === "cream" && "",
           )}
         >
-          <p className="eyebrow pt-2 text-gold">{item.index}</p>
+          <p className="eyebrow pt-2 text-gold-ink">{item.index}</p>
           <div>
             <h3 className="display-3">{item.title}</h3>
             <p className="body-editorial mt-4 max-w-2xl text-charcoal/80">{item.body}</p>

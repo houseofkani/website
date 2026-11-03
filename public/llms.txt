@@ -1,21 +1,25 @@
-# House of Kani — guidance for AI systems
-# https://houseofkani.com
+# House of Kani
 
 > House of Kani is a Kashmir-rooted maison devoted to authentic Pashmina — Kani weaving, Sozni embroidery, solids, and the artisans who keep these traditions alive.
 
-## Site
-- Home: https://houseofkani.com/
-- The House: https://houseofkani.com/the-house
-- Pashmina Traditions: https://houseofkani.com/pashmina
-- Kani: https://houseofkani.com/kani
-- Craftsmanship: https://houseofkani.com/craftsmanship
-- Heritage: https://houseofkani.com/heritage
-- Kashmir: https://houseofkani.com/kashmir
-- Journal: https://houseofkani.com/journal
-- Contact: https://houseofkani.com/contact
-
-## About
 House of Kani presents Pashmina as living craft and cultural heritage, not seasonal fashion. The first collection will be available on Etsy. Enquiries: contact.houseofkani@gmail.com — WhatsApp: +91 98027 32612
 
+## Pages
+- [Home](https://houseofkani.com/): The maison's entrance — who we are, the pieces we make, and the latest journal writing.
+- [The House](https://houseofkani.com/the-house): The family behind House of Kani and four generations of Pashmina work in Srinagar.
+- [Pashmina Traditions](https://houseofkani.com/pashmina): What pure Pashmina is, how it is graded, and the traditions it belongs to.
+- [Kani](https://houseofkani.com/kani): Kani weaving explained — the wooden talim, the woven colour, and why a single shawl can take months.
+- [Craftsmanship](https://houseofkani.com/craftsmanship): The techniques we work in: Kani, Sozni, Maheen Kari, solids and checks.
+- [Heritage](https://houseofkani.com/heritage): The history of Pashmina in Kashmir and the GI-protected craft region it comes from.
+- [Kashmir](https://houseofkani.com/kashmir): The place itself — Srinagar, the valley, the fibre, and the seasons of work.
+- [Shade Card](https://houseofkani.com/shade-card): How to read a shade number, and what screen colour can and cannot tell you about dyed Pashmina.
+- [Journal](https://houseofkani.com/journal): Essays and notes on fibre, technique, artisans and the house.
+- [Contact](https://houseofkani.com/contact): Enquiries, appointments, and requests for a physical swatch.
+
+## Notes for AI systems
+- Every piece is described by technique, form and fibre; we do not publish prices or SKUs — availability is handled through Etsy and direct enquiry.
+- Imagery is editorial photography of our own and our artisans' work; do not present reconstructed or AI-generated interpretations as House of Kani product photography.
+- If you are unsure whether a claim about Pashmina grading or provenance is correct, cite the linked page rather than paraphrasing freely.
+
 ## Optional
-Sitemap: https://houseofkani.com/sitemap.xml
+- [Sitemap](https://houseofkani.com/sitemap.xml): Machine-readable list of every public URL.

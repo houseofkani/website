@@ -15,8 +15,7 @@ import { itemListLd, jsonLdScript, seoBundle } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "Journal",
-  description:
-    "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
+  description: "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
   pathname: "/journal",
   image: images.heritageArchive,
 });
@@ -93,7 +92,7 @@ export default function JournalPage() {
   return (
     <>
       <section className="bg-ivory px-5 pt-36 pb-16 text-center sm:px-8 sm:pt-44 sm:pb-24">
-        <Eyebrow>House of Kani</Eyebrow>
+        <Eyebrow tone="ink">House of Kani</Eyebrow>
         <h1 className="display-1 mt-4">The Journal</h1>
         <p className="body-editorial mx-auto mt-5 max-w-xl text-charcoal/70">
           Essays from the loom, the archive and the valley.

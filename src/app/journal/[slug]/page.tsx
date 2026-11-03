@@ -8,12 +8,7 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
 import { getJournalPost, getJournalPosts, getJournalRedirect } from "@/lib/cms";
-import {
-  blogPostingLd,
-  breadcrumbLd,
-  jsonLdScript,
-  seoBundle,
-} from "@/lib/seo";
+import { blogPostingLd, breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -112,7 +107,7 @@ export default async function JournalArticlePage({ params }: Props) {
         </div>
       </header>
       <div className="mx-auto max-w-[780px] px-5 py-20 sm:px-8 sm:py-28">
-        <p className="eyebrow text-gold">{article.date}</p>
+        <p className="eyebrow text-gold-ink">{article.date}</p>
         {article.body.map((section, i) => (
           <Reveal key={i} className="mt-12 first:mt-7">
             {section.heading ? <h2 className="display-3 mb-5">{section.heading}</h2> : null}
@@ -132,7 +127,7 @@ export default async function JournalArticlePage({ params }: Props) {
       <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto max-w-[1560px]">
           <div className="text-center">
-            <p className="eyebrow text-gold">Continue Reading</p>
+            <p className="eyebrow text-gold-ink">Continue Reading</p>
             <h2 className="display-2 mt-3">Related Stories</h2>
             <OrnamentRule className="mt-7" />
           </div>
@@ -147,7 +142,7 @@ export default async function JournalArticlePage({ params }: Props) {
                     className="duration-[1400ms] group-hover:scale-[1.03]"
                   />
                 </div>
-                <p className="eyebrow mt-5 text-gold">{a.category}</p>
+                <p className="eyebrow mt-5 text-gold-ink">{a.category}</p>
                 <h3 className="display-3 mt-2">{a.title}</h3>
               </Link>
             ))}

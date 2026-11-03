@@ -16,11 +16,31 @@ export const metadata: Metadata = seoBundle({
 });
 
 const eras = [
-  ["Origins", "15th century", "Kashmiri tradition credits Sultan Zain-ul-Abidin with encouraging weavers and craftsmen from Persia and Central Asia to settle in the valley. Shawl weaving grew into one of Kashmir’s central crafts."],
-  ["Courts", "16th–18th century", "Under Mughal rule the Kashmir shawl became a prized gift at court. Woven Kani patterns grew more elaborate, and the paisley-like boteh became their best-known motif."],
-  ["The wider world", "18th–19th century", "Kashmir shawls reached Europe and became fashionable there. Imitations followed, most famously from the mills of Paisley in Scotland, which gave the motif its English name."],
-  ["Needlework", "19th century onward", "As woven Kani became costly, embroidered shawls grew in importance. Sozni — fine needlework on plain Pashmina — became a tradition of its own."],
-  ["Today", "The present", "Spinners, weavers and embroiderers still work in Kashmir. Kashmir Pashmina, Kani shawls and Sozni embroidery are now protected as Geographical Indications in India."],
+  [
+    "Origins",
+    "15th century",
+    "Kashmiri tradition credits Sultan Zain-ul-Abidin with encouraging weavers and craftsmen from Persia and Central Asia to settle in the valley. Shawl weaving grew into one of Kashmir’s central crafts.",
+  ],
+  [
+    "Courts",
+    "16th–18th century",
+    "Under Mughal rule the Kashmir shawl became a prized gift at court. Woven Kani patterns grew more elaborate, and the paisley-like boteh became their best-known motif.",
+  ],
+  [
+    "The wider world",
+    "18th–19th century",
+    "Kashmir shawls reached Europe and became fashionable there. Imitations followed, most famously from the mills of Paisley in Scotland, which gave the motif its English name.",
+  ],
+  [
+    "Needlework",
+    "19th century onward",
+    "As woven Kani became costly, embroidered shawls grew in importance. Sozni — fine needlework on plain Pashmina — became a tradition of its own.",
+  ],
+  [
+    "Today",
+    "The present",
+    "Spinners, weavers and embroiderers still work in Kashmir. Kashmir Pashmina, Kani shawls and Sozni embroidery are now protected as Geographical Indications in India.",
+  ],
 ] as const;
 
 export default function HeritagePage() {
@@ -46,7 +66,7 @@ export default function HeritagePage() {
       />
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-36">
         <div className="mx-auto max-w-5xl">
-          <p className="eyebrow text-center text-gold">A Short History</p>
+          <p className="eyebrow text-center text-gold-ink">A Short History</p>
           <div className="relative mt-14 before:absolute before:top-0 before:bottom-0 before:left-[0.34rem] before:w-px before:bg-gold/35 sm:before:left-[7.5rem]">
             {eras.map(([title, date, body], i) => (
               <Reveal
@@ -55,11 +75,11 @@ export default function HeritagePage() {
                 className="relative grid grid-cols-[2rem_1fr] gap-5 pb-16 sm:grid-cols-[7.5rem_2rem_1fr] sm:gap-8"
               >
                 <span className="mt-2 block h-3 w-3 rounded-full border border-gold bg-ivory sm:col-start-2" />
-                <p className="eyebrow hidden text-right text-stone sm:col-start-1 sm:row-start-1 sm:block">
+                <p className="eyebrow hidden text-right text-stone-ink sm:col-start-1 sm:row-start-1 sm:block">
                   {date}
                 </p>
                 <div className="sm:col-start-3 sm:row-start-1">
-                  <p className="eyebrow text-stone sm:hidden">{date}</p>
+                  <p className="eyebrow text-stone-ink sm:hidden">{date}</p>
                   <h2 className="display-2 mt-2 sm:mt-0">{title}</h2>
                   <p className="body-editorial mt-5 max-w-2xl text-charcoal/75">{body}</p>
                 </div>
@@ -88,9 +108,9 @@ export default function HeritagePage() {
         title="The Boteh, Known Abroad as Paisley."
         body={
           <p>
-            The curved teardrop motif that Europe came to call paisley is the Kashmiri boteh. Weavers
-            have drawn it as a leaf, a flame and a cypress bent by the wind, and it remains at the
-            heart of Kani design.
+            The curved teardrop motif that Europe came to call paisley is the Kashmiri boteh.
+            Weavers have drawn it as a leaf, a flame and a cypress bent by the wind, and it remains
+            at the heart of Kani design.
           </p>
         }
         reverse

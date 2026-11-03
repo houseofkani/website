@@ -67,7 +67,7 @@ export default function PrivateClientPage() {
       <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <div className="mb-12 text-center">
-            <p className="eyebrow text-gold">Request an Appointment</p>
+            <p className="eyebrow text-gold-ink">Request an Appointment</p>
             <h2 className="display-2 mt-4">When Would You Like to Visit?</h2>
           </div>
           <EnquiryForm kind="appointment" />

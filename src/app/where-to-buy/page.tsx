@@ -42,7 +42,7 @@ export default function WhereToBuyPage() {
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
           <Reveal className="border-t border-gold/45 pt-8">
-            <p className="eyebrow text-gold">Online</p>
+            <p className="eyebrow text-gold-ink">Online</p>
             <h2 className="display-2 mt-4">Etsy</h2>
             <p className="body-editorial mt-5 text-charcoal/75">
               {etsyLive
@@ -54,7 +54,7 @@ export default function WhereToBuyPage() {
                 href={SITE.etsyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-label mt-8 inline-flex items-center gap-3 border-b border-charcoal/25 pb-1 hover:border-gold hover:text-gold"
+                className="nav-label mt-8 inline-flex items-center gap-3 border-b border-charcoal/25 pb-1 hover:border-gold hover:text-gold-ink"
               >
                 Visit Our Etsy Shop <span aria-hidden="true">→</span>
               </a>
@@ -65,7 +65,7 @@ export default function WhereToBuyPage() {
             )}
           </Reveal>
           <Reveal delay={100} className="border-t border-gold/45 pt-8">
-            <p className="eyebrow text-gold">In Person or by Video</p>
+            <p className="eyebrow text-gold-ink">In Person or by Video</p>
             <h2 className="display-2 mt-4">Appointments</h2>
             <p className="body-editorial mt-5 text-charcoal/75">
               See pieces at our office in Srinagar, visit our looms, or meet us on a video call.

@@ -93,7 +93,7 @@ export default function KaniPage() {
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-5xl">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-gold">What Is Kani?</p>
+            <p className="eyebrow text-gold-ink">What Is Kani?</p>
             <h2 className="display-1 mt-4">The Pattern Is the Weave.</h2>
             <p className="body-editorial mt-7 text-charcoal/75">
               Kani is a hand-weaving technique from Kashmir. Unlike embroidery, every motif is
@@ -124,7 +124,7 @@ export default function KaniPage() {
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-5xl">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-gold">Hand or Machine?</p>
+            <p className="eyebrow text-gold-ink">Hand or Machine?</p>
             <h2 className="display-2 mt-4">How to Recognise Hand-Woven Kani.</h2>
             <p className="body-editorial mt-6 text-charcoal/75">
               Machine-made “Kani-style” shawls are common. These signs point to the real thing.

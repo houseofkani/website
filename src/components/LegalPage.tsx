@@ -14,7 +14,7 @@ export function LegalPage({
     <section className="min-h-screen bg-ivory px-5 pt-36 pb-24 sm:px-8 sm:pt-44 sm:pb-32">
       <div className="mx-auto max-w-3xl">
         <Reveal className="text-center">
-          <p className="eyebrow text-gold">House of Kani</p>
+          <p className="eyebrow text-gold-ink">House of Kani</p>
           <h1 className="display-1 mt-4">{title}</h1>
           <p className="body-editorial mx-auto mt-6 max-w-2xl text-charcoal/70">{intro}</p>
           <OrnamentRule className="mt-8" />
@@ -27,7 +27,7 @@ export function LegalPage({
             </Reveal>
           ))}
         </div>
-        <p className="eyebrow mt-12 text-stone">Last updated September 2026</p>
+        <p className="eyebrow mt-12 text-stone-ink">Last updated September 2026</p>
       </div>
     </section>
   );

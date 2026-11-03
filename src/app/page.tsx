@@ -72,11 +72,11 @@ function HomeClosing() {
     <>
       <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
         <Reveal className="mx-auto max-w-3xl">
-          <Eyebrow>Where to Buy</Eyebrow>
+          <Eyebrow tone="ink">Where to Buy</Eyebrow>
           <h2 className="display-2 mt-4">Our first collection opens on Etsy.</h2>
           <p className="body-editorial mx-auto mt-5 max-w-2xl text-charcoal/70">
-            Each listing names the technique, the fibre and the size. To see pieces in person or on a
-            video call, arrange an appointment with our family in Srinagar.
+            Each listing names the technique, the fibre and the size. To see pieces in person or on
+            a video call, arrange an appointment with our family in Srinagar.
           </p>
           <TextLink to={ETSY_HREF} className="mt-8">
             Where to Buy
@@ -125,7 +125,7 @@ async function HomeJournalAndClose() {
         <section className="bg-ivory px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1420px]">
             <Reveal className="flex flex-col items-center text-center">
-              <Eyebrow>The Journal</Eyebrow>
+              <Eyebrow tone="ink">The Journal</Eyebrow>
               <h2 className="display-1 mt-4">Notes from the Valley</h2>
               <p className="body-editorial mt-6 max-w-2xl text-charcoal/70">
                 Short guides and essays on Pashmina, the loom, the needle and Kashmir.
@@ -143,11 +143,13 @@ async function HomeJournalAndClose() {
                         className="duration-[1400ms] group-hover:scale-[1.025]"
                       />
                     </div>
-                    <p className="eyebrow mt-6 text-gold">{article.category}</p>
+                    <p className="eyebrow mt-6 text-gold-ink">{article.category}</p>
                     <h3 className="display-3 mt-2 transition-colors duration-500 group-hover:text-burgundy">
                       {article.title}
                     </h3>
-                    <p className="mt-3 text-[1rem] leading-relaxed text-charcoal/65">{article.dek}</p>
+                    <p className="mt-3 text-[1rem] leading-relaxed text-charcoal/65">
+                      {article.dek}
+                    </p>
                   </Link>
                 </Reveal>
               ))}
@@ -189,7 +191,9 @@ export default function HomePage() {
             <TextLink to="/pashmina" tone="light" className="mt-10">
               Discover Pashmina
             </TextLink>
-            <p className="eyebrow mt-12 text-ivory/70 sm:hidden">From Kashmir, woven for the world</p>
+            <p className="eyebrow mt-12 text-ivory/70 sm:hidden">
+              From Kashmir, woven for the world
+            </p>
           </div>
         </div>
         <p className="eyebrow absolute right-5 bottom-6 hidden text-ivory/70 sm:block lg:right-12">
@@ -211,16 +215,18 @@ export default function HomePage() {
             </div>
           </Reveal>
           <Reveal delay={120} className="max-w-xl lg:col-span-5 lg:col-start-8">
-            <Eyebrow>Who We Are</Eyebrow>
-            <h2 className="display-1 mt-6 text-balance italic">Four generations of Pashmina in Srinagar.</h2>
+            <Eyebrow tone="ink">Who We Are</Eyebrow>
+            <h2 className="display-1 mt-6 text-balance italic">
+              Four generations of Pashmina in Srinagar.
+            </h2>
             <p className="body-editorial mt-8 text-charcoal/80">
               Our great-grandparents began this work in Kashmir. Today our family weaves on our own
               looms and chooses pieces from artisans we have worked with for years — and House of
               Kani is how we now bring that work to the world.
             </p>
             <p className="body-editorial mt-5 text-charcoal/80">
-              We sell shawls, stoles and wraps in 100% pure Pashmina, and we explain how each one was
-              made, so that you know exactly what you are buying.
+              We sell shawls, stoles and wraps in 100% pure Pashmina, and we explain how each one
+              was made, so that you know exactly what you are buying.
             </p>
             <TextLink to="/the-house" className="mt-10">
               Read Our Story
@@ -232,11 +238,13 @@ export default function HomePage() {
       <section className="border-y border-gold/25 bg-cream px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <div className="mx-auto max-w-[1420px]">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <Eyebrow>What Pashmina Is</Eyebrow>
-            <h2 className="display-1 mt-5 text-balance">A rare fibre, finished by hand in Kashmir.</h2>
+            <Eyebrow tone="ink">What Pashmina Is</Eyebrow>
+            <h2 className="display-1 mt-5 text-balance">
+              A rare fibre, finished by hand in Kashmir.
+            </h2>
             <p className="body-editorial mx-auto mt-7 max-w-2xl text-charcoal/75">
-              The word is printed on many scarves that contain little or none of it. Genuine Pashmina
-              is one specific fibre, from one animal, made into cloth in one valley.
+              The word is printed on many scarves that contain little or none of it. Genuine
+              Pashmina is one specific fibre, from one animal, made into cloth in one valley.
             </p>
           </Reveal>
           <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
@@ -304,8 +312,8 @@ export default function HomePage() {
         }
         body={
           <p>
-            Fibre is sorted and spun, the loom is set, and the cloth is woven, washed and finished. A
-            Kani weaver follows a talim — a coded pattern sheet — and a fine piece can take many
+            Fibre is sorted and spun, the loom is set, and the cloth is woven, washed and finished.
+            A Kani weaver follows a talim — a coded pattern sheet — and a fine piece can take many
             months. That time is the reason a genuine Kani cannot be cheap.
           </p>
         }

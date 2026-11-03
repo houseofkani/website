@@ -17,7 +17,7 @@ export function SiteFooter() {
                   <li key={link.to}>
                     <Link
                       href={link.to}
-                      className="font-display text-[1.0625rem] font-light text-ivory/75 transition-colors duration-500 hover:text-ivory"
+                      className="inline-block py-1 font-display text-[1.0625rem] font-light text-ivory/75 transition-colors duration-500 hover:text-ivory"
                     >
                       {link.label}
                     </Link>
@@ -43,7 +43,7 @@ export function SiteFooter() {
           </p>
           <Link
             href={ETSY_HREF}
-            className="eyebrow mt-8 border-y border-gold/35 py-3 text-gold transition-colors duration-500 hover:text-ivory"
+            className="eyebrow mt-8 inline-block border-y border-gold/35 py-3 text-gold transition-colors duration-500 hover:text-ivory"
           >
             Our first collection opens on Etsy →
           </Link>
@@ -56,7 +56,7 @@ export function SiteFooter() {
                 <li key={s.label}>
                   <a
                     href={s.href}
-                    className="nav-label text-ivory/55 transition-colors duration-500 hover:text-gold"
+                    className="nav-label inline-block py-1 text-ivory/55 transition-colors duration-500 hover:text-gold"
                   >
                     {s.label}
                   </a>
@@ -64,9 +64,9 @@ export function SiteFooter() {
               ))}
             </ul>
           ) : (
-            <p className="eyebrow text-ivory/40">{SITE.appointments}</p>
+            <p className="eyebrow text-ivory/55">{SITE.appointments}</p>
           )}
-          <p className="eyebrow text-ivory/40">
+          <p className="eyebrow text-ivory/55">
             © {new Date().getFullYear()} House of Kani — Srinagar, Kashmir
           </p>
         </div>

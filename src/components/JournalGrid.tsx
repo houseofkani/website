@@ -10,8 +10,7 @@ import type { JournalArticle } from "@/lib/cms";
 export function JournalGrid({ articles }: { articles: JournalArticle[] }) {
   const categories = ["All", ...new Set(articles.map((a) => a.category))];
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
-  const visible =
-    category === "All" ? articles : articles.filter((a) => a.category === category);
+  const visible = category === "All" ? articles : articles.filter((a) => a.category === category);
 
   return (
     <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
@@ -25,7 +24,7 @@ export function JournalGrid({ articles }: { articles: JournalArticle[] }) {
               className={`nav-label border-b pb-1 transition-colors ${
                 category === c
                   ? "border-gold text-charcoal"
-                  : "border-transparent text-stone hover:text-charcoal"
+                  : "border-transparent text-stone-ink hover:text-charcoal"
               }`}
             >
               {c}
@@ -44,7 +43,7 @@ export function JournalGrid({ articles }: { articles: JournalArticle[] }) {
                     className="duration-[1400ms] group-hover:scale-[1.03]"
                   />
                 </div>
-                <p className="eyebrow mt-5 text-gold">
+                <p className="eyebrow mt-5 text-gold-ink">
                   {a.category} · {a.readTime}
                 </p>
                 <h2 className="display-3 mt-2 group-hover:text-burgundy">{a.title}</h2>

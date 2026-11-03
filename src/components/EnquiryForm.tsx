@@ -61,7 +61,7 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
       <div className="grid gap-8 sm:grid-cols-2">
         <Field label="Telephone" name="telephone" type="tel" />
         <label className="block">
-          <span className="eyebrow text-stone">Nature of enquiry</span>
+          <span className="eyebrow text-stone-ink">Nature of enquiry</span>
           <select
             name="enquiry"
             defaultValue={kind === "appointment" ? "Appointment in Srinagar" : "General enquiry"}
@@ -74,7 +74,7 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
         </label>
       </div>
       <label className="block">
-        <span className="eyebrow text-stone">Your note</span>
+        <span className="eyebrow text-stone-ink">Your note</span>
         <textarea
           name="message"
           required
@@ -83,9 +83,9 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
           placeholder="Tell us what you are looking for, or when you would like to visit."
         />
       </label>
-      <p className="text-[0.9rem] text-charcoal/60">
-        Sending opens your own email app with this note addressed to {SITE.email}. Nothing is
-        stored on this website.
+      <p className="text-[0.9rem] text-charcoal/70">
+        Sending opens your own email app with this note addressed to {SITE.email}. Nothing is stored
+        on this website.
       </p>
       <button
         type="submit"
@@ -110,7 +110,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="eyebrow text-stone">{label}</span>
+      <span className="eyebrow text-stone-ink">{label}</span>
       <input
         name={name}
         type={type}

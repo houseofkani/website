@@ -118,7 +118,7 @@ export function SiteHeader() {
                   key={item.to}
                   href={item.to}
                   className={cn(
-                    "nav-label relative py-1 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                    "nav-label relative py-1.5 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
                     light
                       ? "text-ivory/80 hover:text-ivory"
                       : "text-charcoal/70 hover:text-charcoal",
@@ -141,8 +141,10 @@ export function SiteHeader() {
 
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-forest transition-opacity duration-700 lg:hidden",
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+          "fixed inset-0 z-40 bg-forest transition-[opacity,visibility] duration-700 lg:hidden",
+          open
+            ? "pointer-events-auto visible opacity-100"
+            : "pointer-events-none invisible opacity-0",
         )}
       >
         <nav className="flex h-full flex-col items-center justify-center gap-1 px-8 text-center">

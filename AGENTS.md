@@ -16,6 +16,7 @@
 - Use the supplied HK emblem (`public/images/house-of-kani-emblem-v1.png`, derived from `src/assets/house-of-kani-emblem-new.png`) for every brand mark. Icons, touch icons and social avatars are generated from it by `pnpm brand:assets` — never hand-edited.
 - Keep static editorial image paths in the shared image registry with new, versioned filenames for refreshed photography; leave approved asset bytes and presentation untouched so imagery changes remain reversible.
 - Give each content page dedicated image registry keys rather than changing shared keys when refreshing one page; this isolates photography updates from approved imagery elsewhere.
+- Small type on light grounds uses the text-safe accents `text-gold-ink` / `text-stone-ink` (WCAG AA on ivory and cream). `text-gold` and `text-stone` stay for ornaments, borders and type over forest/burgundy or imagery; `<Eyebrow>` takes `tone="ink"` on light sections.
 
 ## CMS integration
 

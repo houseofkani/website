@@ -49,8 +49,10 @@
   --color-ivory: var(--ivory);
   --color-cream: var(--cream);
   --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
   --color-charcoal: var(--charcoal);
   --color-stone: var(--stone);
+  --color-stone-ink: var(--stone-ink);
   /* WhatsApp's official brand green, kept apart from the house palette. */
   --color-whatsapp: #25d366;
   --color-whatsapp-deep: #1da851;
@@ -81,6 +83,13 @@
   --gold: oklch(0.702 0.055 72);
   --charcoal: oklch(0.205 0 0);
   --stone: oklch(0.594 0.014 74.6);
+  /*
+   * Text-safe variants for small type on light grounds. `--gold` and `--stone`
+   * are the decorative tones (ornaments, borders, type over forest/burgundy);
+   * these darker inks keep the same hue while clearing WCAG AA at label sizes.
+   */
+  --gold-ink: oklch(0.49 0.07 66);
+  --stone-ink: oklch(0.48 0.014 74.6);
   --image-text-shadow: 0 2px 18px oklch(0.12 0.02 158 / 72%);
 
   --background: var(--ivory);

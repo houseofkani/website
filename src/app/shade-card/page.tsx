@@ -51,7 +51,7 @@ export default function ShadeCardPage() {
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-32">
         <div className="mx-auto max-w-5xl">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow text-gold">The Colours of a Solid</p>
+            <p className="eyebrow text-gold-ink">The Colours of a Solid</p>
             <h2 className="display-1 mt-5">Two Hundred and Seventy-Nine Colours.</h2>
             <p className="body-editorial mt-7 text-charcoal/80">
               A solid Pashmina has no pattern to hide behind, so its colour carries the whole piece.
@@ -70,7 +70,7 @@ export default function ShadeCardPage() {
                   className="bg-ivory px-5 py-6 text-center last:col-span-2 sm:last:col-span-1"
                 >
                   <dt>
-                    <span className="font-display block text-[2rem] leading-none font-light text-gold">
+                    <span className="font-display block text-[2rem] leading-none font-light text-gold-ink">
                       {item.mark}
                     </span>
                     <span className="eyebrow mt-3 block text-charcoal">{item.label}</span>

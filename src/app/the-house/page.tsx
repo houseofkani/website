@@ -39,12 +39,13 @@ export default function TheHousePage() {
       />
       <section className="bg-ivory px-5 py-20 text-center sm:px-8 sm:py-28 lg:py-36">
         <Reveal className="mx-auto max-w-3xl">
-          <p className="eyebrow text-gold">Who We Are</p>
+          <p className="eyebrow text-gold-ink">Who We Are</p>
           <h2 className="display-1 mt-5">Weavers First.</h2>
           <p className="body-editorial mt-7 text-charcoal/75">
-            We are the fourth generation of a Kashmiri family that has lived by Pashmina. We weave on
-            our own looms, and we choose further pieces from a network of artisans we have known and
-            trusted for years. Everything we sell is a shawl, stole or wrap in 100% pure Pashmina.
+            We are the fourth generation of a Kashmiri family that has lived by Pashmina. We weave
+            on our own looms, and we choose further pieces from a network of artisans we have known
+            and trusted for years. Everything we sell is a shawl, stole or wrap in 100% pure
+            Pashmina.
           </p>
           <OrnamentRule className="mt-10" />
         </Reveal>
@@ -74,9 +75,9 @@ export default function TheHousePage() {
         title="A Name That Sets the Standard."
         body={
           <p>
-            Kani is the most demanding of Kashmir’s weaves: every motif is formed on the loom, thread
-            by thread. We took its name as the standard we hold ourselves to — across our Kani, our
-            Sozni and our solids alike.
+            Kani is the most demanding of Kashmir’s weaves: every motif is formed on the loom,
+            thread by thread. We took its name as the standard we hold ourselves to — across our
+            Kani, our Sozni and our solids alike.
           </p>
         }
         reverse
@@ -89,9 +90,9 @@ export default function TheHousePage() {
         title="Four Generations of Weavers."
         body={
           <p>
-            The knowledge behind our shawls passes through the family itself —
-            from our great-grandparents&rsquo; looms in Srinagar to the hands that
-            sort, weave and finish every piece today.
+            The knowledge behind our shawls passes through the family itself — from our
+            great-grandparents&rsquo; looms in Srinagar to the hands that sort, weave and finish
+            every piece today.
           </p>
         }
         reverse

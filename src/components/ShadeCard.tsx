@@ -111,7 +111,9 @@ export function ShadeCard() {
           ref={indexRef}
           className="relative mx-auto flex max-w-[1560px] items-center gap-6 overflow-x-auto px-5 [scrollbar-width:none] sm:px-8 lg:px-12"
         >
-          <p className="eyebrow hidden shrink-0 py-4 text-gold xl:block">{shades.length} Shades</p>
+          <p className="eyebrow hidden shrink-0 py-4 text-gold-ink xl:block">
+            {shades.length} Shades
+          </p>
           <ul className="flex shrink-0 items-stretch gap-5 lg:gap-7">
             {chapters.map((chapter) => (
               <li key={chapter.id} className="shrink-0">
@@ -122,11 +124,11 @@ export function ShadeCard() {
                     "nav-label group flex flex-col gap-2 py-4 whitespace-nowrap transition-colors duration-500",
                     current === chapter.id
                       ? "text-charcoal"
-                      : "text-charcoal/50 hover:text-charcoal",
+                      : "text-charcoal/65 hover:text-charcoal",
                   )}
                 >
                   <span>
-                    <span className="mr-2 text-gold">{chapter.numeral}</span>
+                    <span className="mr-2 text-gold-ink">{chapter.numeral}</span>
                     {chapter.title}
                   </span>
                   <span
@@ -154,7 +156,7 @@ export function ShadeCard() {
           >
             <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16 xl:grid-cols-[minmax(0,24rem)_1fr]">
               <Reveal className="lg:sticky lg:top-40 lg:self-start">
-                <p className="eyebrow text-gold">Chapter {chapter.numeral}</p>
+                <p className="eyebrow text-gold-ink">Chapter {chapter.numeral}</p>
                 <h2 id={`shades-${chapter.id}-title`} className="display-2 mt-4 text-balance">
                   {chapter.title}
                 </h2>
@@ -166,7 +168,7 @@ export function ShadeCard() {
                   className="mt-8 h-1.5 w-full max-w-xs"
                   style={{ backgroundImage: chapter.ribbon }}
                 />
-                <p className="eyebrow mt-4 text-charcoal/50">
+                <p className="eyebrow mt-4 text-charcoal/65">
                   {chapter.items.length} {chapter.items.length === 1 ? "shade" : "shades"}
                 </p>
               </Reveal>
@@ -205,7 +207,6 @@ function Swatch({
     <button
       type="button"
       data-shade={shade.code}
-      aria-label={`Shade ${shade.code}, ${shade.name}`}
       aria-pressed={selected}
       onClick={(event) => onSelect(shade, event.currentTarget)}
       className={cn(
@@ -219,6 +220,7 @@ function Swatch({
         style={{ backgroundColor: shade.hex, backgroundImage: SHEEN }}
       />
       <span className="block px-0.5 pt-2 pb-1">
+        <span className="sr-only">Shade </span>
         <span className="block font-sans text-[0.6rem] tracking-[0.18em] text-charcoal uppercase sm:text-[0.65rem]">
           {shade.code}
         </span>
@@ -267,12 +269,12 @@ function ShadeDetail({
               />
             </div>
             <div className="min-w-0 flex-1 pr-8 lg:pr-0">
-              <p className="eyebrow text-gold">{chapterTitle[shade.chapter]}</p>
+              <p className="eyebrow text-gold-ink">{chapterTitle[shade.chapter]}</p>
               <p className="display-2 mt-2 lg:mt-3">No. {shade.code}</p>
               <p className="font-display mt-1 text-[1.25rem] font-light text-charcoal/75 italic">
                 {shade.name}
               </p>
-              <p className="eyebrow mt-4 text-charcoal/50">
+              <p className="eyebrow mt-4 text-charcoal/65">
                 Indicative <span className="ml-1 font-sans tracking-[0.12em]">{shade.hex}</span>
               </p>
             </div>
@@ -290,7 +292,7 @@ function ShadeDetail({
                 type="button"
                 onClick={() => onStep(-1)}
                 aria-label="Previous shade"
-                className="nav-label flex h-10 w-10 items-center justify-center border border-charcoal/15 text-charcoal transition-colors duration-500 hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="nav-label flex h-10 w-10 items-center justify-center border border-charcoal/15 text-charcoal transition-colors duration-500 hover:border-gold hover:text-gold-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 ←
               </button>
@@ -298,7 +300,7 @@ function ShadeDetail({
                 type="button"
                 onClick={() => onStep(1)}
                 aria-label="Next shade"
-                className="nav-label flex h-10 w-10 items-center justify-center border border-charcoal/15 text-charcoal transition-colors duration-500 hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="nav-label flex h-10 w-10 items-center justify-center border border-charcoal/15 text-charcoal transition-colors duration-500 hover:border-gold hover:text-gold-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 →
               </button>
@@ -311,7 +313,7 @@ function ShadeDetail({
         type="button"
         onClick={onClose}
         aria-label="Close shade detail"
-        className="nav-label absolute top-3 right-3 flex h-10 w-10 items-center justify-center text-charcoal/60 transition-colors duration-500 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold lg:top-[4.75rem] lg:right-5"
+        className="nav-label absolute top-3 right-3 flex h-10 w-10 items-center justify-center text-charcoal/60 transition-colors duration-500 hover:text-gold-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold lg:top-[4.75rem] lg:right-5"
       >
         ✕
       </button>

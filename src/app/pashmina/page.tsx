@@ -111,7 +111,7 @@ export default function PashminaPage() {
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-5xl">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow text-gold">The Material</p>
+            <p className="eyebrow text-gold-ink">The Material</p>
             <h2 className="display-1 mt-5">Pashmina, Plainly.</h2>
             <p className="body-editorial mt-7 text-charcoal/80">
               Pashmina is the finest grade of cashmere: the winter undercoat of the Changthangi goat
@@ -129,7 +129,7 @@ export default function PashminaPage() {
 
       <section className="bg-forest px-5 py-16 text-center text-ivory sm:px-8 sm:py-20">
         <Reveal className="mx-auto max-w-3xl">
-          <p className="eyebrow text-gold">The Making</p>
+          <p className="eyebrow text-gold-ink">The Making</p>
           <h2 className="display-2 mt-4">One fibre. Three ways of making.</h2>
           <p className="body-editorial mx-auto mt-5 max-w-2xl text-ivory/78">
             Our name honours Kani, the most demanding of Kashmir’s weaves. Our collection also
@@ -192,19 +192,20 @@ export default function PashminaPage() {
               fineness of the fibre, the evenness of the weave and the depth of the colour are what
               you see and feel.
             </p>
-            <p>
-              Our solids include single colours, reversible two-tone pieces and quiet checks.
-            </p>
+            <p>Our solids include single colours, reversible two-tone pieces and quiet checks.</p>
           </>
         }
         action={<TextLink to="/shade-card">View the Shade Card</TextLink>}
         imageRatio="portrait"
       />
 
-      <section id="authenticity" className="scroll-mt-24 bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
+      <section
+        id="authenticity"
+        className="scroll-mt-24 bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-36"
+      >
         <div className="mx-auto max-w-5xl">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-gold">Authenticity and GI</p>
+            <p className="eyebrow text-gold-ink">Authenticity and GI</p>
             <h2 className="display-1 mt-4">How to Recognise Pure Pashmina.</h2>
             <p className="body-editorial mt-7 text-charcoal/75">
               No single test is perfect, but together these checks will tell you a great deal. With
@@ -221,7 +222,7 @@ export default function PashminaPage() {
       <section id="care" className="scroll-mt-24 bg-cream px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-5xl">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-gold">Care</p>
+            <p className="eyebrow text-gold-ink">Care</p>
             <h2 className="display-2 mt-4">Looking After a Pashmina.</h2>
             <p className="body-editorial mt-6 text-charcoal/75">
               Cared for properly, a pure Pashmina lasts for decades.
