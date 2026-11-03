@@ -24,6 +24,10 @@ export default function PrivacyPage() {
           body: "We do not sell personal information. Details may be used to manage appointments, respond to press or partnership enquiries, and maintain necessary business records.",
         },
         {
+          title: "How enquiries reach us",
+          body: "An enquiry sent through this site is delivered to our enquiries address by Resend, our email provider, which processes the message only to transmit it. The message is not stored on the website itself.",
+        },
+        {
           title: "Your choices",
           body: "You may ask to see, correct or remove personal information held by the House. Please contact our general enquiries address with your request.",
         },

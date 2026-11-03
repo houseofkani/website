@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { FEED_ALTERNATES } from "@/lib/feed";
+import { SITE } from "@/lib/site";
 import { siteConfig } from "@/lib/site-config";
 
 export function canonicalPathname(pathname: string): string {
@@ -107,6 +108,7 @@ export function organizationLd() {
     url: siteConfig.url,
     description: siteConfig.description,
     ...(siteConfig.contactConfirmed ? { email: siteConfig.email } : {}),
+    ...(SITE.social.length ? { sameAs: SITE.social.map((profile) => profile.href) } : {}),
     logo: {
       "@type": "ImageObject",
       url: absoluteImageUrl(BRAND_LOGO),
