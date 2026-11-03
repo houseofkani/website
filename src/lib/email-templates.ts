@@ -18,6 +18,8 @@ export type EnquiryInput = {
 export type TemplateOptions = {
   siteUrl: string;
   toEmail: string;
+  /** Public profiles rendered in the footer. */
+  social?: { label: string; href: string }[];
 };
 
 /** Palette mirrors globals.css so the email reads as the same house. */
@@ -77,6 +79,22 @@ export function enquiryText(input: EnquiryInput, options: TemplateOptions): stri
   ]
     .filter((line) => line !== "")
     .join("\n");
+}
+
+function socialRow(options: TemplateOptions): string {
+  const profiles = options.social ?? [];
+  if (profiles.length === 0) return "";
+
+  const links = profiles
+    .map(
+      (profile) =>
+        `<a href="${escapeHtml(profile.href)}" style="color:${C.goldInk};text-decoration:none;">${escapeHtml(profile.label)}</a>`,
+    )
+    .join(`&nbsp;&nbsp;·&nbsp;&nbsp;`);
+
+  return `<p style="margin:12px 0 0;font-family:${SANS};font-size:11px;letter-spacing:0.14em;line-height:2;color:${C.stone};">
+                      ${links}
+                    </p>`;
 }
 
 function detailRow(label: string, value: string, href?: string): string {
@@ -213,6 +231,7 @@ export function enquiryHtml(input: EnquiryInput, options: TemplateOptions): stri
                       &nbsp;·&nbsp;
                       <a href="${site}/contact" style="color:${C.goldInk};">Contact</a>
                     </p>
+                    ${socialRow(options)}
                     <p style="margin:8px 0 0;font-family:${SANS};font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:${C.stone};">
                       House of Kani · Srinagar, Kashmir
                     </p>
@@ -298,8 +317,11 @@ export function enquiryAcknowledgedHtml(input: EnquiryInput, options: TemplateOp
             </td>
           </tr>
           <tr>
-            <td class="pad" align="center" style="padding:20px 40px 30px;font-family:${SANS};font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:${C.stone};">
-              House of Kani · Srinagar, Kashmir
+            <td class="pad" align="center" style="padding:6px 40px 30px;">
+              ${socialRow(options)}
+              <p style="margin:10px 0 0;font-family:${SANS};font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:${C.stone};">
+                House of Kani · Srinagar, Kashmir
+              </p>
             </td>
           </tr>
         </table>

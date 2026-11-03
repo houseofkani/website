@@ -51,7 +51,7 @@ export class EmailNotConfiguredError extends Error {
 export type SendResult = { id: string; acknowledged: boolean };
 
 export async function sendEnquiry(input: EnquiryInput): Promise<SendResult> {
-  const options = { siteUrl: siteConfig.url, toEmail: ENQUIRY_RECIPIENT };
+  const options = { siteUrl: siteConfig.url, toEmail: ENQUIRY_RECIPIENT, social: SITE.social };
   const subject = enquirySubject(input);
 
   const { data, error } = await resend().emails.send({

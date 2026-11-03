@@ -115,3 +115,29 @@ describe("enquiryAcknowledgedHtml", () => {
     expect(html).toContain("https://houseofkani.com/journal");
   });
 });
+
+describe("social links in the email footer", () => {
+  const social = [
+    { label: "Instagram", href: "https://www.instagram.com/houseofkani/" },
+    { label: "Pinterest", href: "https://www.pinterest.com/pinterest_houseofkani/" },
+  ];
+
+  it("renders each profile in the enquiry footer", () => {
+    const html = enquiryHtml(enquiry(), { ...OPTIONS, social });
+
+    expect(html).toContain('href="https://www.instagram.com/houseofkani/"');
+    expect(html).toContain('href="https://www.pinterest.com/pinterest_houseofkani/"');
+    expect(html).toContain(">Instagram<");
+    expect(html).toContain(">Pinterest<");
+  });
+
+  it("renders them in the acknowledgement too", () => {
+    const html = enquiryAcknowledgedHtml(enquiry(), { ...OPTIONS, social });
+    expect(html).toContain('href="https://www.instagram.com/houseofkani/"');
+  });
+
+  it("omits the row entirely when no profiles are configured", () => {
+    const html = enquiryHtml(enquiry(), OPTIONS);
+    expect(html).not.toContain("instagram.com");
+  });
+});
