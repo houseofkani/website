@@ -40,6 +40,27 @@ REVALIDATE_SECRET=
 `*.trycloudflare.com` quick tunnel: it stops resolving when cloudflared
 restarts, and the Journal falls back to its empty state.
 
+## Switch CMS origin (rollback)
+
+The old self-hosted CMS on the exe.dev VM is kept as a standby. Switching is a
+single `CMS_URL` change — no code edit:
+
+```bash
+./scripts/switch-cms.sh exe       # roll back to the exe.dev CMS
+./scripts/switch-cms.sh vercel    # return to the Vercel CMS
+./scripts/switch-cms.sh exe --check   # health-check only, changes nothing
+```
+
+The script checks `/api/health` first, then updates `CMS_URL` for all Vercel
+environments and deploys the website. Both the Vercel and exe.dev origins are
+permanently allow-listed in `next.config.ts` for `next/image`, so images keep
+working after a switch.
+
+**Data note:** the exe.dev database is a snapshot from the migration. Articles
+created or edited on the Vercel CMS afterwards exist only in Neon. For a full
+failover with the latest content, restore a Neon dump and the Blob media onto
+the exe.dev VM first; see `../cms/DEPLOYMENT.md`.
+
 ## Deploy (Vercel)
 
 1. Import the GitHub repo in Vercel

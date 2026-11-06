@@ -12,6 +12,7 @@
     "format": "prettier --write .",
     "optimize:images": "node scripts/optimize-images.mjs",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
+    "cms:switch": "bash scripts/switch-cms.sh",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "lighthouse": "lhci autorun"
