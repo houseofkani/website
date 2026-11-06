@@ -9,7 +9,7 @@ import type { NextConfig } from "next";
 const STABLE_CMS_ORIGIN = "https://house-of-kani-cms.vercel.app";
 // Self-hosted rollback origin (exe.dev). Keep it allow-listed permanently so
 // switching CMS_URL back is a one-variable operation.
-const LEGACY_CMS_ORIGIN = "https://house-of-kani-cms.exe.xyz";
+const STANDBY_CMS_ORIGIN = "https://house-of-kani.exe.xyz";
 function safeUrl(value: string | undefined, fallback: string): URL {
   try {
     return new URL(value || fallback);
@@ -27,7 +27,7 @@ const mediaPattern = (url: URL): { protocol: "http" | "https"; hostname: string;
 const cmsOrigins = [
   cmsUrl,
   safeUrl(STABLE_CMS_ORIGIN, STABLE_CMS_ORIGIN),
-  safeUrl(LEGACY_CMS_ORIGIN, LEGACY_CMS_ORIGIN),
+  safeUrl(STANDBY_CMS_ORIGIN, STANDBY_CMS_ORIGIN),
 ];
 if (cmsUrl.hostname !== "localhost") {
   cmsOrigins.push(safeUrl("http://localhost:3000", "http://localhost:3000"));

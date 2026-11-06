@@ -19,7 +19,7 @@ Usage: ./scripts/switch-cms.sh <target> [options]
 
 Targets:
   vercel            https://cms.houseofkani.com
-  exe | legacy      https://house-of-kani-cms.exe.xyz   (rollback)
+  exe | legacy      https://house-of-kani.exe.xyz   (rollback)
   custom <url>      any Payload CMS origin
 
 Options:
@@ -43,7 +43,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     exe | legacy)
       TARGET="exe"
-      ORIGIN="https://house-of-kani-cms.exe.xyz"
+      ORIGIN="https://house-of-kani.exe.xyz"
       shift
       ;;
     custom)
