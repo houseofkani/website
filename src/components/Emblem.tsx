@@ -20,7 +20,7 @@ export function Emblem({
       width={1024}
       height={1024}
       priority={priority}
-      sizes="(max-width: 640px) 96px, 160px"
+      sizes="(max-width: 640px) 40px, 44px"
       className={cn("h-auto w-10 shrink-0 select-none", className)}
     />
   );

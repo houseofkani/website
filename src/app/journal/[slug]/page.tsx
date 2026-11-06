@@ -126,9 +126,9 @@ export default async function JournalArticlePage({ params }: Props) {
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p className="eyebrow text-gold-ink">By {article.author.name}</p>
           {article.author.designation ? (
-            <p className="nav-label text-charcoal/55">{article.author.designation}</p>
+            <p className="nav-label text-charcoal/70">{article.author.designation}</p>
           ) : null}
-          <p className="eyebrow text-charcoal/40">{article.date}</p>
+          <p className="eyebrow text-charcoal/65">{article.date}</p>
         </div>
         <div className="journal-body">
           {article.body.map((section, i) => (

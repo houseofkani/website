@@ -18,6 +18,7 @@ House of Kani is a fourth-generation Kashmiri family house based in Hazratbal, S
 - [The House](https://www.houseofkani.com/the-house): The family behind House of Kani and four generations of Pashmina work in Hazratbal, Srinagar.
 - [Pashmina](https://www.houseofkani.com/pashmina): What pure Pashmina is, how it is graded, and the traditions it belongs to.
 - [Kani](https://www.houseofkani.com/kani): Kani weaving explained — the talim, the woven colour, and why a single shawl can take months.
+- [Sozni](https://www.houseofkani.com/sozni): The fine hand embroidery of Kashmir — stitches, maheen kari, GI No. 48 and how to recognise handwork.
 - [Craftsmanship](https://www.houseofkani.com/craftsmanship): The techniques we work in: Kani, Sozni, Maheen Kari, solids and checks.
 - [Heritage](https://www.houseofkani.com/heritage): The history of Pashmina in Kashmir and the GI-protected craft region it comes from.
 - [Kashmir](https://www.houseofkani.com/kashmir): The place itself — Srinagar, the valley, the fibre, and the seasons of work.
@@ -43,6 +44,7 @@ House of Kani is a fourth-generation Kashmiri family house based in Hazratbal, S
 
 ## Optional
 
+- [Full text](https://www.houseofkani.com/llms-full.txt): Full Journal text for retrieval systems.
 - [Sitemap](https://www.houseofkani.com/sitemap.xml): Machine-readable list of every public URL.
 - [RSS feed](https://www.houseofkani.com/feed.xml): Journal stories, newest first, with full text.
 - [JSON Feed](https://www.houseofkani.com/feed.json): The same stories as JSON Feed 1.1.

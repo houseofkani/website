@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Ornament } from "@/components/Ornament";
 import { cn } from "@/lib/utils";
@@ -11,6 +13,8 @@ type PageHeroProps = {
   height?: "full" | "tall" | "medium";
   position?: string;
   priority?: boolean;
+  /** Optional above-fold action shown beneath the subtitle. */
+  action?: ReactNode;
 };
 
 /** Cinematic opening image with the header overlaying it. */
@@ -23,6 +27,7 @@ export function PageHero({
   height = "tall",
   position = "center",
   priority = true,
+  action,
 }: PageHeroProps) {
   const heightClass =
     height === "full"
@@ -57,6 +62,7 @@ export function PageHero({
               {subtitle}
             </p>
           ) : null}
+          {action ? <div className="mt-8">{action}</div> : null}
         </div>
       </div>
     </section>

@@ -1,0 +1,45 @@
+User-Agent: *
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: GPTBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: OAI-SearchBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: ChatGPT-User
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: ClaudeBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: Claude-SearchBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: Claude-User
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: PerplexityBot
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: Perplexity-User
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: Google-Extended
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-Agent: Applebot-Extended
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+Sitemap: https://www.houseofkani.com/sitemap.xml

@@ -11,7 +11,7 @@ import { Reveal } from "@/components/Reveal";
 import { JournalListingSkeleton } from "@/components/Skeleton";
 import { getJournalPage } from "@/lib/cms";
 import { images } from "@/lib/images";
-import { itemListLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { itemListLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 /** Stories per page — three rows of the three-column grid. */
 const PAGE_SIZE = 9;
@@ -71,13 +71,24 @@ async function JournalListing({ page }: { page: number }) {
   }
 
   const featured = page === 1 ? articles[0] : undefined;
+  // The featured story is already rendered as the hero; don't request its
+  // image a second time as a grid card.
+  const gridArticles = featured ? articles.slice(1) : articles;
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/journal",
+              name: "Journal",
+              description:
+                "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
+              type: "CollectionPage",
+              image: images.heritageArchive,
+            }),
             itemListLd({
               name: page > 1 ? `House of Kani Journal — Page ${page}` : "House of Kani Journal",
               path: journalPageHref(page),
@@ -86,7 +97,7 @@ async function JournalListing({ page }: { page: number }) {
                 path: `/journal/${a.slug}`,
               })),
             }),
-          ),
+          ]),
         }}
       />
       {featured ? (
@@ -114,7 +125,7 @@ async function JournalListing({ page }: { page: number }) {
           </Link>
         </section>
       ) : null}
-      <JournalGrid articles={articles} />
+      <JournalGrid articles={gridArticles} />
       <JournalPagination page={page} totalPages={totalPages} />
     </>
   );

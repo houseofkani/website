@@ -4,7 +4,7 @@ import { PullQuote, SplitSection, TextLink } from "@/components/Editorial";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "Kashmir Shawl History: Six Centuries of Pashmina",
@@ -49,12 +49,19 @@ export default function HeritagePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/heritage",
+              name: "Kashmir Shawl History: Six Centuries of Pashmina",
+              description:
+                "A short history of the Kashmir shawl: how Pashmina weaving, Kani and Sozni developed in the valley and travelled the world.",
+              image: images.heritageArchive,
+            }),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "Heritage", path: "/heritage" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero
@@ -135,6 +142,66 @@ export default function HeritagePage() {
         }
         action={<TextLink to="/the-house">About Our Family</TextLink>}
       />
+      <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-4xl">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow text-gold-ink">Sources and Further Reading</p>
+            <h2 className="display-2 mt-4">What the Record Shows.</h2>
+            <p className="body-editorial mt-6 text-charcoal/75">
+              The history above is a short synthesis. The primary records are more detailed, and
+              they are worth reading directly: the GI specifications for Kashmir Pashmina and Kani,
+              the public garden record for the Mughal landscapes that shaped the motifs, and the
+              Directorate of Handicrafts for the craft’s training and certification system.
+            </p>
+          </Reveal>
+          <ul className="mt-8 space-y-4 text-charcoal/80">
+            <li>
+              <a
+                href="https://cdiptqccgi.com/gi-crafts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                Craft Development Institute — GI-registered Kashmir crafts
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/46"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                IP India — Kashmir Pashmina GI No. 46
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://whc.unesco.org/en/tentativelists/5580"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                UNESCO — Mughal Gardens in Kashmir
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://dohh.jk.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                Directorate of Handicrafts &amp; Handloom Kashmir
+              </a>
+            </li>
+          </ul>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <TextLink to="/craftsmanship">How the Work Is Made</TextLink>
+            <TextLink to="/journal/the-gardens-of-kashmir">The Gardens of Kashmir</TextLink>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

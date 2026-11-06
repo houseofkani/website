@@ -107,11 +107,14 @@ export function jsonLdScript(data: unknown): string {
 }
 
 const BRAND_LOGO = "/images/house-of-kani-emblem-v1.png";
+const ORGANIZATION_ID = `${siteConfig.url.replace(/\/$/, "")}/#organization`;
+const WEBSITE_ID = `${siteConfig.url.replace(/\/$/, "")}/#website`;
 
 export function organizationLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": ORGANIZATION_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
@@ -147,17 +150,71 @@ export function websiteLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    inLanguage: "en",
+    publisher: { "@id": ORGANIZATION_ID },
   };
+}
+
+export function webPageLd(options: {
+  path: string;
+  name: string;
+  description?: string;
+  type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+  image?: string;
+}) {
+  const url = absoluteUrl(options.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": options.type ?? "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: options.name,
+    ...(options.description ? { description: options.description } : {}),
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": ORGANIZATION_ID },
+    inLanguage: "en",
+    ...(options.image
+      ? {
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: absoluteImageUrl(options.image),
+          },
+        }
+      : {}),
+  };
+}
+
+export function definedTermsLd(
+  path: string,
+  terms: Array<{ name: string; description: string }>,
+) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": `${url}#terms`,
+    name: `House of Kani — ${optionsName(path)} terms`,
+    hasDefinedTerm: terms.map((term) => ({
+      "@type": "DefinedTerm",
+      name: term.name,
+      description: term.description,
+    })),
+  };
+}
+
+function optionsName(path: string): string {
+  return path === "/" ? "Home" : path.replace(/^\//, "").replace(/-/g, " ");
 }
 
 export function breadcrumbLd(items: Array<{ name: string; path: string }>) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${absoluteUrl(items[items.length - 1]?.path ?? "/")}#breadcrumb`,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -186,11 +243,13 @@ export function blogPostingLd(options: {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${absoluteUrl(options.path)}#article`,
     headline: options.title,
     description: options.description,
     image: absoluteImageUrl(options.image),
     url: absoluteUrl(options.path),
     mainEntityOfPage: absoluteUrl(options.path),
+    isPartOf: { "@id": WEBSITE_ID },
     author: isOrganization
       ? { "@type": "Organization", name: author.name }
       : {
@@ -198,17 +257,10 @@ export function blogPostingLd(options: {
           name: author.name,
           ...(author.designation ? { jobTitle: author.designation } : {}),
           ...(author.bio ? { description: author.bio } : {}),
-          worksFor: { "@type": "Organization", name: siteConfig.name },
+          worksFor: { "@id": ORGANIZATION_ID },
         },
     publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      logo: {
-        "@type": "ImageObject",
-        url: absoluteImageUrl(BRAND_LOGO),
-        width: 1024,
-        height: 1024,
-      },
+      "@id": ORGANIZATION_ID,
     },
     ...(options.datePublished ? { datePublished: options.datePublished } : {}),
     ...(options.dateModified ? { dateModified: options.dateModified } : {}),

@@ -4,7 +4,7 @@ import { EnquiryForm } from "@/components/EnquiryForm";
 import { MovementList, SplitSection } from "@/components/Editorial";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
-import { seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "Appointments and Loom Visits",
@@ -35,6 +35,25 @@ const options = [
 export default function PrivateClientPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/private-client",
+              name: "Appointments and Loom Visits",
+              description:
+                "Arrange an appointment with House of Kani — in person at our Hazratbal, Srinagar office, with a visit to our looms, or online by video call.",
+              type: "ContactPage",
+              image: images.kaniEarthStripeRodDraped,
+            }),
+            breadcrumbLd([
+              { name: "Home", path: "/" },
+              { name: "Appointments", path: "/private-client" },
+            ]),
+          ]),
+        }}
+      />
       <PageHero
         image={images.kaniEarthStripeRodDraped}
         imageAlt="A taupe Pashmina shawl with rose and turquoise paisleys displayed over a walnut rail"

@@ -105,11 +105,11 @@ export function ShadeCard() {
     <div className="relative">
       <nav
         aria-label="Shade card chapters"
-        className="sticky top-[3.75rem] z-30 border-y border-charcoal/10 bg-ivory/95 backdrop-blur-md"
+        className="sticky top-[4.3125rem] z-30 border-y border-charcoal/10 bg-ivory/95 backdrop-blur-md"
       >
         <div
           ref={indexRef}
-          className="relative mx-auto flex max-w-[1560px] items-center gap-6 overflow-x-auto px-5 [scrollbar-width:none] sm:px-8 lg:px-12"
+          className="relative mx-auto flex max-w-[1560px] snap-x snap-mandatory items-center gap-6 overflow-x-auto scroll-smooth px-5 [scrollbar-width:none] sm:px-8 lg:px-12"
         >
           <p className="eyebrow hidden shrink-0 py-4 text-gold-ink xl:block">
             {shades.length} Shades
@@ -143,6 +143,10 @@ export function ShadeCard() {
               </li>
             ))}
           </ul>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-ivory to-transparent lg:hidden"
+          />
         </div>
       </nav>
 
@@ -152,7 +156,7 @@ export function ShadeCard() {
             key={chapter.id}
             id={`shades-${chapter.id}`}
             aria-labelledby={`shades-${chapter.id}-title`}
-            className="scroll-mt-36 border-b border-charcoal/10 py-16 last:border-b-0 sm:py-20 lg:py-28"
+            className="scroll-mt-32 border-b border-charcoal/10 py-16 last:border-b-0 [content-visibility:auto] [contain-intrinsic-size:900px] sm:py-20 lg:py-28"
           >
             <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16 xl:grid-cols-[minmax(0,24rem)_1fr]">
               <Reveal className="lg:sticky lg:top-40 lg:self-start">

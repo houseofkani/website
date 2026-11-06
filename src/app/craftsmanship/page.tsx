@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { MovementList, SplitSection, TextLink } from "@/components/Editorial";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "Craftsmanship",
@@ -31,12 +31,19 @@ export default function CraftsmanshipPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/craftsmanship",
+              name: "Craftsmanship",
+              description:
+                "The techniques behind House of Kani Pashmina: Kani weaving, Sozni embroidery, hand-spinning and finishing.",
+              image: images.craftSpinningHero,
+            }),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "Craftsmanship", path: "/craftsmanship" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero
@@ -92,6 +99,28 @@ export default function CraftsmanshipPage() {
               weaving, and a fully patterned Kani shawl can stay on the loom for many months or more.
             </p>
             <p>That time is visible in the finished piece — and it is why genuine work is costly.</p>
+            <p>
+              Kashmir Pashmina, Kani and Sozni are protected by Geographical Indications. The{" "}
+              <a
+                href="https://cdiptqccgi.com/gi-crafts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                Craft Development Institute
+              </a>{" "}
+              publishes the specifications, and the{" "}
+              <a
+                href="https://dohh.jk.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                Directorate of Handicrafts
+              </a>{" "}
+              supports training and certification. Read more about{" "}
+              <TextLink to="/kani">Kani</TextLink> and <TextLink to="/sozni">Sozni</TextLink>.
+            </p>
           </>
         }
         tone="forest"

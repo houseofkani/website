@@ -162,7 +162,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link href={ETSY_HREF} className="eyebrow mt-8 border-y border-gold/40 py-3 text-gold">
-            Our first collection opens on Etsy →
+            Acquire a Piece →
           </Link>
         </nav>
       </div>

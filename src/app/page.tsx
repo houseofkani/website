@@ -55,7 +55,7 @@ const traditions = [
     line: "Fine embroidery worked by hand with a needle on finished Pashmina.",
     image: images.typeSozniGold,
     alt: "A gold Pashmina shawl with a hand-worked paisley border, laid beside a brass vessel",
-    to: "/pashmina#sozni",
+    to: "/sozni",
   },
   {
     number: "03",
@@ -73,13 +73,13 @@ function HomeClosing() {
       <section className="border-y border-gold/25 bg-cream px-5 py-16 text-center sm:px-8 sm:py-20">
         <Reveal className="mx-auto max-w-3xl">
           <Eyebrow tone="ink">Where to Buy</Eyebrow>
-          <h2 className="display-2 mt-4">Our first collection opens on Etsy.</h2>
+          <h2 className="display-2 mt-4">The First Collection, by Private Enquiry.</h2>
           <p className="body-editorial mx-auto mt-5 max-w-2xl text-charcoal/70">
-            Each listing names the technique, the fibre and the size. To see pieces in person or on
-            a video call, arrange an appointment with our family in Srinagar.
+            Pieces are available by private enquiry. We send available pieces, dimensions and
+            prices directly. We deliver worldwide and accept returns within 14 days.
           </p>
           <TextLink to={ETSY_HREF} className="mt-8">
-            Where to Buy
+            Enquire About a Piece
           </TextLink>
         </Reveal>
       </section>

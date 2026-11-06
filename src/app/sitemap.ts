@@ -9,6 +9,7 @@ const staticRoutes = [
   "/pashmina",
   "/shade-card",
   "/kani",
+  "/sozni",
   "/craftsmanship",
   "/heritage",
   "/kashmir",

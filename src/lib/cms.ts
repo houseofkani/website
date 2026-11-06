@@ -141,13 +141,25 @@ type CmsPost = {
   } | null;
 };
 
-/** Serve media through the public CMS origin (dev: :3000, prod: CMS domain). */
+/** Public website proxy for CMS media, so OG/schema/feed URLs stay on www. */
+const CMS_ORIGIN = new URL(CMS_URL).origin;
+
+function proxiedMediaPath(url: URL): string | null {
+  const prefix = "/api/media/file/";
+  return url.pathname.startsWith(prefix) ? `/media/${url.pathname.slice(prefix.length)}` : null;
+}
+
+/** Serve media through the public website origin, not the noindex CMS host. */
 function mediaUrl(media: CmsMedia | number | null | undefined): string {
   if (!media || typeof media === "number" || !media.url) return "";
   try {
-    // Absolute URLs (e.g. Vercel Blob) are already public — keep their origin.
-    if (/^https?:\/\//i.test(media.url)) return new URL(media.url).toString();
     const url = new URL(media.url, CMS_URL);
+    if (url.origin === CMS_ORIGIN) {
+      const proxied = proxiedMediaPath(url);
+      if (proxied) return proxied;
+    }
+    // Absolute URLs from other public stores (e.g. Vercel Blob) are kept.
+    if (/^https?:\/\//i.test(media.url)) return url.toString();
     return `${CMS_URL}${url.pathname}`;
   } catch {
     return media.url;

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { SplitSection } from "@/components/Editorial";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
-import { seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = seoBundle({
@@ -17,6 +17,23 @@ export const metadata: Metadata = seoBundle({
 export default function PressPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/press",
+              name: "Press & Media",
+              description: "Press and media enquiries for House of Kani.",
+              image: images.heritageArchive,
+            }),
+            breadcrumbLd([
+              { name: "Home", path: "/" },
+              { name: "Press", path: "/press" },
+            ]),
+          ]),
+        }}
+      />
       <PageHero
         image={images.heritageArchive}
         imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"

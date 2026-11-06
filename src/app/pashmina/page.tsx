@@ -5,7 +5,7 @@ import { OrnamentRule } from "@/components/Ornament";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, definedTermsLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "What Is Pashmina? A Plain Guide",
@@ -91,12 +91,40 @@ export default function PashminaPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/pashmina",
+              name: "What Is Pashmina? A Plain Guide",
+              description:
+                "What Pashmina is, where it comes from, how it differs from cashmere, how to recognise pure Pashmina, and how Kani, Sozni and solids are made.",
+              image: images.pashminaMaterialHero,
+            }),
+            definedTermsLd("/pashmina", [
+              {
+                name: "Pashmina",
+                description:
+                  "The fine undercoat of the Changthangi goat, hand-spun and handwoven in Kashmir.",
+              },
+              {
+                name: "Kani",
+                description:
+                  "A handwoven Kashmiri technique using small wooden bobbins and a coded talim.",
+              },
+              {
+                name: "Sozni",
+                description: "Fine hand embroidery worked onto woven Pashmina.",
+              },
+              {
+                name: "GI",
+                description:
+                  "Geographical Indication, the legal certification that protects Kashmir Pashmina, Kani and Sozni.",
+              },
+            ]),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "Pashmina", path: "/pashmina" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero
@@ -107,6 +135,7 @@ export default function PashminaPage() {
         subtitle="One fibre, from one animal, finished by hand in one valley — and the three ways we make it into a shawl."
         height="full"
         position="center"
+        action={<TextLink to="/where-to-buy" tone="light">Enquire About a Piece</TextLink>}
       />
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-5xl">
@@ -182,6 +211,7 @@ export default function PashminaPage() {
             </p>
           </>
         }
+        action={<TextLink to="/sozni">More About Sozni</TextLink>}
         reverse
         tone="cream"
       />
@@ -239,6 +269,86 @@ export default function PashminaPage() {
           </div>
           <div className="mt-12">
             <TextLink to="/where-to-buy">Where to Buy</TextLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-4xl">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow text-gold-ink">Common Questions</p>
+            <h2 className="display-2 mt-4">Buying Pashmina, Plainly.</h2>
+          </Reveal>
+          <div className="mt-12 divide-y divide-charcoal/10 border-y border-charcoal/10">
+            {[
+              {
+                q: "How much should a Pashmina cost?",
+                a: "There is no single price. Fibre, fineness, technique, size and the time a piece takes all matter. A plain solid may take weeks; a Sozni piece can take months. We confirm the price of a specific piece on enquiry rather than publishing a misleading starting figure.",
+              },
+              {
+                q: "What size should I choose?",
+                a: "Sizes vary by piece and weave. A stole, a shawl and a grand shawl sit differently on the body. We confirm the exact dimensions and weight before dispatch, and we are happy to advise on proportion for the way you intend to wear it.",
+              },
+              {
+                q: "Is Pashmina the same as cashmere?",
+                a: "Pashmina is a type of cashmere: both are goat undercoat. Kashmir Pashmina is the finest grade, from the Changthangi goat, and the GI requires 100% pashm, hand-spun yarn and handweaving in Jammu & Kashmir. Most cashmere sold worldwide is coarser and machine-made.",
+              },
+              {
+                q: "How do I check the GI?",
+                a: "The GI label is issued after testing in Srinagar and carries a unique code. The Craft Development Institute publishes the registered specification; a seller should be able to explain the fibre, the maker and the technique. We arrange GI certification on request.",
+              },
+              {
+                q: "How should I care for it?",
+                a: "Dry clean only, with a cleaner who handles fine wool. Store it folded in a cotton or muslin cover, away from direct sun, and air it between wears. Do not hang it for long periods.",
+              },
+            ].map((item) => (
+              <details key={item.q} className="group py-6">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6">
+                  <h3 className="font-display text-[1.35rem] leading-snug font-light">{item.q}</h3>
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 text-gold-ink transition-transform duration-300 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="body-editorial mt-4 max-w-2xl text-charcoal/75">{item.a}</p>
+              </details>
+            ))}
+          </div>
+          <p className="mt-8 text-[0.9rem] leading-relaxed text-charcoal/60">
+            Sources:{" "}
+            <a
+              href="https://cdiptqccgi.com/gi-crafts"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-gold/50"
+            >
+              Craft Development Institute GI specifications
+            </a>
+            ,{" "}
+            <a
+              href="https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/46"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-gold/50"
+            >
+              IP India Kashmir Pashmina GI record
+            </a>
+            , and{" "}
+            <a
+              href="https://www.outlooktraveller.com/responsible-tourism/seven-handicrafts-of-jammu-and-kashmir-every-traveller-should-know"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-gold/50"
+            >
+              Outlook Traveller’s craft guide
+            </a>
+            .
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <TextLink to="/sozni">Read about Sozni embroidery</TextLink>
+            <TextLink to="/where-to-buy">Enquire About a Piece</TextLink>
           </div>
         </div>
       </section>

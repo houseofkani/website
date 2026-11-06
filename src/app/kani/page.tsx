@@ -5,7 +5,7 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, definedTermsLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "Kani Weaving: How a Kani Shawl Is Made",
@@ -73,12 +73,40 @@ export default function KaniPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/kani",
+              name: "Kani Weaving: How a Kani Shawl Is Made",
+              description:
+                "What Kani weaving is, how a Kani shawl is woven with bobbins and a talim, how long it takes, and how to tell hand-woven Kani from machine imitations.",
+              image: images.kaniWeaverHero,
+            }),
+            definedTermsLd("/kani", [
+              {
+                name: "Kani",
+                description:
+                  "A handwoven Kashmiri shawl technique using small eyeless wooden bobbins.",
+              },
+              {
+                name: "Talim",
+                description:
+                  "The coded pattern sheet that guides each colour change in Kani weaving.",
+              },
+              {
+                name: "Tujli",
+                description: "An alternative Kashmiri name for the small Kani bobbin.",
+              },
+              {
+                name: "GI",
+                description:
+                  "Geographical Indication; Kani shawls are registered under GI No. 51.",
+              },
+            ]),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "Kani", path: "/kani" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero
@@ -89,6 +117,7 @@ export default function KaniPage() {
         subtitle="The weave our house is named after, and the most demanding way to make a Pashmina shawl."
         height="full"
         position="65% center"
+        action={<TextLink to="/where-to-buy" tone="light">Enquire About a Piece</TextLink>}
       />
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-5xl">
@@ -180,6 +209,89 @@ export default function KaniPage() {
         action={<TextLink to="/where-to-buy">Where to Buy</TextLink>}
         imageRatio="portrait"
       />
+
+      <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-4xl">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow text-gold-ink">Provenance and GI</p>
+            <h2 className="display-2 mt-4">Kani, Provenance and Time.</h2>
+            <p className="body-editorial mt-6 text-charcoal/75">
+              Kani shawls are registered as a Geographical Indication (No. 51). The{" "}
+              <a
+                href="https://cdiptqccgi.com/gi-crafts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-gold/50"
+              >
+                Craft Development Institute in Srinagar
+              </a>{" "}
+              publishes the specification: handwoven with kanis or tujlis, twill tapestry with
+              interlocking wefts, and guided by a written talim. The{" "}
+              <TextLink to="/journal/the-art-of-kani-weaving">Kani story</TextLink> follows the
+              process from the pattern sheet to the finished cloth.
+            </p>
+          </Reveal>
+          <div className="mt-12 divide-y divide-charcoal/10 border-y border-charcoal/10">
+            {[
+              {
+                q: "Is Kani GI protected?",
+                a: "Yes. Kani has its own Geographical Indication, No. 51, separate from Kashmir Pashmina and Sozni. The Craft Development Institute publishes the registered specification and the testing process.",
+              },
+              {
+                q: "How long does a Kani shawl take?",
+                a: "A relatively simple piece can take months; a densely patterned shawl can occupy a loom for a year or more. The time is one reason a genuine Kani is costly. Prices are confirmed on enquiry.",
+              },
+              {
+                q: "How do I know it is handwoven?",
+                a: "Turn the shawl over. On handwoven Kani, the reverse shows where each coloured weft turns back at the edge of its motif. Machine jacquard is mechanically regular and may show long floating threads. A GI label and a named maker are stronger evidence still.",
+              },
+              {
+                q: "How is Kani different from Sozni?",
+                a: "Kani is woven: the pattern is formed on the loom with small wooden bobbins and a talim. Sozni is embroidered onto woven cloth with a needle. They are separate crafts with separate GI registrations.",
+              },
+            ].map((item) => (
+              <details key={item.q} className="group py-6">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6">
+                  <h3 className="font-display text-[1.35rem] leading-snug font-light">{item.q}</h3>
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 text-gold-ink transition-transform duration-300 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="body-editorial mt-4 max-w-2xl text-charcoal/75">{item.a}</p>
+              </details>
+            ))}
+          </div>
+          <p className="mt-8 text-[0.9rem] leading-relaxed text-charcoal/60">
+            Sources:{" "}
+            <a
+              href="https://cdiptqccgi.com/gi-crafts"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-gold/50"
+            >
+              Craft Development Institute Kani GI specification
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.outlooktraveller.com/responsible-tourism/seven-handicrafts-of-jammu-and-kashmir-every-traveller-should-know"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-gold/50"
+            >
+              Outlook Traveller’s Kani guide
+            </a>
+            .
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <TextLink to="/sozni">Read about Sozni embroidery</TextLink>
+            <TextLink to="/pashmina">Read the Pashmina guide</TextLink>
+            <TextLink to="/where-to-buy">Enquire About a Kani</TextLink>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

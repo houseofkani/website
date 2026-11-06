@@ -4,7 +4,7 @@ import { TextLink } from "@/components/Editorial";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 import { SITE, WHATSAPP_HREF } from "@/lib/site";
 
 export const metadata: Metadata = seoBundle({
@@ -21,12 +21,20 @@ export default function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/contact",
+              name: "Contact",
+              description:
+                "Write to House of Kani about a piece, an appointment in Srinagar or online, a loom visit or GI certification.",
+              type: "ContactPage",
+              image: images.heritageArchive,
+            }),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "Contact", path: "/contact" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero

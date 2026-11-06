@@ -6,7 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { ShadeCard } from "@/components/ShadeCard";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 import { shades } from "@/lib/shades";
 
 export const metadata: Metadata = seoBundle({
@@ -30,13 +30,20 @@ export default function ShadeCardPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/shade-card",
+              name: "The Solid Shade Card",
+              description:
+                "All the colours in which House of Kani dyes solid, pure Pashmina shawls and stoles, from undyed ivory to Dal Lake navy.",
+              image: images.originalSolid,
+            }),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "Pashmina", path: "/pashmina" },
               { name: "Shade Card", path: "/shade-card" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero

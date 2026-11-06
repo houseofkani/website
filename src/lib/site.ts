@@ -11,7 +11,7 @@ export const SITE = {
   location: "Hazratbal, Srinagar, Kashmir",
   appointments: "By appointment — in person in Hazratbal, Srinagar, or online",
   contactConfirmed: true,
-  // Empty until the Etsy shop is live; links fall back to the Where to Buy page.
+  // The shop is not live yet; CTAs fall back to the Where to Buy page.
   etsyUrl: "",
   /**
    * Public profiles. Also emitted as `sameAs` in the Organization JSON-LD,
@@ -55,6 +55,7 @@ export const FOOTER_COLUMNS = [
       { label: "Pashmina", to: "/pashmina" },
       { label: "Shade Card", to: "/shade-card" },
       { label: "Kani", to: "/kani" },
+      { label: "Sozni", to: "/sozni" },
       { label: "Craftsmanship", to: "/craftsmanship" },
     ],
   },

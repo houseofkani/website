@@ -5,7 +5,7 @@ import { OrnamentRule } from "@/components/Ornament";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
-import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
   title: "Our Family: Four Generations of Pashmina Weavers",
@@ -21,12 +21,20 @@ export default function TheHousePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLdScript(
+          __html: jsonLdScript([
+            webPageLd({
+              path: "/the-house",
+              name: "Our Family: Four Generations of Pashmina Weavers",
+              description:
+                "House of Kani is a fourth-generation Kashmiri Pashmina family in Hazratbal, Srinagar, weaving on its own looms and working with a trusted network of artisans.",
+              type: "AboutPage",
+              image: images.victorianKaniHero,
+            }),
             breadcrumbLd([
               { name: "Home", path: "/" },
               { name: "The House", path: "/the-house" },
             ]),
-          ),
+          ]),
         }}
       />
       <PageHero
@@ -36,6 +44,7 @@ export default function TheHousePage() {
         title="A Kashmiri Pashmina Family, Four Generations On."
         subtitle="Our great-grandparents began this work in Srinagar. House of Kani is how we now share it with the world."
         position="center"
+        action={<TextLink to="/private-client" tone="light">Arrange an Appointment</TextLink>}
       />
       <section className="bg-ivory px-5 py-20 text-center sm:px-8 sm:py-28 lg:py-36">
         <Reveal className="mx-auto max-w-3xl">
@@ -82,6 +91,50 @@ export default function TheHousePage() {
         }
         reverse
         tone="cream"
+      />
+      <SplitSection
+        image={images.typeSozniGold}
+        imageAlt="A gold Pashmina shawl with a hand-worked paisley border, laid beside a brass vessel"
+        eyebrow="What We Make"
+        title="Three Ways of Working Pashmina."
+        body={
+          <>
+            <p>
+              Our work falls into three families: <TextLink to="/kani">Kani</TextLink>, where the
+              pattern is woven into the cloth; <TextLink to="/sozni">Sozni</TextLink>, where it is
+              embroidered by hand; and <TextLink to="/pashmina">fine solids</TextLink>, where the
+              fibre, colour and drape carry the piece alone.
+            </p>
+            <p>
+              Every piece is 100% pure Pashmina. We state the technique, the fibre and the size, and
+              we arrange GI certification on request.
+            </p>
+          </>
+        }
+        imageRatio="landscape"
+      />
+      <SplitSection
+        image={images.craftWarpSetting}
+        imageAlt="Fine ivory warp threads unwinding in a parallel sheet from a wooden loom beam"
+        eyebrow="How We Choose"
+        title="Fibre First, Then the Hand."
+        body={
+          <>
+            <p>
+              We choose a piece by its fibre, its technique and its finish — not by a label alone.
+              Some are woven on our family’s own looms; others come from weavers and embroiderers
+              whose work we know well.
+            </p>
+            <p>
+              We describe each one honestly: its technique, its fibre, its size and how it was made.
+              If a piece is not right for you, we would rather say so than sell it.
+            </p>
+          </>
+        }
+        reverse
+        tone="cream"
+        action={<TextLink to="/where-to-buy">Acquire a Piece</TextLink>}
+        imageRatio="landscape"
       />
       <SplitSection
         image={images.kaniMatriarch}

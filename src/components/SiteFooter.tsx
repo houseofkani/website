@@ -45,7 +45,7 @@ export function SiteFooter() {
             href={ETSY_HREF}
             className="eyebrow mt-8 inline-block border-y border-gold/35 py-3 text-gold transition-colors duration-500 hover:text-ivory"
           >
-            Our first collection opens on Etsy →
+            Acquire a Piece →
           </Link>
         </div>
 

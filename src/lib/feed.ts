@@ -91,9 +91,17 @@ export function bodyToHtml(article: JournalArticle): string {
   for (const section of article.body) {
     if (section.heading) blocks.push(`<h2>${escapeXml(section.heading)}</h2>`);
     for (const paragraph of section.paragraphs) {
-      if (paragraph.trim()) blocks.push(`<p>${escapeXml(paragraph)}</p>`);
+      // Paragraphs are already sanitized inline HTML from `cms.ts` (links,
+      // bold/italic, escaped text). Do not escape them a second time.
+      if (paragraph.trim()) blocks.push(`<p>${paragraph}</p>`);
     }
-    if (section.quote) blocks.push(`<blockquote>${escapeXml(section.quote)}</blockquote>`);
+    for (const list of section.lists ?? []) {
+      const tag = list.ordered ? "ol" : "ul";
+      const items = list.items.map((item) => `<li>${item}</li>`).join("");
+      if (items) blocks.push(`<${tag}>${items}</${tag}>`);
+    }
+    // Quotes are sanitized inline HTML too.
+    if (section.quote) blocks.push(`<blockquote>${section.quote}</blockquote>`);
   }
 
   return blocks.join("\n");
