@@ -74,13 +74,27 @@ const nextConfig: NextConfig = {
     return config;
   },
   async redirects() {
-    return [{ source: "/stockists", destination: "/where-to-buy", permanent: true }];
+    return [
+      // Collapse the apex host straight to www. This also removes the extra
+      // http:// apex -> https:// apex hop on Vercel.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "houseofkani.com" }],
+        destination: "https://www.houseofkani.com/:path*",
+        permanent: true,
+      },
+      { source: "/stockists", destination: "/where-to-buy", permanent: true },
+    ];
   },
   async headers() {
     return [
       {
         source: "/:path*",
         headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains",
+          },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
