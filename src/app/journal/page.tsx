@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 
 import { Eyebrow } from "@/components/Editorial";
 import { JournalGrid } from "@/components/JournalGrid";
@@ -8,7 +7,6 @@ import { JournalPagination, journalPageHref } from "@/components/JournalPaginati
 import { MediaSkeleton } from "@/components/MediaSkeleton";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
-import { JournalListingSkeleton } from "@/components/Skeleton";
 import { getJournalPage } from "@/lib/cms";
 import { images } from "@/lib/images";
 import { itemListLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
@@ -135,7 +133,7 @@ async function JournalListing({ page }: { page: number }) {
 // PAGE_SIZE, move pagination to /journal/page/[page] so this route stays static.
 export const revalidate = 300;
 
-export default function JournalPage() {
+export default async function JournalPage() {
   const page = 1;
 
   return (
@@ -148,9 +146,7 @@ export default function JournalPage() {
         </p>
         <OrnamentRule className="mt-8" />
       </section>
-      <Suspense key={page} fallback={<JournalListingSkeleton />}>
-        <JournalListing page={page} />
-      </Suspense>
+      <JournalListing page={page} />
     </>
   );
 }

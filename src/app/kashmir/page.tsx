@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { PullQuote, SplitSection, TextLink } from "@/components/Editorial";
+import { FaqSection } from "@/components/FaqSection";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
@@ -154,6 +155,23 @@ export default function KashmirPage() {
         }
         reverse
         imageRatio="landscape"
+      />
+      <FaqSection
+        title="Kashmir, Plainly."
+        items={[
+          {
+            q: "Why does the landscape matter?",
+            a: "The valley's gardens, water and seasons shaped both the motifs and the rhythm of work. The Mughal gardens gave the loom its vocabulary of terraces, water, cypress and chinar; the seasons still set the pace of combing, spinning, dyeing and weaving.",
+          },
+          {
+            q: "What is Kashmiri Pashmina?",
+            a: "It is the fine undercoat of the Changthangi goat, hand-spun and handwoven in Jammu & Kashmir. Kashmir Pashmina is protected by GI No. 46, with a registered specification covering fibre, spinning and weaving.",
+          },
+          {
+            q: "Where is House of Kani?",
+            a: "Our office is in Hazratbal, Srinagar. Visits are by appointment, and we can also show pieces online by video call.",
+          },
+        ]}
       />
       <section className="bg-burgundy px-5 py-20 text-ivory sm:px-8 sm:py-28">
         <PullQuote cite="Kashmir">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { PullQuote, SplitSection, TextLink } from "@/components/Editorial";
+import { FaqSection } from "@/components/FaqSection";
 import { OrnamentRule } from "@/components/Ornament";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -168,6 +169,24 @@ export default function TheHousePage() {
             Arrange an Appointment
           </TextLink>
         }
+      />
+      <FaqSection
+        tone="cream"
+        title="About the House."
+        items={[
+          {
+            q: "What do you make?",
+            a: "Our work falls into three families: Kani, where the pattern is woven into the cloth; Sozni, where it is embroidered by hand; and fine solids, where the fibre, colour and drape carry the piece alone. Every piece is 100% pure Pashmina.",
+          },
+          {
+            q: "Can I visit?",
+            a: "Yes, by appointment at our office in Hazratbal, Srinagar. We can also take you to our looms with notice, or meet you online by video call if you cannot travel.",
+          },
+          {
+            q: "Do you ship worldwide?",
+            a: "Yes. Delivery times, duties and taxes are confirmed at the time of enquiry. Returns are accepted within 14 days, with customer-paid return shipping, after inspection.",
+          },
+        ]}
       />
       <section className="bg-burgundy px-5 py-20 text-ivory sm:px-8 sm:py-28 lg:py-36">
         <PullQuote cite="House of Kani">

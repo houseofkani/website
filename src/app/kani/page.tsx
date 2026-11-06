@@ -264,6 +264,47 @@ export default function KaniPage() {
               </details>
             ))}
           </div>
+          <div className="mt-12 overflow-x-auto">
+            <table className="w-full border-collapse text-left text-[0.95rem] text-charcoal/80">
+              <caption className="mb-3 text-left font-display text-[1.15rem] font-light text-charcoal">
+                Kani, Sozni and solids at a glance
+              </caption>
+              <thead>
+                <tr className="border-b border-charcoal/25">
+                  <th scope="col" className="py-3 pr-6 font-normal"> </th>
+                  <th scope="col" className="py-3 pr-6 font-normal">Kani</th>
+                  <th scope="col" className="py-3 pr-6 font-normal">Sozni</th>
+                  <th scope="col" className="py-3 font-normal">Solid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-charcoal/10">
+                  <th scope="row" className="py-3 pr-6 font-normal">Pattern</th>
+                  <td className="py-3 pr-6">Woven into the cloth</td>
+                  <td className="py-3 pr-6">Embroidered on the cloth</td>
+                  <td className="py-3">None</td>
+                </tr>
+                <tr className="border-b border-charcoal/10">
+                  <th scope="row" className="py-3 pr-6 font-normal">Tool</th>
+                  <td className="py-3 pr-6">Kanis or tujlis and a talim</td>
+                  <td className="py-3 pr-6">Needle and fine thread</td>
+                  <td className="py-3">Loom only</td>
+                </tr>
+                <tr className="border-b border-charcoal/10">
+                  <th scope="row" className="py-3 pr-6 font-normal">Time</th>
+                  <td className="py-3 pr-6">Months to years</td>
+                  <td className="py-3 pr-6">Weeks to months</td>
+                  <td className="py-3">Weeks</td>
+                </tr>
+                <tr>
+                  <th scope="row" className="py-3 pr-6 font-normal">GI</th>
+                  <td className="py-3 pr-6">Kani GI No. 51</td>
+                  <td className="py-3 pr-6">Sozni GI No. 48</td>
+                  <td className="py-3">Fibre: Pashmina GI No. 46</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p className="mt-8 text-[0.9rem] leading-relaxed text-charcoal/60">
             Sources:{" "}
             <a

@@ -29,13 +29,22 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
     const form = e.currentTarget;
     const data = new FormData(form);
     const topic = String(data.get("enquiry") ?? "General enquiry");
+    const preferredDate = String(data.get("preferredDate") ?? "").trim();
+    const preferredTime = String(data.get("preferredTime") ?? "").trim();
+    const preferred =
+      preferredDate.length > 0
+        ? `Preferred date: ${preferredDate}${preferredTime ? ` at ${preferredTime}` : ""}`
+        : "";
+    const message = [preferred, String(data.get("message") ?? "").trim()]
+      .filter(Boolean)
+      .join("\n\n");
     setStatus("sending");
     setError(null);
 
     /** Last resort: hand the note to the visitor's own mail app. */
     const openMailClient = () => {
       const lines = [
-        String(data.get("message") ?? ""),
+        message,
         "",
         `Name: ${data.get("name") ?? ""}`,
         `Email: ${data.get("email") ?? ""}`,
@@ -53,7 +62,7 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
           email: String(data.get("email") ?? ""),
           telephone: String(data.get("telephone") ?? ""),
           topic,
-          message: String(data.get("message") ?? ""),
+          message,
           website: String(data.get("website") ?? ""),
           startedAt,
         }),
@@ -123,6 +132,12 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
         <Field label="Name" name="name" required />
         <Field label="Email" name="email" type="email" required />
       </div>
+      {kind === "appointment" ? (
+        <div className="grid gap-8 sm:grid-cols-2">
+          <Field label="Preferred date" name="preferredDate" type="date" />
+          <Field label="Preferred time (Srinagar)" name="preferredTime" type="time" />
+        </div>
+      ) : null}
       <div className="grid gap-8 sm:grid-cols-2">
         <Field label="Telephone" name="telephone" type="tel" />
         <label className="block">

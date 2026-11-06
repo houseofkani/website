@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { MovementList, SplitSection, TextLink } from "@/components/Editorial";
+import { FaqSection } from "@/components/FaqSection";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
@@ -130,6 +131,23 @@ export default function CraftsmanshipPage() {
           </TextLink>
         }
         imageRatio="landscape"
+      />
+      <FaqSection
+        title="The Work, Plainly."
+        items={[
+          {
+            q: "How long does a piece take?",
+            a: "A plain solid can be woven in weeks. A Sozni piece may need months of embroidery after weaving. A fully patterned Kani shawl can stay on the loom for many months, sometimes longer. The time is part of what the piece costs.",
+          },
+          {
+            q: "What is the difference between Kani and Sozni?",
+            a: "Kani is woven: the pattern is formed on the loom with small wooden bobbins and a coded talim. Sozni is embroidered onto woven Pashmina with a needle. They are separate crafts with separate GI registrations.",
+          },
+          {
+            q: "What is GI certification?",
+            a: "A Geographical Indication protects a craft's name and registered specification. Kashmir Pashmina, Kani and Sozni each have their own GI. We arrange certification on request, and the Craft Development Institute publishes the testing process.",
+          },
+        ]}
       />
     </>
   );

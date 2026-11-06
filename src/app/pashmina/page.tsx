@@ -316,6 +316,47 @@ export default function PashminaPage() {
               </details>
             ))}
           </div>
+          <div className="mt-12 overflow-x-auto">
+            <table className="w-full border-collapse text-left text-[0.95rem] text-charcoal/80">
+              <caption className="mb-3 text-left font-display text-[1.15rem] font-light text-charcoal">
+                Pashmina, cashmere and blends at a glance
+              </caption>
+              <thead>
+                <tr className="border-b border-charcoal/25">
+                  <th scope="col" className="py-3 pr-6 font-normal"> </th>
+                  <th scope="col" className="py-3 pr-6 font-normal">Pashmina</th>
+                  <th scope="col" className="py-3 pr-6 font-normal">Ordinary cashmere</th>
+                  <th scope="col" className="py-3 font-normal">Blend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-charcoal/10">
+                  <th scope="row" className="py-3 pr-6 font-normal">Fibre</th>
+                  <td className="py-3 pr-6">Changthangi undercoat</td>
+                  <td className="py-3 pr-6">Other cashmere goats</td>
+                  <td className="py-3">Cashmere with wool, silk or synthetic</td>
+                </tr>
+                <tr className="border-b border-charcoal/10">
+                  <th scope="row" className="py-3 pr-6 font-normal">Fineness</th>
+                  <td className="py-3 pr-6">GI maximum 16 microns</td>
+                  <td className="py-3 pr-6">Varies</td>
+                  <td className="py-3">Varies</td>
+                </tr>
+                <tr className="border-b border-charcoal/10">
+                  <th scope="row" className="py-3 pr-6 font-normal">Spinning</th>
+                  <td className="py-3 pr-6">Hand-spun for the GI</td>
+                  <td className="py-3 pr-6">Often machine-spun</td>
+                  <td className="py-3">Usually machine</td>
+                </tr>
+                <tr>
+                  <th scope="row" className="py-3 pr-6 font-normal">GI</th>
+                  <td className="py-3 pr-6">Kashmir Pashmina GI No. 46</td>
+                  <td className="py-3 pr-6">No equivalent</td>
+                  <td className="py-3">No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p className="mt-8 text-[0.9rem] leading-relaxed text-charcoal/60">
             Sources:{" "}
             <a

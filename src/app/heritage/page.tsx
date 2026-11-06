@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { PullQuote, SplitSection, TextLink } from "@/components/Editorial";
+import { FaqSection } from "@/components/FaqSection";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
@@ -141,6 +142,24 @@ export default function HeritagePage() {
           </p>
         }
         action={<TextLink to="/the-house">About Our Family</TextLink>}
+      />
+      <FaqSection
+        tone="cream"
+        title="The Kashmir Shawl, Plainly."
+        items={[
+          {
+            q: "What is the Kashmir shawl?",
+            a: "A handwoven shawl from the Kashmir Valley, historically made in Pashmina. Kani is its woven technique; Sozni is its embroidered counterpart. Both are protected by their own Geographical Indications.",
+          },
+          {
+            q: "When did Kani begin?",
+            a: "Kashmiri tradition places Kani weaving in the 15th century, and it reached its height under the Mughals. The GI dossier records the craft's documented identity, its twill-tapestry process and the coded talim that guides it.",
+          },
+          {
+            q: "What does GI protection mean?",
+            a: "A Geographical Indication protects the name and the registered specification: where a craft is made, from what, and by which process. Kashmir Pashmina, Kani and Sozni each have their own registration; we arrange GI certification on request.",
+          },
+        ]}
       />
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-4xl">
