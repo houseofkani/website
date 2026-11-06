@@ -18,6 +18,15 @@ export type JournalArticle = {
   date: string;
   /** ISO 8601 publication date for structured data. */
   publishedAt: string;
+  /** ISO 8601 last-substantive-edit date for structured data. */
+  updatedAt: string;
+  /** Author record from the CMS, rendered as a byline and Person schema. */
+  author: {
+    name: string;
+    designation?: string;
+    bio?: string;
+    slug?: string;
+  };
   /** Editor-controlled SEO overrides from the CMS (empty = use article fields). */
   seo: {
     title?: string;
@@ -26,7 +35,17 @@ export type JournalArticle = {
     canonicalUrl?: string;
     noindex?: boolean;
   };
-  body: { heading?: string; paragraphs: string[]; quote?: string }[];
+  /**
+   * Article body. Paragraph and quote strings contain sanitized inline HTML
+   * (links, bold/italic) produced from the CMS Lexical document.
+   */
+  body: {
+    heading?: string;
+    headingLevel?: 2 | 3 | 4;
+    paragraphs: string[];
+    quote?: string;
+    lists?: { ordered: boolean; items: string[] }[];
+  }[];
 };
 
 export type JournalRedirect =
@@ -83,11 +102,24 @@ export class CmsError extends Error {
 
 type CmsMedia = { url?: string | null; alt?: string | null };
 type CmsCategory = { name?: string | null };
+type CmsAuthor = {
+  name?: string | null;
+  designation?: string | null;
+  bio?: string | null;
+  slug?: string | null;
+};
 type LexicalNode = {
   type?: string;
   text?: string;
   children?: LexicalNode[];
   tag?: string;
+  format?: number;
+  listType?: "number" | "bullet" | string;
+  fields?: {
+    url?: string;
+    newTab?: boolean;
+    linkType?: string;
+  };
 };
 type CmsPost = {
   slug?: string | null;
@@ -97,6 +129,7 @@ type CmsPost = {
   featuredImage?: CmsMedia | number | null;
   imageAlt?: string | null;
   categories?: CmsCategory[] | null;
+  author?: CmsAuthor | number | null;
   publishedAt?: string | null;
   updatedAt?: string | null;
   meta?: {
@@ -127,46 +160,132 @@ function lexicalText(node: LexicalNode | undefined): string {
   return (node.children ?? []).map(lexicalText).join("");
 }
 
+const HTML_ESCAPE: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
+
+function escapeHtml(value: string): string {
+  return value.replace(/[&<>"']/g, (character) => HTML_ESCAPE[character] ?? character);
+}
+
+/** Only allow http(s), mailto, and site-relative hrefs from the CMS. */
+function safeHref(value: string | undefined): string {
+  const href = (value ?? "").trim();
+  if (!href) return "";
+  if (href.startsWith("/") || href.startsWith("#")) return href;
+  try {
+    const url = new URL(href);
+    return ["http:", "https:", "mailto:"].includes(url.protocol) ? url.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
+const FORMAT_BOLD = 1;
+const FORMAT_ITALIC = 2;
+const FORMAT_STRIKETHROUGH = 4;
+const FORMAT_UNDERLINE = 8;
+const FORMAT_CODE = 16;
+
+/** Serialize inline Lexical nodes to safe HTML (text, bold, italic, links). */
+function inlineHtml(node: LexicalNode | undefined): string {
+  if (!node) return "";
+  if (node.type === "text") {
+    let text = escapeHtml(node.text ?? "");
+    const format = node.format ?? 0;
+    if (format & FORMAT_CODE) text = `<code>${text}</code>`;
+    if (format & FORMAT_BOLD) text = `<strong>${text}</strong>`;
+    if (format & FORMAT_ITALIC) text = `<em>${text}</em>`;
+    if (format & FORMAT_UNDERLINE) text = `<u>${text}</u>`;
+    if (format & FORMAT_STRIKETHROUGH) text = `<s>${text}</s>`;
+    return text;
+  }
+  if (node.type === "linebreak") return "<br />";
+  if (node.type === "link" || node.type === "autolink") {
+    const href = safeHref(node.fields?.url);
+    const inner = (node.children ?? []).map(inlineHtml).join("");
+    if (!href) return inner;
+    const isExternal =
+      /^https?:\/\//i.test(href) &&
+      !href.startsWith("https://houseofkani.com") &&
+      !href.startsWith("https://www.houseofkani.com");
+    const attrs =
+      isExternal || node.fields?.newTab ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a href="${escapeHtml(href)}"${attrs}>${inner}</a>`;
+  }
+  return (node.children ?? []).map(inlineHtml).join("");
+}
+
+function htmlToText(html: string): string {
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function lexicalToSections(root: LexicalNode | undefined): JournalArticle["body"] {
   const sections: JournalArticle["body"] = [];
   let current: JournalArticle["body"][number] | undefined;
 
-  const pushParagraph = (text: string) => {
+  const ensureSection = (): JournalArticle["body"][number] => {
     if (!current) {
       current = { paragraphs: [] };
       sections.push(current);
     }
-    current.paragraphs.push(text);
+    return current;
   };
 
   for (const node of root?.children ?? []) {
     if (node.type === "heading") {
-      current = { heading: lexicalText(node).trim(), paragraphs: [] };
+      const level = node.tag === "h3" ? 3 : node.tag === "h4" ? 4 : 2;
+      current = { heading: lexicalText(node).trim(), headingLevel: level, paragraphs: [] };
       sections.push(current);
     } else if (node.type === "quote") {
-      const text = lexicalText(node).trim();
-      if (!text) continue;
-      if (!current) {
-        current = { paragraphs: [] };
-        sections.push(current);
-      }
-      current.quote = text;
+      const html = inlineHtml(node).trim();
+      if (html) ensureSection().quote = html;
     } else if (node.type === "paragraph") {
-      const text = lexicalText(node).trim();
-      if (text) pushParagraph(text);
+      const html = inlineHtml(node).trim();
+      if (html) ensureSection().paragraphs.push(html);
     } else if (node.type === "list") {
-      for (const item of node.children ?? []) {
-        const text = lexicalText(item).trim();
-        if (text) pushParagraph(text);
+      const items = (node.children ?? [])
+        .map((item) => inlineHtml(item).trim())
+        .filter(Boolean);
+      if (items.length > 0) {
+        const section = ensureSection();
+        section.lists ??= [];
+        section.lists.push({ ordered: node.listType === "number", items });
       }
     }
   }
 
-  return sections.filter((s) => s.heading || s.quote || s.paragraphs.length > 0);
+  return sections.filter(
+    (section) =>
+      section.heading ||
+      section.quote ||
+      section.paragraphs.length > 0 ||
+      (section.lists?.length ?? 0) > 0,
+  );
 }
 
 function readTime(sections: JournalArticle["body"]): string {
-  const text = sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, s.quote ?? ""]).join(" ");
+  const text = sections
+    .flatMap((section) => [
+      section.heading ?? "",
+      ...section.paragraphs.map(htmlToText),
+      section.quote ? htmlToText(section.quote) : "",
+      ...(section.lists ?? []).flatMap((list) => list.items.map(htmlToText)),
+    ])
+    .join(" ");
   const minutes = Math.max(
     1,
     Math.round(text.split(/\s+/).filter(Boolean).length / WORDS_PER_MINUTE),
@@ -181,6 +300,7 @@ function toArticle(post: CmsPost): JournalArticle | null {
   const media = typeof post.featuredImage === "number" ? null : post.featuredImage;
   const meta = post.meta;
   const metaImage = meta?.image && typeof meta.image !== "number" ? meta.image : null;
+  const author = post.author && typeof post.author === "object" ? post.author : null;
 
   return {
     slug: post.slug,
@@ -192,6 +312,13 @@ function toArticle(post: CmsPost): JournalArticle | null {
     readTime: readTime(body),
     date: published ? dateFormatter.format(new Date(published)) : "",
     publishedAt: published ?? "",
+    updatedAt: post.updatedAt ?? published ?? "",
+    author: {
+      name: author?.name?.trim() || "House of Kani",
+      designation: author?.designation?.trim() || undefined,
+      bio: author?.bio?.trim() || undefined,
+      slug: author?.slug ?? undefined,
+    },
     seo: {
       title: meta?.title || undefined,
       description: meta?.description || undefined,

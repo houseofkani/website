@@ -13,6 +13,18 @@ import { siteConfig } from "@/lib/site-config";
 
 type Props = { params: Promise<{ slug: string }> };
 
+function ArticleHeading({ level = 2, children }: { level?: 2 | 3 | 4; children: string }) {
+  if (level === 3) {
+    return (
+      <h3 className="mt-10 mb-4 font-display text-[1.45rem] leading-snug">{children}</h3>
+    );
+  }
+  if (level === 4) {
+    return <h4 className="mt-8 mb-3 font-display text-[1.2rem] leading-snug">{children}</h4>;
+  }
+  return <h2 className="display-3 mb-5">{children}</h2>;
+}
+
 export async function generateStaticParams() {
   const { getJournalSlugs } = await import("@/lib/cms");
   try {
@@ -43,7 +55,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : `/journal/${article.slug}`,
     image: seo.image || article.image,
     type: "article",
-    authors: ["House of Kani"],
+    authors: [article.author.name],
+    publishedTime: article.publishedAt || undefined,
+    modifiedTime: article.updatedAt || undefined,
     robots: seo.noindex ? "noindex" : undefined,
   });
 }
@@ -76,6 +90,8 @@ export default async function JournalArticlePage({ params }: Props) {
               path: `/journal/${article.slug}`,
               image: article.seo.image || article.image,
               datePublished: article.publishedAt || undefined,
+              dateModified: article.updatedAt || undefined,
+              author: article.author,
             }),
             breadcrumbLd([
               { name: "Home", path: "/" },
@@ -107,22 +123,58 @@ export default async function JournalArticlePage({ params }: Props) {
         </div>
       </header>
       <div className="mx-auto max-w-[780px] px-5 py-20 sm:px-8 sm:py-28">
-        <p className="eyebrow text-gold-ink">{article.date}</p>
-        {article.body.map((section, i) => (
-          <Reveal key={i} className="mt-12 first:mt-7">
-            {section.heading ? <h2 className="display-3 mb-5">{section.heading}</h2> : null}
-            {section.paragraphs.map((p) => (
-              <p key={p} className="body-editorial mt-5 text-charcoal/80 first:mt-0">
-                {p}
-              </p>
-            ))}
-            {section.quote ? (
-              <blockquote className="my-14 border-y border-gold/35 py-10 text-center font-display text-[1.55rem] leading-snug font-light italic sm:text-[2rem]">
-                {section.quote}
-              </blockquote>
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="eyebrow text-gold-ink">By {article.author.name}</p>
+          {article.author.designation ? (
+            <p className="nav-label text-charcoal/55">{article.author.designation}</p>
+          ) : null}
+          <p className="eyebrow text-charcoal/40">{article.date}</p>
+        </div>
+        <div className="journal-body">
+          {article.body.map((section, i) => (
+            <Reveal key={i} className="mt-12 first:mt-7">
+              {section.heading ? (
+                <ArticleHeading level={section.headingLevel}>{section.heading}</ArticleHeading>
+              ) : null}
+              {section.paragraphs.map((paragraph, j) => (
+                <p
+                  key={j}
+                  className="body-editorial mt-5 text-charcoal/80 first:mt-0"
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
+              ))}
+              {section.lists?.map((list, j) => {
+                const List = list.ordered ? "ol" : "ul";
+                return (
+                  <List
+                    key={`list-${j}`}
+                    className="body-editorial journal-list mt-5 space-y-2 pl-6 text-charcoal/80"
+                  >
+                    {list.items.map((item, k) => (
+                      <li key={k} dangerouslySetInnerHTML={{ __html: item }} />
+                    ))}
+                  </List>
+                );
+              })}
+              {section.quote ? (
+                <blockquote
+                  className="my-14 border-y border-gold/35 py-10 text-center font-display text-[1.55rem] leading-snug font-light italic sm:text-[2rem]"
+                  dangerouslySetInnerHTML={{ __html: section.quote }}
+                />
+              ) : null}
+            </Reveal>
+          ))}
+        </div>
+        {article.author.bio ? (
+          <aside className="mt-16 border-t border-gold/35 pt-8">
+            <p className="eyebrow text-gold-ink">About the author</p>
+            <p className="mt-3 font-display text-2xl text-charcoal">{article.author.name}</p>
+            {article.author.designation ? (
+              <p className="nav-label mt-1 text-charcoal/55">{article.author.designation}</p>
             ) : null}
-          </Reveal>
-        ))}
+            <p className="body-editorial mt-4 text-charcoal/75">{article.author.bio}</p>
+          </aside>
+        ) : null}
       </div>
       <section className="bg-cream px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="mx-auto max-w-[1560px]">

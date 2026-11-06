@@ -247,6 +247,36 @@
   text-shadow: var(--image-text-shadow);
 }
 
+/* ---- Journal rich text (links, lists, emphasis) ------------------------- */
+.journal-body a {
+  color: var(--color-gold-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 300ms ease;
+}
+
+.journal-body a:hover {
+  color: var(--color-forest);
+}
+
+.journal-body strong {
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
+
+.journal-body .journal-list {
+  list-style-position: outside;
+}
+
+.journal-body .journal-list li {
+  padding-left: 0.25rem;
+}
+
+.journal-body .journal-list li::marker {
+  color: var(--color-gold-ink);
+}
+
 @utility rule-gold {
   height: 1px;
   background: linear-gradient(

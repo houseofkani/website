@@ -34,6 +34,7 @@ export type SeoBundleOptions = {
   type?: "website" | "article";
   robots?: "noindex";
   publishedTime?: string;
+  modifiedTime?: string;
   authors?: string[];
 };
 
@@ -43,6 +44,10 @@ export function seoBundle(options: SeoBundleOptions): Metadata {
     title: options.title,
     description: options.description,
   };
+
+  if (options.authors?.length) {
+    metadata.authors = options.authors.map((name) => ({ name }));
+  }
 
   const canonical =
     options.canonical ?? (options.pathname ? canonicalPathname(options.pathname) : undefined);
@@ -76,6 +81,9 @@ export function seoBundle(options: SeoBundleOptions): Metadata {
     images: ogImages,
     ...(options.type === "article" && options.publishedTime
       ? { publishedTime: options.publishedTime }
+      : {}),
+    ...(options.type === "article" && options.modifiedTime
+      ? { modifiedTime: options.modifiedTime }
       : {}),
     ...(options.type === "article" && options.authors?.length ? { authors: options.authors } : {}),
   };
@@ -155,7 +163,16 @@ export function blogPostingLd(options: {
   path: string;
   image: string;
   datePublished?: string;
+  dateModified?: string;
+  author?: {
+    name: string;
+    designation?: string;
+    bio?: string;
+  };
 }) {
+  const author = options.author ?? { name: siteConfig.name };
+  const isOrganization = author.name === siteConfig.name;
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -164,7 +181,15 @@ export function blogPostingLd(options: {
     image: absoluteImageUrl(options.image),
     url: absoluteUrl(options.path),
     mainEntityOfPage: absoluteUrl(options.path),
-    author: { "@type": "Organization", name: siteConfig.name },
+    author: isOrganization
+      ? { "@type": "Organization", name: author.name }
+      : {
+          "@type": "Person",
+          name: author.name,
+          ...(author.designation ? { jobTitle: author.designation } : {}),
+          ...(author.bio ? { description: author.bio } : {}),
+          worksFor: { "@type": "Organization", name: siteConfig.name },
+        },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -176,6 +201,7 @@ export function blogPostingLd(options: {
       },
     },
     ...(options.datePublished ? { datePublished: options.datePublished } : {}),
+    ...(options.dateModified ? { dateModified: options.dateModified } : {}),
   };
 }
 
