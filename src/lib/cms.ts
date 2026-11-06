@@ -468,7 +468,11 @@ export const getJournalPage = cache(
 );
 
 /** Every published story, slug + date only — sitemaps and static params. */
-export type JournalArchiveEntry = { slug: string; publishedAt: string };
+export type JournalArchiveEntry = {
+  slug: string;
+  publishedAt: string;
+  updatedAt: string;
+};
 
 export const getJournalArchive = cache(async (): Promise<JournalArchiveEntry[]> => {
   const entries: JournalArchiveEntry[] = [];
@@ -490,6 +494,7 @@ export const getJournalArchive = cache(async (): Promise<JournalArchiveEntry[]> 
       entries.push({
         slug: doc.slug,
         publishedAt: doc.publishedAt ?? doc.updatedAt ?? "",
+        updatedAt: doc.updatedAt ?? doc.publishedAt ?? "",
       });
     }
 

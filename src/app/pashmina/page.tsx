@@ -124,6 +124,12 @@ export default function PashminaPage() {
           <div className="mt-16">
             <MovementList items={material} />
           </div>
+          <p className="body-editorial mx-auto mt-12 max-w-3xl text-center text-charcoal/70">
+            Prices are confirmed on enquiry and reflect the fibre, technique, size and time a piece
+            takes to make. Sizes vary by piece; we confirm dimensions before dispatch. We deliver
+            worldwide and accept returns within 14 days.{" "}
+            <TextLink to="/where-to-buy">How to acquire a piece</TextLink>.
+          </p>
         </div>
       </section>
 

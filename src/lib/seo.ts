@@ -126,10 +126,20 @@ export function organizationLd() {
     image: absoluteImageUrl(siteConfig.ogImage),
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Srinagar",
+      addressLocality: "Hazratbal",
       addressRegion: "Jammu and Kashmir",
       addressCountry: "IN",
     },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: siteConfig.email,
+        telephone: SITE.phone,
+        availableLanguage: ["en", "hi", "ur"],
+        areaServed: "Worldwide",
+      },
+    ],
   };
 }
 

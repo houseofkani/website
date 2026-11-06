@@ -4,8 +4,8 @@ import { TextLink } from "@/components/Editorial";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
-import { seoBundle } from "@/lib/seo";
-import { SITE } from "@/lib/site";
+import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import { SITE, WHATSAPP_HREF } from "@/lib/site";
 
 export const metadata: Metadata = seoBundle({
   title: "Contact",
@@ -18,6 +18,17 @@ export const metadata: Metadata = seoBundle({
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbLd([
+              { name: "Home", path: "/" },
+              { name: "Contact", path: "/contact" },
+            ]),
+          ),
+        }}
+      />
       <PageHero
         image={images.heritageArchive}
         imageAlt="A paisley Pashmina shawl beside old folios on a carved walnut archive table"
@@ -39,6 +50,17 @@ export default function ContactPage() {
                   className="mt-1 inline-block border-b border-gold/50"
                 >
                   {SITE.email}
+                </a>
+              </div>
+              <div>
+                <p className="eyebrow text-stone-ink">WhatsApp</p>
+                <a
+                  href={WHATSAPP_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-block border-b border-gold/50"
+                >
+                  {SITE.phone}
                 </a>
               </div>
               <div>

@@ -7,7 +7,7 @@ import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
-  title: "Heritage",
+  title: "Kashmir Shawl History: Six Centuries of Pashmina",
   description:
     "A short history of the Kashmir shawl: how Pashmina weaving, Kani and Sozni developed in the valley and travelled the world.",
   pathname: "/heritage",

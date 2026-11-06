@@ -6,7 +6,7 @@ import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
-  title: "Kashmir",
+  title: "Kashmiri Pashmina: The Valley Behind the Shawl",
   description:
     "The valley behind Kashmiri Pashmina: its landscape, gardens and the community of spinners, dyers, weavers and embroiderers.",
   pathname: "/kashmir",

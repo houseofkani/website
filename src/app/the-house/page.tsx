@@ -8,9 +8,9 @@ import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
-  title: "The House",
+  title: "Our Family: Four Generations of Pashmina Weavers",
   description:
-    "House of Kani is a fourth-generation Kashmiri Pashmina family in Srinagar, weaving on its own looms and working with a trusted network of artisans.",
+    "House of Kani is a fourth-generation Kashmiri Pashmina family in Hazratbal, Srinagar, weaving on its own looms and working with a trusted network of artisans.",
   pathname: "/the-house",
   image: images.victorianKaniHero,
 });
@@ -104,8 +104,8 @@ export default function TheHousePage() {
         title="Visit Us, or Meet Us Online."
         body={
           <p>
-            Our office is in Srinagar. By appointment, we welcome visitors there and can take you to
-            our looms. If you cannot travel, we can show you pieces on a video call.
+            Our office is in Hazratbal, Srinagar. By appointment, we welcome visitors there and can
+            take you to our looms. If you cannot travel, we can show you pieces on a video call.
           </p>
         }
         tone="forest"

@@ -8,8 +8,8 @@ export const SITE = {
   whatsapp: "919802732612",
   whatsappMessage: "Hello House of Kani, I would like to ask about a piece.",
   phone: "+91 98027 32612",
-  location: "Srinagar, Kashmir",
-  appointments: "By appointment — in person in Srinagar, or online",
+  location: "Hazratbal, Srinagar, Kashmir",
+  appointments: "By appointment — in person in Hazratbal, Srinagar, or online",
   contactConfirmed: true,
   // Empty until the Etsy shop is live; links fall back to the Where to Buy page.
   etsyUrl: "",

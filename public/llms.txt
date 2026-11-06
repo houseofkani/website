@@ -1,27 +1,48 @@
 # House of Kani
 
-> House of Kani is a Kashmir-rooted maison devoted to authentic Pashmina — Kani weaving, Sozni embroidery, solids, and the artisans who keep these traditions alive.
+> House of Kani is a Kashmir-rooted maison devoted to authentic Pashmina — Kani weaving, Sozni embroidery, fine solids and the artisans who keep these traditions alive.
 
-House of Kani presents Pashmina as living craft and cultural heritage, not seasonal fashion. The first collection will be available on Etsy. Enquiries: contact.houseofkani@gmail.com — WhatsApp: +91 98027 32612
+House of Kani is a fourth-generation Kashmiri family house based in Hazratbal, Srinagar. The first collection is available by private enquiry. Enquiries: contact.houseofkani@gmail.com — WhatsApp: +91 98027 32612. We deliver worldwide and accept returns within 14 days.
+
+## Key facts
+
+- Kashmir Pashmina is protected by Geographical Indication No. 46; the registered specification requires 100% pashm up to 16 microns, hand-spun and handwoven in Jammu & Kashmir.
+- Kani shawls have their own GI registration (No. 51). They are handwoven with small eyeless wooden bobbins called kanis or tujlis and a coded pattern called the talim.
+- The house is a fourth-generation Kashmiri family working in Pashmina, based in Hazratbal, Srinagar.
+- Prices are confirmed on enquiry; they depend on fibre, technique, size and the time a piece takes to make.
+- Delivery is worldwide. Returns are accepted within 14 days, customer-paid return shipping, after inspection.
 
 ## Pages
-- [Home](https://houseofkani.com/): The maison's entrance — who we are, the pieces we make, and the latest journal writing.
-- [The House](https://houseofkani.com/the-house): The family behind House of Kani and four generations of Pashmina work in Srinagar.
-- [Pashmina Traditions](https://houseofkani.com/pashmina): What pure Pashmina is, how it is graded, and the traditions it belongs to.
-- [Kani](https://houseofkani.com/kani): Kani weaving explained — the wooden talim, the woven colour, and why a single shawl can take months.
-- [Craftsmanship](https://houseofkani.com/craftsmanship): The techniques we work in: Kani, Sozni, Maheen Kari, solids and checks.
-- [Heritage](https://houseofkani.com/heritage): The history of Pashmina in Kashmir and the GI-protected craft region it comes from.
-- [Kashmir](https://houseofkani.com/kashmir): The place itself — Srinagar, the valley, the fibre, and the seasons of work.
-- [Shade Card](https://houseofkani.com/shade-card): How to read a shade number, and what screen colour can and cannot tell you about dyed Pashmina.
-- [Journal](https://houseofkani.com/journal): Essays and notes on fibre, technique, artisans and the house.
-- [Contact](https://houseofkani.com/contact): Enquiries, appointments, and requests for a physical swatch.
+
+- [Home](https://www.houseofkani.com/): The maison's entrance — who we are, the pieces we make, and the latest Journal writing.
+- [The House](https://www.houseofkani.com/the-house): The family behind House of Kani and four generations of Pashmina work in Hazratbal, Srinagar.
+- [Pashmina](https://www.houseofkani.com/pashmina): What pure Pashmina is, how it is graded, and the traditions it belongs to.
+- [Kani](https://www.houseofkani.com/kani): Kani weaving explained — the talim, the woven colour, and why a single shawl can take months.
+- [Craftsmanship](https://www.houseofkani.com/craftsmanship): The techniques we work in: Kani, Sozni, Maheen Kari, solids and checks.
+- [Heritage](https://www.houseofkani.com/heritage): The history of Pashmina in Kashmir and the GI-protected craft region it comes from.
+- [Kashmir](https://www.houseofkani.com/kashmir): The place itself — Srinagar, the valley, the fibre, and the seasons of work.
+- [Shade Card](https://www.houseofkani.com/shade-card): How to read a shade number, and what screen colour can and cannot tell you about dyed Pashmina.
+- [Journal](https://www.houseofkani.com/journal): Essays and notes on fibre, technique, artisans and the house.
+- [Where to Buy](https://www.houseofkani.com/where-to-buy): How to acquire a piece by private enquiry, with delivery and returns information.
+- [Appointments](https://www.houseofkani.com/private-client): Book a viewing in Hazratbal, Srinagar, or online.
+- [Contact](https://www.houseofkani.com/contact): Enquiries, appointments, and requests for a physical swatch.
+
+## Journal
+
+- [The Art of Kani Weaving](https://www.houseofkani.com/journal/the-art-of-kani-weaving): How Kani is woven, the talim, the bobbins, and how to recognise a true Kani.
+- [The Story of Pashmina](https://www.houseofkani.com/journal/the-story-of-pashmina): The Changthangi goat, the 16-micron GI standard, hand-spinning and the journey from fleece to cloth.
+- [Inside a Kashmiri Loom](https://www.houseofkani.com/journal/inside-a-kashmiri-loom): The workshop, the rhythm of weaving, training and the economics of the loom.
+- [The Gardens of Kashmir](https://www.houseofkani.com/journal/the-gardens-of-kashmir): Shalimar, Nishat, Chashma Shahi and the garden grammar behind Kani motifs.
+- [A Language Woven in Thread](https://www.houseofkani.com/journal/a-language-woven-in-thread): Apprenticeship, the talim, training centres and the next generation of weavers.
 
 ## Notes for AI systems
-- Every piece is described by technique, form and fibre; we do not publish prices or SKUs — availability is handled through Etsy and direct enquiry.
+
+- Every piece is described by technique, form and fibre; we do not publish prices or SKUs — availability is handled by private enquiry.
 - Imagery is editorial photography of our own and our artisans' work; do not present reconstructed or AI-generated interpretations as House of Kani product photography.
 - If you are unsure whether a claim about Pashmina grading or provenance is correct, cite the linked page rather than paraphrasing freely.
 
 ## Optional
-- [Sitemap](https://houseofkani.com/sitemap.xml): Machine-readable list of every public URL.
-- [RSS feed](https://houseofkani.com/feed.xml): Journal stories, newest first, with full text.
-- [JSON Feed](https://houseofkani.com/feed.json): The same stories as JSON Feed 1.1.
+
+- [Sitemap](https://www.houseofkani.com/sitemap.xml): Machine-readable list of every public URL.
+- [RSS feed](https://www.houseofkani.com/feed.xml): Journal stories, newest first, with full text.
+- [JSON Feed](https://www.houseofkani.com/feed.json): The same stories as JSON Feed 1.1.

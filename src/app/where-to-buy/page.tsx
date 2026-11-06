@@ -8,9 +8,9 @@ import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = seoBundle({
-  title: "Where to Buy",
+  title: "Acquire a Piece — Private Enquiry",
   description:
-    "House of Kani’s first collection of pure Pashmina opens on Etsy. Pieces can also be seen by appointment in Srinagar or online.",
+    "Acquire House of Kani Pashmina by private enquiry. Worldwide delivery, 14-day returns and a money-back guarantee after inspection.",
   pathname: "/where-to-buy",
   image: images.kaniQuoteWide[3],
 });
@@ -34,20 +34,20 @@ export default function WhereToBuyPage() {
       <PageHero
         image={images.kaniQuoteWide[3]}
         imageAlt="An oatmeal floral shawl with blue striped borders on a carved walnut bench"
-        eyebrow="Where to Buy"
-        title="Our First Collection Opens on Etsy."
-        subtitle="Every listing names the technique, the fibre and the size."
+        eyebrow="Acquire a Piece"
+        title="The First Collection, by Private Enquiry."
+        subtitle="Worldwide delivery, 14-day returns and a money-back guarantee after inspection."
         height="medium"
       />
       <section className="bg-ivory px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
           <Reveal className="border-t border-gold/45 pt-8">
             <p className="eyebrow text-gold-ink">Online</p>
-            <h2 className="display-2 mt-4">Etsy</h2>
+            <h2 className="display-2 mt-4">{etsyLive ? "Etsy" : "Private Enquiry"}</h2>
             <p className="body-editorial mt-5 text-charcoal/75">
               {etsyLive
                 ? "Our Etsy shop carries our current shawls, stoles and wraps, with secure payment and worldwide delivery."
-                : "Our Etsy shop is being prepared. Once it opens, the link will appear here. Until then, write to us about any piece you would like to see."}
+                : "The first collection is available by private enquiry. Write to us about the pieces you would like to see; we will send available pieces, dimensions and prices directly."}
             </p>
             {etsyLive ? (
               <a
@@ -68,14 +68,43 @@ export default function WhereToBuyPage() {
             <p className="eyebrow text-gold-ink">In Person or by Video</p>
             <h2 className="display-2 mt-4">Appointments</h2>
             <p className="body-editorial mt-5 text-charcoal/75">
-              See pieces at our office in Srinagar, visit our looms, or meet us on a video call.
-              Every appointment is arranged in advance.
+              See pieces at our office in Hazratbal, Srinagar, visit our looms, or meet us on a video
+              call. Every appointment is arranged in advance.
             </p>
             <TextLink to="/private-client" className="mt-8">
               Arrange an Appointment
             </TextLink>
           </Reveal>
         </div>
+        <div className="mx-auto mt-16 grid max-w-5xl gap-8 border-t border-gold/30 pt-10 md:grid-cols-3">
+          <div>
+            <p className="eyebrow text-gold-ink">Worldwide Delivery</p>
+            <p className="body-editorial mt-3 text-charcoal/75">
+              We deliver worldwide. Delivery times, duties and taxes are confirmed at the time of
+              enquiry.
+            </p>
+          </div>
+          <div>
+            <p className="eyebrow text-gold-ink">Sizes</p>
+            <p className="body-editorial mt-3 text-charcoal/75">
+              Sizes vary by piece and weave. We confirm the exact dimensions, weight and fibre before
+              dispatch.
+            </p>
+          </div>
+          <div>
+            <p className="eyebrow text-gold-ink">Returns</p>
+            <p className="body-editorial mt-3 text-charcoal/75">
+              Returns are accepted within 14 days of delivery. The piece must be unworn, in its
+              original condition and packaging, and is inspected on return. Return shipping is paid
+              by the customer. Once the piece passes inspection, we refund the purchase price.
+            </p>
+          </div>
+        </div>
+        <p className="body-editorial mx-auto mt-10 max-w-3xl text-center text-charcoal/70">
+          Prices are confirmed on enquiry and depend on the fibre, the technique, the size and the
+          time a piece takes to make.{" "}
+          <TextLink to="/contact">Ask about a piece</TextLink>.
+        </p>
       </section>
     </>
   );

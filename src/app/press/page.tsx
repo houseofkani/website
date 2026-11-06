@@ -7,7 +7,7 @@ import { seoBundle } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = seoBundle({
-  title: "Press",
+  title: "Press & Media",
   description: "Press and media enquiries for House of Kani.",
   pathname: "/press",
   image: images.heritageArchive,

@@ -9,7 +9,7 @@ import { seoBundle } from "@/lib/seo";
 export const metadata: Metadata = seoBundle({
   title: "Appointments and Loom Visits",
   description:
-    "Arrange an appointment with House of Kani — in person at our Srinagar office, with a visit to our looms, or online by video call.",
+    "Arrange an appointment with House of Kani — in person at our Hazratbal, Srinagar office, with a visit to our looms, or online by video call.",
   pathname: "/private-client",
   image: images.kaniEarthStripeRodDraped,
 });
@@ -17,7 +17,7 @@ export const metadata: Metadata = seoBundle({
 const options = [
   {
     index: "01",
-    title: "In Srinagar",
+    title: "In Hazratbal, Srinagar",
     body: "Visit our office to see and handle pieces, with time to ask about fibre, technique and care.",
   },
   {
@@ -40,7 +40,7 @@ export default function PrivateClientPage() {
         imageAlt="A taupe Pashmina shawl with rose and turquoise paisleys displayed over a walnut rail"
         eyebrow="Appointments"
         title="See Our Pashmina Up Close."
-        subtitle="Meet our family in Srinagar, visit our looms, or see pieces with us online."
+        subtitle="Meet our family in Hazratbal, Srinagar, visit our looms, or see pieces with us online."
         height="tall"
       />
       <SplitSection

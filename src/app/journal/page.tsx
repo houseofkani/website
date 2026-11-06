@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
 import { Eyebrow } from "@/components/Editorial";
@@ -17,35 +16,20 @@ import { itemListLd, jsonLdScript, seoBundle } from "@/lib/seo";
 /** Stories per page — three rows of the three-column grid. */
 const PAGE_SIZE = 9;
 
-type PageProps = {
-  searchParams: Promise<{ page?: string | string[] }>;
-};
-
-function parsePage(raw: string | string[] | undefined): number {
-  const value = Array.isArray(raw) ? raw[0] : raw;
-  const page = Number.parseInt(value ?? "1", 10);
-  return Number.isFinite(page) && page > 0 ? page : 1;
-}
-
-export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  const page = parsePage((await searchParams).page);
-  const totalPages = await getJournalPage({ page, limit: PAGE_SIZE })
-    .then((result) => result.totalPages)
-    .catch(() => 1);
-  const outOfRange = page > totalPages;
-
-  return seoBundle({
-    title: page > 1 && !outOfRange ? `Journal — Page ${page}` : "Journal",
-    description: "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
-    canonical: outOfRange ? "/journal" : journalPageHref(page),
-    robots: outOfRange ? "noindex" : undefined,
-    image: images.heritageArchive,
-  });
-}
+/**
+ * Keep the hub's metadata static so the title and canonical are emitted inside
+ * <head> instead of being streamed after the body. Paginated views still render
+ * dynamically; their canonical points at the Journal hub.
+ */
+export const metadata: Metadata = seoBundle({
+  title: "Journal",
+  description: "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
+  canonical: "/journal",
+  image: images.heritageArchive,
+});
 
 async function JournalListing({ page }: { page: number }) {
-  const { isEnabled: draft } = await draftMode();
-  const result = await getJournalPage({ page, limit: PAGE_SIZE, draft }).catch((error) => {
+  const result = await getJournalPage({ page, limit: PAGE_SIZE }).catch((error) => {
     // Keep the page usable, but make CMS outages visible in the deployment logs.
     console.error("[journal] Failed to load posts from the CMS:", error);
     return null;
@@ -136,8 +120,12 @@ async function JournalListing({ page }: { page: number }) {
   );
 }
 
-export default async function JournalPage({ searchParams }: PageProps) {
-  const page = parsePage((await searchParams).page);
+// The public hub is a static first-page listing. When the archive exceeds
+// PAGE_SIZE, move pagination to /journal/page/[page] so this route stays static.
+export const revalidate = 300;
+
+export default function JournalPage() {
+  const page = 1;
 
   return (
     <>

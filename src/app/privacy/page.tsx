@@ -28,6 +28,10 @@ export default function PrivacyPage() {
           body: "An enquiry sent through this site is delivered to our enquiries address by Resend, our email provider, which processes the message only to transmit it. The message is not stored on the website itself.",
         },
         {
+          title: "Analytics",
+          body: "We use Google Tag Manager to load analytics tags, and Vercel Analytics and Speed Insights for aggregate performance measurement. These services may set cookies or similar identifiers. You can block cookies in your browser without affecting your ability to contact us.",
+        },
+        {
           title: "Your choices",
           body: "You may ask to see, correct or remove personal information held by the House. Please contact our general enquiries address with your request.",
         },

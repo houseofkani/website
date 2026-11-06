@@ -67,7 +67,7 @@ export function SiteFooter() {
             <p className="eyebrow text-ivory/55">{SITE.appointments}</p>
           )}
           <p className="eyebrow text-ivory/55">
-            © {new Date().getFullYear()} House of Kani — Srinagar, Kashmir
+            © {new Date().getFullYear()} House of Kani — Hazratbal, Srinagar
           </p>
         </div>
       </div>

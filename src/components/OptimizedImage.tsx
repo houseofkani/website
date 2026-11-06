@@ -25,6 +25,7 @@ export function OptimizedImage({
       alt={alt}
       className={cn(className)}
       priority={priority}
+      fetchPriority={priority ? "high" : undefined}
       loading={priority ? undefined : "lazy"}
       decoding="async"
       sizes={sizes}

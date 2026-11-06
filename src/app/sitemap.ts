@@ -13,7 +13,6 @@ const staticRoutes = [
   "/heritage",
   "/kashmir",
   "/journal",
-  "/press",
   "/where-to-buy",
   "/contact",
   "/private-client",
@@ -25,9 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url.replace(/\/$/, "");
 
   const pages: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
-    url: `${base}${path || "/"}`,
-    changeFrequency: path === "" || path === "/journal" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : path === "/journal" ? 0.9 : 0.7,
+    url: path ? `${base}${path}` : base,
   }));
 
   let articles: Awaited<ReturnType<typeof getJournalArchive>> = [];
@@ -40,9 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const journal: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${base}/journal/${article.slug}`,
-    lastModified: article.publishedAt ? new Date(article.publishedAt) : undefined,
-    changeFrequency: "monthly",
-    priority: 0.8,
+    lastModified: article.updatedAt ? new Date(article.updatedAt) : undefined,
   }));
 
   return [...pages, ...journal];

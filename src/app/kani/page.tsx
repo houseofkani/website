@@ -8,7 +8,7 @@ import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
 
 export const metadata: Metadata = seoBundle({
-  title: "Kani",
+  title: "Kani Weaving: How a Kani Shawl Is Made",
   description:
     "What Kani weaving is, how a Kani shawl is woven with bobbins and a talim, how long it takes, and how to tell hand-woven Kani from machine imitations.",
   pathname: "/kani",
@@ -164,11 +164,18 @@ export default function KaniPage() {
         eyebrow="Our Kani"
         title="Woven on Our Looms and by Weavers We Trust."
         body={
-          <p>
-            Our Kani shawls, stoles and wraps are 100% pure Pashmina. For each piece we state its
-            size and describe how it was made, and you can see Kani being woven on a visit to our
-            looms in Srinagar.
-          </p>
+          <>
+            <p>
+              Our Kani shawls, stoles and wraps are 100% pure Pashmina. For each piece we state its
+              size and describe how it was made, and you can see Kani being woven on a visit to our
+              looms in Hazratbal, Srinagar.
+            </p>
+            <p>
+              Prices are confirmed on enquiry and reflect the pattern, size and months on the loom.
+              Sizes vary by piece; we confirm dimensions before dispatch. We deliver worldwide and
+              accept returns within 14 days.
+            </p>
+          </>
         }
         action={<TextLink to="/where-to-buy">Where to Buy</TextLink>}
         imageRatio="portrait"
