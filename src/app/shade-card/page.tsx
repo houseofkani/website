@@ -109,6 +109,9 @@ export default function ShadeCardPage() {
             physical swatches, and we are happy to discuss a colour of your own by appointment.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+            <TextLink to="/journal/how-to-wear-a-pashmina" tone="light">
+              How to Wear a Pashmina
+            </TextLink>
             <TextLink to="/private-client" tone="light">
               Book an Appointment
             </TextLink>

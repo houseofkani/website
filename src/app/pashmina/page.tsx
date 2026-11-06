@@ -252,6 +252,11 @@ export default function PashminaPage() {
           <div className="mt-16">
             <MovementList items={recognise} />
           </div>
+          <div className="mt-12">
+            <TextLink to="/journal/how-to-tell-if-a-pashmina-is-real">
+              Read the Nine Checks in Full
+            </TextLink>
+          </div>
         </div>
       </section>
 
@@ -267,7 +272,10 @@ export default function PashminaPage() {
           <div className="mt-12">
             <MovementList items={care} tone="cream" />
           </div>
-          <div className="mt-12">
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <TextLink to="/journal/how-to-wash-a-pashmina-shawl">
+              Read the Full Care Guide
+            </TextLink>
             <TextLink to="/where-to-buy">Where to Buy</TextLink>
           </div>
         </div>
@@ -389,6 +397,7 @@ export default function PashminaPage() {
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <TextLink to="/sozni">Read about Sozni embroidery</TextLink>
+            <TextLink to="/journal/what-a-real-pashmina-costs">What a Pashmina Costs</TextLink>
             <TextLink to="/where-to-buy">Enquire About a Piece</TextLink>
           </div>
         </div>
