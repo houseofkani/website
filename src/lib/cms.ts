@@ -33,13 +33,14 @@ export type JournalRedirect =
   { type: "internal"; path: string } | { type: "external"; url: string };
 
 /**
- * Stable public origin for the Payload CMS: exe.dev HTTPS proxy -> Caddy -> CMS.
+ * Stable public origin for the Payload CMS, deployed on Vercel.
  *
- * Cloudflare quick tunnels (`*.trycloudflare.com`) are ephemeral — they stop
- * resolving as soon as cloudflared restarts — so a leftover tunnel URL in the
- * environment must never be treated as a durable CMS origin.
+ * Canonical production origin is https://cms.houseofkani.com (set via CMS_URL);
+ * the Vercel project URL is the fallback so a missing/stale env var cannot take
+ * the Journal down. Cloudflare quick tunnels (`*.trycloudflare.com`) are
+ * ephemeral and must never be treated as a durable CMS origin.
  */
-const STABLE_CMS_URL = "https://house-of-kani-cms.exe.xyz";
+const STABLE_CMS_URL = "https://house-of-kani-cms.vercel.app";
 const CONFIGURED_CMS_URL = (process.env.CMS_URL ?? "").replace(/\/$/, "");
 
 function resolveCmsUrl(): string {
@@ -107,10 +108,12 @@ type CmsPost = {
   } | null;
 };
 
-/** Serve media through the public CMS origin (dev: :3000, prod: Caddy domain). */
+/** Serve media through the public CMS origin (dev: :3000, prod: CMS domain). */
 function mediaUrl(media: CmsMedia | number | null | undefined): string {
   if (!media || typeof media === "number" || !media.url) return "";
   try {
+    // Absolute URLs (e.g. Vercel Blob) are already public — keep their origin.
+    if (/^https?:\/\//i.test(media.url)) return new URL(media.url).toString();
     const url = new URL(media.url, CMS_URL);
     return `${CMS_URL}${url.pathname}`;
   } catch {

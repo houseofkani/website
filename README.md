@@ -30,7 +30,7 @@ Copy `.env.example` to `.env.local`:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://houseofkani.com
-CMS_URL=https://house-of-kani-cms.exe.xyz
+CMS_URL=https://cms.houseofkani.com
 CMS_API_KEY=
 PREVIEW_SECRET=
 REVALIDATE_SECRET=

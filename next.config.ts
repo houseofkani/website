@@ -4,8 +4,9 @@ import type { NextConfig } from "next";
 
 // CMS media files are served by Payload (`/api/media/file/*`) and proxied by
 // next/image. Always allow the stable CMS origin as well as the configured one:
-// a stale/ephemeral CMS_URL must not break image optimisation.
-const STABLE_CMS_ORIGIN = "https://house-of-kani-cms.exe.xyz";
+// a stale/ephemeral CMS_URL must not break image optimisation. Vercel Blob is
+// also allowed for any media stored with a direct blob URL.
+const STABLE_CMS_ORIGIN = "https://house-of-kani-cms.vercel.app";
 function safeUrl(value: string | undefined, fallback: string): URL {
   try {
     return new URL(value || fallback);
@@ -26,6 +27,12 @@ if (cmsUrl.hostname !== "localhost") {
 }
 const remotePatterns = [
   ...new Map(cmsOrigins.map((url) => [url.origin, mediaPattern(url)])).values(),
+  // Direct Vercel Blob URLs, in case media is served without the CMS proxy.
+  {
+    protocol: "https" as const,
+    hostname: "**.public.blob.vercel-storage.com",
+    pathname: "/**",
+  },
 ];
 
 const nextConfig: NextConfig = {
