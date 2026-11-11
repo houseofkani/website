@@ -77,7 +77,12 @@ function parseArgs(argv) {
     else if (arg === "--gamma") opts.gamma = Number(next());
     else if (arg === "--ambient") opts.ambient = Number(next());
     else if (arg === "--max-gain") opts.maxGain = Number(next());
-    else if (arg === "--codes") codes.push(...next().split(",").map((c) => c.trim()));
+    else if (arg === "--codes")
+      codes.push(
+        ...next()
+          .split(",")
+          .map((c) => c.trim()),
+      );
     else if (arg === "--chapter") {
       mode = "chapter";
       opts.chapter = next();
@@ -130,7 +135,9 @@ function median3(src, width, height) {
   const out = new Uint8Array(src.length);
   const window = new Uint8Array(9);
   const at = (x, y) =>
-    src[(y < 0 ? 0 : y >= height ? height - 1 : y) * width + (x < 0 ? 0 : x >= width ? width - 1 : x)];
+    src[
+      (y < 0 ? 0 : y >= height ? height - 1 : y) * width + (x < 0 ? 0 : x >= width ? width - 1 : x)
+    ];
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       let n = 0;
@@ -260,7 +267,9 @@ async function loadMasters(src) {
   ]);
   const { width, height } = plate.info;
   if (grayscale.info.width !== width || grayscale.info.height !== height)
-    throw new Error(`grayscale is ${grayscale.info.width}×${grayscale.info.height}, plate is ${width}×${height}`);
+    throw new Error(
+      `grayscale is ${grayscale.info.width}×${grayscale.info.height}, plate is ${width}×${height}`,
+    );
   if (mask.info.width !== width || mask.info.height !== height)
     throw new Error(`mask is ${mask.info.width}×${mask.info.height}, plate is ${width}×${height}`);
   return { plate: plate.data, grayscale: grayscale.data, mask: mask.data, width, height };
@@ -416,14 +425,18 @@ async function main() {
   let selected;
   if (opts.codes.length) {
     selected = opts.codes.map((code) => {
-      const shade = shades.find((s) => s.code === code || s.code.toLowerCase() === code.toLowerCase());
+      const shade = shades.find(
+        (s) => s.code === code || s.code.toLowerCase() === code.toLowerCase(),
+      );
       if (!shade) throw new Error(`no shade "${code}" in src/lib/shades.ts`);
       return shade;
     });
   } else if (opts.mode === "all") selected = [...shades];
   else if (opts.mode === "chapter") {
     if (!shadeChapters.some((c) => c.id === opts.chapter))
-      throw new Error(`unknown chapter "${opts.chapter}"; expected one of ${shadeChapters.map((c) => c.id).join(", ")}`);
+      throw new Error(
+        `unknown chapter "${opts.chapter}"; expected one of ${shadeChapters.map((c) => c.id).join(", ")}`,
+      );
     selected = shadesInChapter(opts.chapter);
   } else {
     selected = SAMPLE_CODES.map((code) => {
@@ -458,15 +471,20 @@ async function main() {
     const buffer = await image.png({ compressionLevel: 9 }).toBuffer();
     await writeFile(file, buffer);
     if (opts.webp) {
-      await writeFile(file.replace(/\.png$/, ".webp"), await sharp(buffer).webp({ quality: 88 }).toBuffer());
+      await writeFile(
+        file.replace(/\.png$/, ".webp"),
+        await sharp(buffer).webp({ quality: 88 }).toBuffer(),
+      );
     }
     entries.push({ buffer, shade, width: masters.width, height: masters.height, file });
     console.log(`  ${shade.code.padEnd(6)} ${shade.hex}  ${shade.name}`);
   }
 
-  if (opts.sheet && entries.length > 1) {
+  if (opts.sheet && entries.length > 1 && entries.length <= 60) {
     const sheet = await writeSheet(entries, opts.out);
     console.log(`sheet: ${path.relative(process.cwd(), sheet)}`);
+  } else if (opts.sheet && entries.length > 60) {
+    console.log("sheet: skipped (more than 60 shades would make an unreadable contact sheet)");
   }
   console.log(`${entries.length} image(s) in ${path.relative(process.cwd(), opts.out)}`);
 }
