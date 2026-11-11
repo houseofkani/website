@@ -19,14 +19,27 @@ const staticRoutes = [
   "/private-client",
   "/privacy",
   "/terms",
+  "/press",
+] as const;
+
+const categoryRoutes = [
+  "pashmina",
+  "kani",
+  "craft",
+  "kashmir",
+  "care",
+  "style",
+  "people",
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url.replace(/\/$/, "");
 
-  const pages: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
-    url: path ? `${base}${path}` : base,
-  }));
+  const pages: MetadataRoute.Sitemap = [
+    ...staticRoutes.map((path) => ({ url: path ? `${base}${path}` : base })),
+    ...categoryRoutes.map((slug) => ({ url: `${base}/journal/category/${slug}` })),
+    { url: `${base}/journal/author/timothy-v-manley` },
+  ];
 
   let articles: Awaited<ReturnType<typeof getJournalArchive>> = [];
   try {

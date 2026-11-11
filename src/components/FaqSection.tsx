@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import { faqPageLd, jsonLdScript } from "@/lib/seo";
 
 export type FaqItem = { q: string; a: string };
 
@@ -17,6 +18,10 @@ export function FaqSection({
     <section
       className={`${tone === "cream" ? "bg-cream" : "bg-ivory"} px-5 py-20 sm:px-8 sm:py-28`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(faqPageLd(items.map((item) => ({ question: item.q, answer: item.a })))) }}
+      />
       <div className="mx-auto max-w-4xl">
         <Reveal className="max-w-2xl">
           <p className="eyebrow text-gold-ink">{eyebrow}</p>

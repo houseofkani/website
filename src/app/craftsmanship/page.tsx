@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { MovementList, SplitSection, TextLink } from "@/components/Editorial";
 import { FaqSection } from "@/components/FaqSection";
+import { JournalRail } from "@/components/JournalRail";
 import { PageHero } from "@/components/PageHero";
 import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
@@ -26,7 +27,7 @@ const craft = [
   { index: "08", title: "Washing and finishing", body: "The cloth is washed, its fringes are knotted, and it is gently pressed and inspected." },
 ];
 
-export default function CraftsmanshipPage() {
+export default async function CraftsmanshipPage() {
   return (
     <>
       <script
@@ -149,6 +150,7 @@ export default function CraftsmanshipPage() {
           },
         ]}
       />
+      <JournalRail category="Craft" categorySlug="craft" />
     </>
   );
 }

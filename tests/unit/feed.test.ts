@@ -22,7 +22,10 @@ function article(overrides: Partial<JournalArticle> = {}): JournalArticle {
     readTime: "4 min read",
     date: "20 September 2026",
     publishedAt: "2026-09-20T09:00:00.000Z",
+    updatedAt: "2026-09-20T09:00:00.000Z",
+    author: { name: "House of Kani" },
     seo: {},
+    tags: [],
     body: [
       { paragraphs: ["There is no haste at a Kani loom."] },
       {

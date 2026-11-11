@@ -69,6 +69,10 @@ function validate(body: Record<string, unknown>): Validation {
   const email = readString(body, "email");
   const telephone = readString(body, "telephone");
   const topic = readString(body, "topic") || "General enquiry";
+  const rawSource = readString(body, "source");
+  /** Only the forms this site ships may claim attribution. */
+  const source =
+    rawSource === "contact_form" || rawSource === "appointment_form" ? rawSource : undefined;
   const message = readString(body, "message");
 
   if (name.length < 2 || name.length > 120)
@@ -83,7 +87,10 @@ function validate(body: Record<string, unknown>): Validation {
   if (links > MAX_LINKS) return { ok: false, error: "Please remove the links and try again." };
   if (topic.length > 120) return { ok: false, error: "Unrecognised enquiry type." };
 
-  return { ok: true, value: { name, email, telephone: telephone || undefined, topic, message } };
+  return {
+    ok: true,
+    value: { name, email, telephone: telephone || undefined, topic, message, source },
+  };
 }
 
 export async function POST(request: Request) {

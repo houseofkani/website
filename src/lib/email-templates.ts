@@ -13,6 +13,8 @@ export type EnquiryInput = {
   telephone?: string;
   topic: string;
   message: string;
+  /** Which form produced the note, e.g. `contact_form` or `appointment_form`. */
+  source?: string;
 };
 
 export type TemplateOptions = {
@@ -70,6 +72,7 @@ export function enquiryText(input: EnquiryInput, options: TemplateOptions): stri
     `Email: ${input.email}`,
     input.telephone ? `Telephone: ${input.telephone}` : "",
     `Nature: ${input.topic}`,
+    input.source ? `Source: ${input.source}` : "",
     "",
     input.message,
     "",
@@ -181,6 +184,7 @@ export function enquiryHtml(input: EnquiryInput, options: TemplateOptions): stri
                 ${detailRow("Email", input.email, `mailto:${input.email}`)}
                 ${input.telephone ? detailRow("Telephone", input.telephone, `tel:${input.telephone.replace(/[^\d+]/g, "")}`) : ""}
                 ${detailRow("Nature", input.topic)}
+                ${input.source ? detailRow("Source", input.source) : ""}
               </table>
             </td>
           </tr>

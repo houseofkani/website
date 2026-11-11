@@ -19,12 +19,21 @@ const PAGE_SIZE = 9;
  * <head> instead of being streamed after the body. Paginated views still render
  * dynamically; their canonical points at the Journal hub.
  */
-export const metadata: Metadata = seoBundle({
-  title: "Journal",
-  description: "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
-  canonical: "/journal",
-  image: images.heritageArchive,
-});
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+  const { page: pageParam } = await searchParams;
+  const parsed = Number.parseInt(pageParam ?? "1", 10);
+  const page = Number.isFinite(parsed) && parsed > 1 ? parsed : 1;
+  return seoBundle({
+    title: "Journal",
+    description: "Stories of Kani, Pashmina, craftsmanship, heritage, Kashmir and its people.",
+    canonical: page > 1 ? `/journal?page=${page}` : "/journal",
+    image: images.heritageArchive,
+  });
+}
 
 async function JournalListing({ page }: { page: number }) {
   const result = await getJournalPage({ page, limit: PAGE_SIZE }).catch((error) => {
@@ -129,12 +138,19 @@ async function JournalListing({ page }: { page: number }) {
   );
 }
 
-// The public hub is a static first-page listing. When the archive exceeds
-// PAGE_SIZE, move pagination to /journal/page/[page] so this route stays static.
+// The hub reads the page from the query string. Page 1 is still cached for
+// five minutes; deeper pages render on demand so the whole archive is reachable
+// without adding a second route.
 export const revalidate = 300;
 
-export default async function JournalPage() {
-  const page = 1;
+export default async function JournalPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { page: pageParam } = await searchParams;
+  const parsed = Number.parseInt(pageParam ?? "1", 10);
+  const page = Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
 
   return (
     <>
@@ -145,6 +161,25 @@ export default async function JournalPage() {
           Essays from the loom, the archive and the valley.
         </p>
         <OrnamentRule className="mt-8" />
+        <nav aria-label="Journal categories" className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3">
+          {[
+            ["Pashmina", "pashmina"],
+            ["Kani", "kani"],
+            ["Craft", "craft"],
+            ["Kashmir", "kashmir"],
+            ["Care", "care"],
+            ["Style", "style"],
+            ["People", "people"],
+          ].map(([label, slug]) => (
+            <Link
+              key={slug}
+              href={`/journal/category/${slug}`}
+              className="nav-label border-b border-transparent pb-1 text-stone-ink transition-colors hover:border-gold hover:text-charcoal"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
       </section>
       <JournalListing page={page} />
     </>

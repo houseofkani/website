@@ -43,3 +43,5 @@ Allow: /
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 Sitemap: https://www.houseofkani.com/sitemap.xml
+
+Sitemap: https://www.houseofkani.com/image-sitemap.xml

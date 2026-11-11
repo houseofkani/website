@@ -22,6 +22,8 @@ export const SITE = {
     { label: "Pinterest", href: "https://www.pinterest.com/pinterest_houseofkani/" },
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61595178571861" },
   ] as { label: string; href: string }[],
+  /** Google Business Profile review link shown in the footer. */
+  googleReview: "https://g.page/r/CarR_SPtpaNXEBM/review",
 } as const;
 
 export const ETSY_HREF = SITE.etsyUrl || "/where-to-buy";
@@ -57,6 +59,7 @@ export const FOOTER_COLUMNS = [
       { label: "Kani", to: "/kani" },
       { label: "Sozni", to: "/sozni" },
       { label: "Craftsmanship", to: "/craftsmanship" },
+      { label: "Press", to: "/press" },
     ],
   },
   {

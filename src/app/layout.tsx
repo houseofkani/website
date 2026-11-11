@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { ReviewInvitation } from "@/components/ReviewInvitation";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
@@ -36,6 +37,20 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   authors: [{ name: siteConfig.name }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
   alternates: { types: FEED_ALTERNATES },
   openGraph: {
     type: "website",
@@ -74,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <SiteHeader />
         <main>{children}</main>
+        <ReviewInvitation />
         <SiteFooter />
         <WhatsAppFab />
         <Script id="google-tag-manager" strategy="afterInteractive">

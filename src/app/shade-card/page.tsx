@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { TextLink } from "@/components/Editorial";
 import { OrnamentRule } from "@/components/Ornament";
+import { JournalRail } from "@/components/JournalRail";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { ShadeCard } from "@/components/ShadeCard";
@@ -24,7 +25,7 @@ const legend = [
   { mark: "DD", label: "Deepest", body: "The darkest shade we dye." },
 ];
 
-export default function ShadeCardPage() {
+export default async function ShadeCardPage() {
   return (
     <>
       <script
@@ -121,6 +122,7 @@ export default function ShadeCardPage() {
           </div>
         </Reveal>
       </section>
+      <JournalRail category="Style" categorySlug="style" />
     </>
   );
 }

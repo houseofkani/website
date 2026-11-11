@@ -45,6 +45,18 @@ describe("enquirySubject", () => {
   });
 });
 
+describe("enquiry source attribution", () => {
+  it("names the form that produced the note", () => {
+    const input = enquiry({ source: "appointment_form" });
+    expect(enquiryText(input, OPTIONS)).toContain("Source: appointment_form");
+    expect(enquiryHtml(input, OPTIONS)).toContain("appointment_form");
+  });
+
+  it("omits the source row when the form did not send one", () => {
+    expect(enquiryText(enquiry(), OPTIONS)).not.toContain("Source:");
+  });
+});
+
 describe("enquiryHtml", () => {
   const html = enquiryHtml(enquiry(), OPTIONS);
 

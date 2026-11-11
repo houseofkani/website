@@ -8,8 +8,40 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import { OrnamentRule } from "@/components/Ornament";
 import { Reveal } from "@/components/Reveal";
 import { getJournalPost, getJournalPosts, getJournalRedirect } from "@/lib/cms";
-import { blogPostingLd, breadcrumbLd, jsonLdScript, seoBundle } from "@/lib/seo";
+import type { JournalArticle } from "@/lib/cms";
+import { blogPostingLd, breadcrumbLd, faqPageLd, jsonLdScript, seoBundle } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
+
+function plainText(value: string): string {
+  return value
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\[\d+\]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function articleFaqs(article: JournalArticle): Array<{ question: string; answer: string }> {
+  const start = article.body.findIndex(
+    (section) => section.heading && /^(questions we are asked|frequently asked questions)$/i.test(section.heading),
+  );
+  if (start < 0) return [];
+
+  const faqs: Array<{ question: string; answer: string }> = [];
+  for (let i = start + 1; i < article.body.length; i += 1) {
+    const section = article.body[i];
+    if (!section) continue;
+    if (section.heading && section.headingLevel === 2) break;
+    if (section.heading && section.headingLevel === 3) {
+      const answer = section.paragraphs.map(plainText).join(" ").trim();
+      if (answer) faqs.push({ question: section.heading, answer });
+    }
+  }
+  return faqs;
+}
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -47,8 +79,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     });
   }
   const { seo } = article;
-  return seoBundle({
-    title: seo.title || article.title,
+  const title = seo.title || article.title;
+  const metadata = seoBundle({
+    title,
     description: seo.description || article.dek,
     pathname: seo.canonicalUrl
       ? new URL(seo.canonicalUrl, siteConfig.url).pathname
@@ -60,6 +93,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     modifiedTime: article.updatedAt || undefined,
     robots: seo.noindex ? "noindex" : undefined,
   });
+  // Keep the CMS SEO title intact instead of appending the brand suffix and
+  // pushing a 50–58 character title past the SERP display limit.
+  return { ...metadata, title: { absolute: title } };
 }
 
 export default async function JournalArticlePage({ params }: Props) {
@@ -76,7 +112,18 @@ export default async function JournalArticlePage({ params }: Props) {
   }
 
   const all = await getJournalPosts({ draft });
-  const related = all.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const faqs = articleFaqs(article);
+  const related = all
+    .filter((a) => a.slug !== article.slug)
+    .map((a) => ({
+      article: a,
+      score:
+        (a.category === article.category ? 3 : 0) +
+        a.tags.filter((tag) => article.tags.includes(tag)).length * 2,
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((entry) => entry.article);
 
   return (
     <article className="bg-ivory">
@@ -98,6 +145,7 @@ export default async function JournalArticlePage({ params }: Props) {
               { name: "Journal", path: "/journal" },
               { name: article.title, path: `/journal/${article.slug}` },
             ]),
+            ...(faqs.length ? [faqPageLd(faqs)] : []),
           ]),
         }}
       />
@@ -114,7 +162,10 @@ export default async function JournalArticlePage({ params }: Props) {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest/60 via-forest/15 to-forest/90" />
         <div className="relative z-10 mx-auto w-full max-w-[1100px] px-5 pt-36 pb-14 sm:px-8 sm:pb-20">
           <p className="eyebrow text-gold">
-            {article.category} · {article.readTime}
+            <Link href={`/journal/category/${article.category.toLowerCase()}`} className="hover:text-ivory">
+              {article.category}
+            </Link>{" "}
+            · {article.readTime}
           </p>
           <h1 className="display-1 mt-4 max-w-4xl">{article.title}</h1>
           <p className="font-display mt-5 max-w-2xl text-[1.2rem] leading-relaxed font-light italic text-ivory/85">
@@ -124,7 +175,15 @@ export default async function JournalArticlePage({ params }: Props) {
       </header>
       <div className="mx-auto max-w-[780px] px-5 py-20 sm:px-8 sm:py-28">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="eyebrow text-gold-ink">By {article.author.name}</p>
+          <p className="eyebrow text-gold-ink">
+            By{" "}
+            <Link
+              href={`/journal/author/${article.author.slug ?? "timothy-v-manley"}`}
+              className="hover:text-ivory"
+            >
+              {article.author.name}
+            </Link>
+          </p>
           {article.author.designation ? (
             <p className="nav-label text-charcoal/70">{article.author.designation}</p>
           ) : null}

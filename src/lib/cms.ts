@@ -9,7 +9,7 @@ import { cache } from "react";
 
 export type JournalArticle = {
   slug: string;
-  category: "Kani" | "Pashmina" | "Craft" | "Heritage" | "Kashmir" | "People";
+  category: "Kani" | "Pashmina" | "Craft" | "Heritage" | "Kashmir" | "People" | "Care" | "Style";
   title: string;
   dek: string;
   image: string;
@@ -35,6 +35,7 @@ export type JournalArticle = {
     canonicalUrl?: string;
     noindex?: boolean;
   };
+  tags: string[];
   /**
    * Article body. Paragraph and quote strings contain sanitized inline HTML
    * (links, bold/italic) produced from the CMS Lexical document.
@@ -129,6 +130,7 @@ type CmsPost = {
   featuredImage?: CmsMedia | number | null;
   imageAlt?: string | null;
   categories?: CmsCategory[] | null;
+  tags?: string[] | null;
   author?: CmsAuthor | number | null;
   publishedAt?: string | null;
   updatedAt?: string | null;
@@ -317,6 +319,7 @@ function toArticle(post: CmsPost): JournalArticle | null {
   return {
     slug: post.slug,
     category: (post.categories?.[0]?.name ?? "Craft") as JournalArticle["category"],
+    tags: post.tags ?? [],
     title: post.title,
     dek: post.excerpt ?? "",
     image: mediaUrl(post.featuredImage),
@@ -390,6 +393,7 @@ export const getJournalPosts = cache(async (query: PostQuery = {}): Promise<Jour
   const data = (await cmsFetch(`posts?${params}`, {
     draft: query.draft,
     tags: ["journal"],
+    revalidate: 300,
   })) as { docs?: CmsPost[] };
 
   return (data.docs ?? []).map(toArticle).filter((a): a is JournalArticle => a !== null);
@@ -402,6 +406,7 @@ export const getJournalPost = cache(
       limit: "1",
       depth: "2",
       "where[slug][equals]": slug,
+      _v: "2026-11-09b",
     });
     if (options.draft) params.set("draft", "true");
     else params.set("where[_status][equals]", "published");
@@ -410,6 +415,7 @@ export const getJournalPost = cache(
       const data = (await cmsFetch(`posts?${params}`, {
         draft: options.draft,
         tags: ["journal", `post:${slug}`],
+        revalidate: 60,
       })) as { docs?: CmsPost[] };
       const post = data.docs?.[0];
       return post ? toArticle(post) : null;
@@ -453,17 +459,24 @@ export const getJournalPage = cache(
     page = 1,
     limit = 9,
     draft = false,
-  }: { page?: number; limit?: number; draft?: boolean } = {}): Promise<JournalPage> => {
+    category,
+  }: { page?: number; limit?: number; draft?: boolean; category?: string } = {}): Promise<JournalPage> => {
     const params: Record<string, string> = {
       limit: String(limit),
       page: String(Math.max(1, Math.floor(page))),
       depth: "2",
       sort: "-publishedAt",
+      _v: "2026-11-07",
     };
     if (draft) params.draft = "true";
     else params["where[_status][equals]"] = "published";
+    if (category) params["where[categories.slug][equals]"] = category;
 
-    const data = (await cmsFetch(postQuery(params), { draft, tags: ["journal"] })) as PostPage;
+    const data = (await cmsFetch(postQuery(params), {
+      draft,
+      tags: ["journal"],
+      revalidate: 0,
+    })) as PostPage;
     const articles = (data.docs ?? [])
       .map(toArticle)
       .filter((a): a is JournalArticle => a !== null);

@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { TextLink } from "@/components/Editorial";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
+import { TrackedLink } from "@/components/TrackedLink";
+import { ANALYTICS_EVENTS, PLACEMENT } from "@/lib/analytics";
 import { images } from "@/lib/images";
 import { breadcrumbLd, jsonLdScript, seoBundle, webPageLd } from "@/lib/seo";
 import { SITE, WHATSAPP_HREF } from "@/lib/site";
@@ -62,14 +64,16 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="eyebrow text-stone-ink">WhatsApp</p>
-                <a
+                <TrackedLink
                   href={WHATSAPP_HREF}
+                  event={ANALYTICS_EVENTS.whatsappClick}
+                  params={{ placement: PLACEMENT.whatsappContact }}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-1 inline-block border-b border-gold/50"
                 >
                   {SITE.phone}
-                </a>
+                </TrackedLink>
               </div>
               <div>
                 <p className="eyebrow text-stone-ink">Where We Are</p>

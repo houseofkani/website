@@ -248,12 +248,18 @@
 }
 
 /* ---- Journal rich text (links, lists, emphasis) ------------------------- */
+.journal-body {
+  overflow-wrap: anywhere;
+}
+
 .journal-body a {
   color: var(--color-gold-ink);
+  overflow-wrap: anywhere;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
   transition: color 300ms ease;
+  word-break: break-word;
 }
 
 .journal-body a:hover {

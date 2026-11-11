@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { MovementList, PullQuote, SplitSection, TextLink } from "@/components/Editorial";
 import { OrnamentRule } from "@/components/Ornament";
+import { JournalRail } from "@/components/JournalRail";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
@@ -91,7 +92,7 @@ const questions = [
   },
 ];
 
-export default function SozniPage() {
+export default async function SozniPage() {
   return (
     <>
       <script
@@ -274,6 +275,7 @@ export default function SozniPage() {
           the cloth and the hand.
         </PullQuote>
       </section>
+      <JournalRail category="Craft" categorySlug="craft" />
     </>
   );
 }

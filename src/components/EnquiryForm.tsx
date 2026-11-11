@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 
 import { Ornament } from "@/components/Ornament";
+import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { SITE } from "@/lib/site";
 
 type Kind = "general" | "appointment";
@@ -20,6 +21,7 @@ const TOPICS = [
 
 export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
   const [status, setStatus] = useState<Status>("idle");
+  const formType = kind === "appointment" ? "appointment" : "contact";
   // Captured on mount: the API rejects notes submitted faster than a human can type.
   const [startedAt] = useState(() => Date.now());
   const [error, setError] = useState<string | null>(null);
@@ -40,6 +42,7 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
       .join("\n\n");
     setStatus("sending");
     setError(null);
+    trackEvent(ANALYTICS_EVENTS.enquirySubmit, { form_type: formType, topic });
 
     /** Last resort: hand the note to the visitor's own mail app. */
     const openMailClient = () => {
@@ -64,6 +67,7 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
           topic,
           message,
           website: String(data.get("website") ?? ""),
+          source: `${formType}_form`,
           startedAt,
         }),
       });
@@ -76,18 +80,34 @@ export function EnquiryForm({ kind = "general" }: { kind?: Kind }) {
       if (payload.code === "email_not_configured") {
         // No Resend key on this deployment — behave exactly as the site used to.
         openMailClient();
+        trackEvent(ANALYTICS_EVENTS.enquiryFallback, {
+          form_type: formType,
+          topic,
+          error_code: payload.code,
+        });
         setStatus("fallback");
         return;
       }
 
       if (!response.ok) {
+        trackEvent(ANALYTICS_EVENTS.enquiryError, {
+          form_type: formType,
+          topic,
+          error_code: payload.code ?? `http_${response.status}`,
+        });
         setError(payload.error ?? "We could not send your note. Please write to us directly.");
         setStatus("error");
         return;
       }
 
+      trackEvent(ANALYTICS_EVENTS.enquirySuccess, { form_type: formType, topic });
       setStatus("sent");
     } catch {
+      trackEvent(ANALYTICS_EVENTS.enquiryError, {
+        form_type: formType,
+        topic,
+        error_code: "network",
+      });
       setError("The connection dropped. Please write to us directly.");
       setStatus("error");
     }

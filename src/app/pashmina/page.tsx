@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { MovementList, SplitSection, TextLink } from "@/components/Editorial";
 import { OrnamentRule } from "@/components/Ornament";
+import { JournalRail } from "@/components/JournalRail";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
@@ -85,7 +86,7 @@ const care = [
   },
 ];
 
-export default function PashminaPage() {
+export default async function PashminaPage() {
   return (
     <>
       <script
@@ -402,6 +403,7 @@ export default function PashminaPage() {
           </div>
         </div>
       </section>
+      <JournalRail category="Pashmina" categorySlug="pashmina" />
     </>
   );
 }

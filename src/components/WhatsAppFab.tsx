@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 
+import { ANALYTICS_EVENTS, PLACEMENT, hostOf, trackEvent } from "@/lib/analytics";
 import { WHATSAPP_HREF, WHATSAPP_IS_LIVE } from "@/lib/site";
 
 /** The official WhatsApp glyph, reported in the brand's own colour. */
@@ -23,9 +26,7 @@ function WhatsAppGlyph({ className }: { className?: string }) {
  * With no confirmed number the link falls back to the contact page.
  */
 export function WhatsAppFab() {
-  const label = WHATSAPP_IS_LIVE
-    ? "Chat with House of Kani on WhatsApp"
-    : "Write to House of Kani";
+  const label = WHATSAPP_IS_LIVE ? "Chat with House of Kani on WhatsApp" : "Write to House of Kani";
 
   return (
     <div className="pointer-events-none fixed right-5 bottom-5 z-[45] print:hidden sm:right-7 sm:bottom-7">
@@ -34,17 +35,22 @@ export function WhatsAppFab() {
         style={{ animationDelay: "700ms" }}
       >
         <span className="whatsapp-ring" aria-hidden="true" />
-        <span
-          className="whatsapp-ring"
-          aria-hidden="true"
-          style={{ animationDelay: "1.4s" }}
-        />
+        <span className="whatsapp-ring" aria-hidden="true" style={{ animationDelay: "1.4s" }} />
         <Link
           href={WHATSAPP_HREF}
           aria-label={label}
-          {...(WHATSAPP_IS_LIVE
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
+          onClick={
+            WHATSAPP_IS_LIVE
+              ? () =>
+                  trackEvent(ANALYTICS_EVENTS.whatsappClick, {
+                    placement: PLACEMENT.whatsappFab,
+                    destination_host: hostOf(WHATSAPP_HREF),
+                    is_live: true,
+                  })
+              : undefined
+          }
+          data-analytics-event={WHATSAPP_IS_LIVE ? ANALYTICS_EVENTS.whatsappClick : undefined}
+          {...(WHATSAPP_IS_LIVE ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-ivory shadow-[0_12px_32px_-8px_oklch(0.29_0.09_150/55%)] transition-[background-color,transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04] hover:bg-whatsapp-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-whatsapp"
         >
           <WhatsAppGlyph className="h-7 w-7" />

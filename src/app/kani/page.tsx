@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { MovementList, PullQuote, SplitSection, TextLink } from "@/components/Editorial";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import { JournalRail } from "@/components/JournalRail";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { images } from "@/lib/images";
@@ -67,7 +68,7 @@ const recognise = [
   },
 ];
 
-export default function KaniPage() {
+export default async function KaniPage() {
   return (
     <>
       <script
@@ -333,6 +334,7 @@ export default function KaniPage() {
           </div>
         </div>
       </section>
+      <JournalRail category="Kani" categorySlug="kani" />
     </>
   );
 }
