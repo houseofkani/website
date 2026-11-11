@@ -15,7 +15,8 @@
     "cms:switch": "bash scripts/switch-cms.sh",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "shawl:shades": "node scripts/generate-shawl-shades.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
