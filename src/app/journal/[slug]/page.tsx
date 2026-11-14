@@ -229,7 +229,7 @@ export default async function JournalArticlePage({ params }: Props) {
             <p className="eyebrow text-gold-ink">About the author</p>
             <p className="mt-3 font-display text-2xl text-charcoal">{article.author.name}</p>
             {article.author.designation ? (
-              <p className="nav-label mt-1 text-charcoal/55">{article.author.designation}</p>
+              <p className="nav-label mt-1 text-stone-ink">{article.author.designation}</p>
             ) : null}
             <p className="body-editorial mt-4 text-charcoal/75">{article.author.bio}</p>
           </aside>

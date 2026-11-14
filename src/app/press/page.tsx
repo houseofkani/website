@@ -149,7 +149,7 @@ export default function PressPage() {
               </a>
             ))}
           </div>
-          <p className="mt-8 text-[0.9rem] leading-relaxed text-charcoal/55">
+          <p className="mt-8 text-[0.9rem] leading-relaxed text-charcoal/70">
             Credit: House of Kani. Images may be used with editorial coverage of the house; do not
             alter them or use them to imply endorsement.
           </p>
